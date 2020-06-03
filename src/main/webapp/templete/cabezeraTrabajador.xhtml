@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <meta charset="UTF-8"/>
+            <title><ui:insert name="title"/></title>
+        <link href="templete/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="templete/css/toast.css" rel="stylesheet" type="text/css"/>
+        <link href="templete/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+
+    <h:body style="background: #4CA1AF;  /* fallback for old browsers */
+          background: -webkit-linear-gradient(to right, #4CA1AF, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to right, #4CA1AF, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+          ">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="http://localhost:8080/ProyectoIntegrador/empleado.xhtml">INICIO</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/vistaFactura">FACTURA <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistaProductos">PRODUCTOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/vistaCliente">CLIENTES</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container pt-2">
+           <ui:insert name="content">
+
+                    </ui:insert>
+        </div>
+
+
+
+
+        <script src="templete/js/jquery-3.3.1.slim.min.js"></script>
+        <script src="templete/js/jquery-1.11.2.js" type="text/javascript"></script>
+        <script src="templete/js/jquery-ui.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js" type="text/javascript"></script>
+        <script src="templete/js/bootstrap.js" type="text/javascript" ></script>
+
+
+
+
+
+    </h:body>
+</html>
+

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.main.java.ec.edu.ups.proyecto.dao;
+package ec.edu.ups.proyecto.dao;
 
 import ec.edu.ups.proyecto.emtitis.Trabajador;
 import java.util.List;
@@ -28,6 +28,7 @@ public class TrabajadorDAO {
     
     public void insert(Trabajador trabajador) throws Exception {
         try {
+            System.out.println("si creo que llega aca");
             em.persist(trabajador);
         } catch (Exception e) {
             throw new Exception("Erro ingreso Trabajador " + e.getMessage());
@@ -36,9 +37,10 @@ public class TrabajadorDAO {
 
     public void delete(Trabajador trabajador) throws Exception {
         try {
+            System.out.println("borrando");
             em.remove(read(trabajador.getId()));
         } catch (Exception e) {
-            throw new Exception("Erro Eliminar Trabajador " +e.getMessage());
+            throw new Exception("oErro Eliminar Trabajador " +e.getMessage());
         }
     }
 
@@ -47,7 +49,7 @@ public class TrabajadorDAO {
             System.out.println("borrando");
             em.remove(read(id));
         } catch (Exception e) {
-            throw new Exception("Erro Eliminar Trabajador " +e.getMessage());
+            throw new Exception("oErro Eliminar Trabajador " +e.getMessage());
         }
     }
     
@@ -61,6 +63,7 @@ public class TrabajadorDAO {
 
     public Trabajador read(int id) throws Exception {
         try {
+            System.out.println("Estamos aca");
             return em.find(Trabajador.class, id);
         } catch (Exception e) {
             throw new Exception("Erro leer Trabajador " +e.getMessage());

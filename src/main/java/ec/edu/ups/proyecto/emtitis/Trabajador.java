@@ -74,9 +74,9 @@ public class Trabajador implements Serializable {
     @Column(name = "sueldo")
     private double sueldo;
     @Column(name = "eliminado")
-    private Short eliminado;
+    private boolean eliminado;
     @Column(name = "activo")
-    private Short activo;
+    private boolean activo;
 
     public Trabajador() {
     }
@@ -178,19 +178,19 @@ public class Trabajador implements Serializable {
         this.sueldo = sueldo;
     }
 
-    public Short getEliminado() {
+    public boolean getEliminado() {
         return eliminado;
     }
 
-    public void setEliminado(Short eliminado) {
+    public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
     }
 
-    public Short getActivo() {
+    public boolean getActivo() {
         return activo;
     }
 
-    public void setActivo(Short activo) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
 
@@ -216,7 +216,9 @@ public class Trabajador implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.ups.proyecto.emtitis.Trabajador[ id=" + id + " ]";
+        return "Trabajador{" + "id=" + id + ", cedula=" + cedula + ", nombres=" + nombres + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion + ", correo=" + correo + ", contracenia=" + contracenia + ", rol=" + rol + ", sueldo=" + sueldo + ", eliminado=" + eliminado + ", activo=" + activo + '}';
     }
+
+    
     
 }
