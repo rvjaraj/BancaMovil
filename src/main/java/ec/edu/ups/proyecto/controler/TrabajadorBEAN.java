@@ -30,6 +30,7 @@ public class TrabajadorBEAN {
     private Trabajador newTrabajador;
     private List<Trabajador> listaTrabajadores;
     private ArrayList<String> listaOpc;
+    private String textoBuscar;
 
     @Inject
     private TrabajadorON trabajadorON;
@@ -57,6 +58,16 @@ public class TrabajadorBEAN {
     public String guardarTrabajador() {
         try {
             trabajadorON.guardarFactura(newTrabajador);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public String buscaTrabajadores() {
+        System.out.println(textoBuscar);
+        try {
+            listaTrabajadores = trabajadorON.listaTrabajadoresCodigo(textoBuscar);
         } catch (Exception ex) {
             Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,6 +105,14 @@ public class TrabajadorBEAN {
 
     public void setListaTrabajadores(List<Trabajador> listaTrabajadores) {
         this.listaTrabajadores = listaTrabajadores;
+    }
+
+    public String getTextoBuscar() {
+        return textoBuscar;
+    }
+
+    public void setTextoBuscar(String textoBuscar) {
+        this.textoBuscar = textoBuscar;
     }
 
 }

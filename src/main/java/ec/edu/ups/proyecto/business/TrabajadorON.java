@@ -36,6 +36,16 @@ public class TrabajadorON {
         }
         return null;
     }
+    
+    
+    public List<Trabajador> listaTrabajadoresCodigo(String codigo){
+        try {
+            return trabajadorDAO.findAllCodigo(codigo);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public boolean guardarFactura(Trabajador trabajador) throws Exception {
         if (validarCedula(trabajador.getCedula())) {
@@ -53,6 +63,8 @@ public class TrabajadorON {
 
         return true;
     }
+    
+    
 
     public boolean validarCedula(String ced) {
         boolean verdadera = false;

@@ -81,6 +81,19 @@ public class TrabajadorDAO {
         }
 
     }
+    
+    public List<Trabajador> findAllCodigo(String codigo) throws Exception {
+
+        try {
+            Query q = em.createNamedQuery("Trabajador.findAllCodigo");
+            q.setParameter("codigo",  "%" + codigo + "%");
+            List<Trabajador> lista = q.getResultList();
+            return lista;
+        } catch (Exception e) {
+            throw new Exception("Erro listar Trabajador " +e.getMessage());
+        }
+
+    }
 
     public Trabajador findByCedula(String cedula) throws Exception {
         try {
