@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.proycto.dao;
+package src.main.java.ec.edu.ups.proyecto.dao;
 
 import ec.edu.ups.proyecto.emtitis.Trabajador;
 import java.util.List;
