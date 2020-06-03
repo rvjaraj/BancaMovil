@@ -22,7 +22,7 @@ public class Vista extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            response.getWriter().println("<h1>Ricardo Jara</h1>");
+            response.getWriter().println("<h1>Hola mundo, si estan sobreviviendo al covid</h1>");
         } catch (Exception e) {
             response.getWriter().println(e.getMessage() +e.getLocalizedMessage());
             System.out.println(e.getMessage());
