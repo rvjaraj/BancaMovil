@@ -28,6 +28,15 @@ public class TrabajadorON {
     public TrabajadorON() {
     }
     
+    public Trabajador buscarTrabajador(String id){
+        try {
+            return trabajadorDAO.findByID(id);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public List<Trabajador> listaTrabajadores(){
         try {
             return trabajadorDAO.findAll();

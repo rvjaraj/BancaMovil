@@ -94,6 +94,17 @@ public class TrabajadorDAO {
         }
 
     }
+    
+    public Trabajador findByID(String id) throws Exception {
+        try {
+            Query q = em.createNamedQuery("Trabajador.findById");
+            q.setParameter("ID", Integer.parseInt(id));
+            return (Trabajador) q.getSingleResult();
+        } catch (Exception e) {
+            throw new Exception("Erro buscar por  ID ");
+        }
+
+    }
 
     public Trabajador findByCedula(String cedula) throws Exception {
         try {

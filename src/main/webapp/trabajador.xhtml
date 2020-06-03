@@ -67,10 +67,10 @@
                                 <thead>
                                     <tr>
                                         <h:form id="formBuscar">
-                                        <th style="width: 100%"><h:inputText id='buscar' value="#{trabajadorBEAN.textoBuscar}" class="form-control" a:placeholder="Buscar, Ingresar Cedula, Nombre o Apellido" a:aria-label="">
-                                                <f:ajax event="keyup" listener="#{trabajadorBEAN.buscaTrabajadores()}" render="tablatrabajadores" execute="formBuscar"></f:ajax>
-                                            </h:inputText></th>
-                                        <th><button type="button" class="btn btn-outline-danger" onclick="window.location.href = '/vistaCliente'">X</button></th>
+                                            <th style="width: 100%"><h:inputText id='buscar' value="#{trabajadorBEAN.textoBuscar}" class="form-control" a:placeholder="Buscar, Ingresar Cedula, Nombre o Apellido" a:aria-label="">
+                                                    <f:ajax event="keyup" listener="#{trabajadorBEAN.buscaTrabajadores()}" render="tablatrabajadores" execute="formBuscar"></f:ajax>
+                                                </h:inputText></th>
+                                            <th><button type="button" class="btn btn-outline-danger" onclick="window.location.href = '/vistaCliente'">X</button></th>
                                         </h:form>
                                     </tr>
                                 </thead>
@@ -109,7 +109,9 @@
                                     </h:column>
                                     <h:column>
                                         <f:facet name="header">Opciones</f:facet>
-                                        <a class="btn btn-secondary" data-toggle="modal" onclick="cargarDatosCLiente('{{usr.0}}')" data-target="#exampleModalLong">EDITAR</a>
+                                        <h:commandButton class="btn btn-success" value="EDITAR" action="#{trabajadorBEAN.buscaTrabajadorID(trabajador.id)}" a:data-toggle="modal"  a:data-target="#exampleModalLong">
+                                            <f:ajax render="editarTrabajadores"/>
+                                        </h:commandButton>
                                         <a href="/eliminar/{{usr.0}}" onclick="confirmarEliminacion('USUARIO', event)" class="btn btn-danger btn-delete">ELIMINAR</a>
                                     </h:column>
                                 </h:dataTable>
@@ -123,7 +125,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">EDITAR USUARIO</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">EDITAR TRABAJADOR</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -131,50 +133,47 @@
                         <div class="modal-body" name="modal">
                             <div class="row">
                                 <div class="card card-body">
-                                    <h:form id="ceditarTrabajadores"><br></br>
-                            <h5 class="card-title bg-white">CREACION DE USUARIOS</h5>
-                            <div class="form-group">
-                                <label class="text-center" for="cedula">Cedula</label>
-                                <h:inputText class="form-control" id="cedula"  value="#{trabajadorBEAN.newTrabajador.cedula}"/>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-center" for="nombres">Nombres</label>
-                                <h:inputText class="form-control" id="nombres"  value="#{trabajadorBEAN.newTrabajador.nombres}"/>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-center" for="apellidos">Apellidos</label>
-                                <h:inputText class="form-control" id="apellidos" value="#{trabajadorBEAN.newTrabajador.apellido}"/>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-center" for="telefono">Telefono</label>
-                                <h:inputText class="form-control" id="telefono" value="#{trabajadorBEAN.newTrabajador.telefono}"/>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-center" for="direccion">Direccion</label>
-                                <h:inputText class="form-control"  id="direccion"  value="#{trabajadorBEAN.newTrabajador.direccion}" />
-                            </div>
-                            <div class="form-group">
-                                <label class="text-center" for="correo">Correo</label>
-                                <h:inputText class="form-control" id="correo"  value="#{trabajadorBEAN.newTrabajador.correo}"/>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-center" for="sueldo">Sueldo</label>
-                                <h:inputText class="form-control" id="sueldo" value="#{trabajadorBEAN.newTrabajador.sueldo}"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="disabledSelect">Seleccione Rol</label>
-                                <h:selectOneMenu id="disabledSelect" class="form-control" value="#{trabajadorBEAN.newTrabajador.rol}">
-                                    <f:selectItems value="#{trabajadorBEAN.listaOpc}" />
-                                </h:selectOneMenu> 
-                            </div><br/>
-                            <h:commandButton class=" btn btn-primary btn-block" value="GUARDAR" action="#{trabajadorBEAN.guardarTrabajador()}">
-                                <f:ajax render="@all" execute="crearTrabajadores"/>
-                            </h:commandButton>
-                        </h:form>
+                                    <h:form id="editarTrabajadores"><br></br>
+                                        <div class="form-group">
+                                            <label class="text-center" for="cedula">Cedula</label>
+                                            <h:inputText class="form-control" id="cedula"  value="#{trabajadorBEAN.auxTrabajador.cedula}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="text-center" for="nombres">Nombres</label>
+                                            <h:inputText class="form-control" id="nombres"  value="#{trabajadorBEAN.auxTrabajador.nombres}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="text-center" for="apellidos">Apellidos</label>
+                                            <h:inputText class="form-control" id="apellidos" value="#{trabajadorBEAN.auxTrabajador.apellido}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="text-center" for="telefono">Telefono</label>
+                                            <h:inputText class="form-control" id="telefono" value="#{trabajadorBEAN.auxTrabajador.telefono}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="text-center" for="direccion">Direccion</label>
+                                            <h:inputText class="form-control"  id="direccion"  value="#{trabajadorBEAN.auxTrabajador.direccion}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="text-center" for="correo">Correo</label>
+                                            <h:inputText class="form-control" id="correo"  value="#{trabajadorBEAN.auxTrabajador.correo}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="text-center" for="sueldo">Sueldo</label>
+                                            <h:inputText class="form-control" id="sueldo" value="#{trabajadorBEAN.auxTrabajador.sueldo}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="disabledSelect">Seleccione Rol</label>
+                                            <h:selectOneMenu id="disabledSelect" class="form-control" value="#{trabajadorBEAN.auxTrabajador.rol}">
+                                                <f:selectItems value="#{trabajadorBEAN.listaOpc}" />
+                                            </h:selectOneMenu> 
+                                        </div><br/>
+                                        <h:commandButton class=" btn btn-primary btn-block" value="GUARDAR" action="#{trabajadorBEAN.guardarTrabajador()}">
+                                            <f:ajax render="@all" execute="crearTrabajadores"/>
+                                        </h:commandButton>
+                                    </h:form>
                                 </div>
 
-                            </div>
-                            <div id="alertErrorE">
                             </div>
                         </div>
                     </div>
