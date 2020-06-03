@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src.main.java.ec.edu.ups.proyecto.dao;
+package ec.edu.ups.proyecto.dao;
 
 import ec.edu.ups.proyecto.emtitis.Trabajador;
 import java.util.List;
@@ -16,10 +16,11 @@ import javax.persistence.Query;
  *
  * @author Ricardo
  */
+
 @Stateless
 public class TrabajadorDAO {
 
-    @PersistenceContext
+    @PersistenceContext(name="BancaMovilPersistenceUnit")
     private EntityManager em;
 
     public TrabajadorDAO() {

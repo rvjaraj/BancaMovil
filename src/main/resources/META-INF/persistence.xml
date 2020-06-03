@@ -20,7 +20,7 @@
     <!-- If you are running in a production environment, add a managed
          data source, this configuration uses the JakartaEE default data source is just for development and testing! -->
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <jta-data-source>java:/jboss/datasources/sistemabancario</jta-data-source>
+    <jta-data-source>java:jboss/datasources/sistemabancario</jta-data-source>
     <properties>
       <!--The database schema ist auto created on deployment and dropped before redeploy.
              Note: the following configuration does not drop the tables on undeploy. If you prefer this, use this
@@ -30,7 +30,7 @@
       <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
       <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
       <!-- Properties for Hibernate -->
-      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.show_sql" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
