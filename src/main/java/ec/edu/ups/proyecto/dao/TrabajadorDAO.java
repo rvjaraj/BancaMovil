@@ -26,13 +26,19 @@ public class TrabajadorDAO {
     }
     
     
-    public void insert(Trabajador trabajador) throws Exception {
-        try {
+    public boolean insert(Trabajador trabajador) throws Exception {
+        boolean bandera = true;
+    	try {
             System.out.println("si creo que llega aca");
             em.persist(trabajador);
+            bandera=true;
         } catch (Exception e) {
+        	bandera=false;
             throw new Exception("Erro ingreso Trabajador " + e.getMessage());
+            
         }
+        
+        return bandera;
     }
 
     public void delete(Trabajador trabajador) throws Exception {

@@ -70,7 +70,15 @@ public class TrabajadorON {
                 trabajador.setContracenia("1234");
                 trabajador.setActivo(true);
                 trabajador.setEliminado(false);
-                trabajadorDAO.insert(trabajador);
+                boolean respuesta=trabajadorDAO.insert(trabajador);
+                CorreoON c = new CorreoON();
+                String correo=trabajador.getCorreo();
+                if (respuesta==true) {
+					c.sendAsHtml(correo, "Bienvenido a SimonBank!!", "Ahora..Ingrese con su usuario: "+trabajador.getCedula()+"Su Contrasena: "+trabajador.getContracenia());
+				}else {
+					c.sendAsHtml(correo, "No se registro", "Datos incompletos");
+				}
+                
             } catch (Exception e) {
                 throw new Exception(e.getMessage());
             }
@@ -121,4 +129,7 @@ public class TrabajadorON {
         return verdadera;
     }
 
+    public void enviarCorreo() {
+    	
+    }
 }
