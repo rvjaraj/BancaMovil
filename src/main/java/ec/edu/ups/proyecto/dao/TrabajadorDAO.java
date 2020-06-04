@@ -27,13 +27,19 @@ public class TrabajadorDAO {
     }
     
     
-    public void insert(Trabajador trabajador) throws Exception {
-        try {
+    public boolean insert(Trabajador trabajador) throws Exception {
+        boolean bandera = true;
+    	try {
             System.out.println("si creo que llega aca");
             em.persist(trabajador);
+            bandera=true;
         } catch (Exception e) {
+        	bandera=false;
             throw new Exception("Erro ingreso Trabajador " + e.getMessage());
+            
         }
+        
+        return bandera;
     }
 
     public void delete(Trabajador trabajador) throws Exception {
@@ -79,6 +85,30 @@ public class TrabajadorDAO {
             return lista;
         } catch (Exception e) {
             throw new Exception("Erro listar Trabajador " +e.getMessage());
+        }
+
+    }
+    
+    public List<Trabajador> findAllCodigo(String codigo) throws Exception {
+
+        try {
+            Query q = em.createNamedQuery("Trabajador.findAllCodigo");
+            q.setParameter("codigo",  "%" + codigo + "%");
+            List<Trabajador> lista = q.getResultList();
+            return lista;
+        } catch (Exception e) {
+            throw new Exception("Erro listar Trabajador " +e.getMessage());
+        }
+
+    }
+    
+    public Trabajador findByID(String id) throws Exception {
+        try {
+            Query q = em.createNamedQuery("Trabajador.findById");
+            q.setParameter("ID", Integer.parseInt(id));
+            return (Trabajador) q.getSingleResult();
+        } catch (Exception e) {
+            throw new Exception("Erro buscar por  ID ");
         }
 
     }

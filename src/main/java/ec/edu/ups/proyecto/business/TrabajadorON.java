@@ -28,6 +28,23 @@ public class TrabajadorON {
     public TrabajadorON() {
     }
     
+    public void actualizarTrabajador(Trabajador trabajador){
+        try {
+            trabajadorDAO.update(trabajador);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public Trabajador buscarTrabajador(String id){
+        try {
+            return trabajadorDAO.findByID(id);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public List<Trabajador> listaTrabajadores(){
         try {
             return trabajadorDAO.findAll();
@@ -36,14 +53,35 @@ public class TrabajadorON {
         }
         return null;
     }
+    
+    
+    public List<Trabajador> listaTrabajadoresCodigo(String codigo){
+        try {
+            return trabajadorDAO.findAllCodigo(codigo);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
-    public boolean guardarFactura(Trabajador trabajador) throws Exception {
+    public boolean guardarTrabajador(Trabajador trabajador) throws Exception {
         if (validarCedula(trabajador.getCedula())) {
             try {
-                trabajador.setContracenia("1234");
+            	CorreoON c = new CorreoON();
+            	String contrasena=c.contrasenaAleatoria();
+                trabajador.setContracenia(contrasena);
                 trabajador.setActivo(true);
                 trabajador.setEliminado(false);
-                trabajadorDAO.insert(trabajador);
+                boolean respuesta=trabajadorDAO.insert(trabajador);
+                
+                String correo=trabajador.getCorreo();
+                if (respuesta==true) {
+					c.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Sus Datos son : </p>Su usuario es: "+trabajador.getCedula()+" Su Contrasena: "+trabajador.getContracenia()+""
+							+ " <h4> RECUERDE ESTIMADO CLIENTE, CAMBIAR LA CONTRASENA POR SU SEGURIDAD.</h4><br> <h4>Cuenca-Ecuador</h4>");
+				}else {
+					c.sendAsHtml(correo, "No se registro", "Datos incompletos");
+				}
+                
             } catch (Exception e) {
                 throw new Exception(e.getMessage());
             }
@@ -53,6 +91,8 @@ public class TrabajadorON {
 
         return true;
     }
+    
+    
 
     public boolean validarCedula(String ced) {
         boolean verdadera = false;
@@ -92,4 +132,7 @@ public class TrabajadorON {
         return verdadera;
     }
 
+    public void enviarCorreo() {
+    	
+    }
 }

@@ -6,9 +6,13 @@
 package ec.edu.ups.proyecto.dao;
 
 import ec.edu.ups.proyecto.emtitis.Alogin;
+import ec.edu.ups.proyecto.emtitis.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -32,6 +36,18 @@ public class AloginDAO {
             em.persist(login);
         } catch (Exception e) {
             throw new Exception("Erro ingreso Trabajador " + e.getMessage());
+        }
+    }
+    
+
+    public List<Alogin> findAll() throws Exception{
+        
+        try {
+            Query q = em.createNamedQuery("Alogin.findAll");
+             List<Alogin> lista =q.getResultList();
+             return lista;
+        } catch (Exception e) {
+            throw new Exception("Erro buscar al loguearse");
         }
     }
     
