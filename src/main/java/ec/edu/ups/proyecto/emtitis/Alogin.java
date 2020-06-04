@@ -8,8 +8,10 @@ package ec.edu.ups.proyecto.emtitis;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,8 +55,8 @@ public class Alogin implements Serializable {
     @Basic(optional = false)
     @Column(name = "acceso")
     private short acceso;
-    @JoinColumn(name = "Cliente", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "cliente", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cliente cliente;
 
     public Alogin() {

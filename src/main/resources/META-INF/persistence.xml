@@ -21,6 +21,14 @@
          data source, this configuration uses the JakartaEE default data source is just for development and testing! -->
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <jta-data-source>java:jboss/datasources/sistemabancario</jta-data-source>
+    <class>ec.edu.ups.proyecto.emtitis.Credito</class>
+    <class>ec.edu.ups.proyecto.emtitis.Solicitud</class>
+    <class>ec.edu.ups.proyecto.emtitis.Cliente</class>
+    <class>ec.edu.ups.proyecto.emtitis.Amortizacion</class>
+    <class>ec.edu.ups.proyecto.emtitis.Transaciones</class>
+    <class>ec.edu.ups.proyecto.emtitis.Transferencias</class>
+    <class>ec.edu.ups.proyecto.emtitis.Cuenta</class>
+    <class>ec.edu.ups.proyecto.emtitis.Alogin</class>
     <properties>
       <!--The database schema ist auto created on deployment and dropped before redeploy.
              Note: the following configuration does not drop the tables on undeploy. If you prefer this, use this

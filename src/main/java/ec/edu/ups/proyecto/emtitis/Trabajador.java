@@ -217,9 +217,7 @@ public class Trabajador implements Serializable {
 
     @Override
     public String toString() {
-        return "Trabajador{" + "id=" + id + ", cedula=" + cedula + ", nombres=" + nombres + ", apellido=" + apellido + ", telefono=" + telefono + ", direccion=" + direccion + ", correo=" + correo + ", contracenia=" + contracenia + ", rol=" + rol + ", sueldo=" + sueldo + ", eliminado=" + eliminado + ", activo=" + activo + '}';
+        return "ec.edu.ups.proyecto.emtitis.Trabajador[ id=" + id + " ]";
     }
-
-    
     
 }

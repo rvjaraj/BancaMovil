@@ -6,12 +6,13 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -58,20 +59,19 @@ public class Cuenta implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "eliminado")
     private Double eliminado;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cliente cliente;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta")
-    private Collection<Credito> creditoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuentaid")
-    private Collection<Transaciones> transacionesCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordenante")
-    private Collection<Transferencias> transferenciasCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "beneficiario")
-    private Collection<Transferencias> transferenciasCollection1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
+    private List<Credito> creditoList;
+    @OneToMany( mappedBy = "cuentaid")
+    private List<Transaciones> transacionesList;
+    @OneToMany(mappedBy = "ordenante")
+    private List<Transferencias> transferenciasList;
+    @OneToMany(mappedBy = "beneficiario")
+    private List<Transferencias> transferenciasList1;
 
     public Cuenta() {
     }
@@ -136,39 +136,39 @@ public class Cuenta implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Credito> getCreditoCollection() {
-        return creditoCollection;
+    public List<Credito> getCreditoList() {
+        return creditoList;
     }
 
-    public void setCreditoCollection(Collection<Credito> creditoCollection) {
-        this.creditoCollection = creditoCollection;
-    }
-
-    @XmlTransient
-    public Collection<Transaciones> getTransacionesCollection() {
-        return transacionesCollection;
-    }
-
-    public void setTransacionesCollection(Collection<Transaciones> transacionesCollection) {
-        this.transacionesCollection = transacionesCollection;
+    public void setCreditoList(List<Credito> creditoList) {
+        this.creditoList = creditoList;
     }
 
     @XmlTransient
-    public Collection<Transferencias> getTransferenciasCollection() {
-        return transferenciasCollection;
+    public List<Transaciones> getTransacionesList() {
+        return transacionesList;
     }
 
-    public void setTransferenciasCollection(Collection<Transferencias> transferenciasCollection) {
-        this.transferenciasCollection = transferenciasCollection;
+    public void setTransacionesList(List<Transaciones> transacionesList) {
+        this.transacionesList = transacionesList;
     }
 
     @XmlTransient
-    public Collection<Transferencias> getTransferenciasCollection1() {
-        return transferenciasCollection1;
+    public List<Transferencias> getTransferenciasList() {
+        return transferenciasList;
     }
 
-    public void setTransferenciasCollection1(Collection<Transferencias> transferenciasCollection1) {
-        this.transferenciasCollection1 = transferenciasCollection1;
+    public void setTransferenciasList(List<Transferencias> transferenciasList) {
+        this.transferenciasList = transferenciasList;
+    }
+
+    @XmlTransient
+    public List<Transferencias> getTransferenciasList1() {
+        return transferenciasList1;
+    }
+
+    public void setTransferenciasList1(List<Transferencias> transferenciasList1) {
+        this.transferenciasList1 = transferenciasList1;
     }
 
     @Override

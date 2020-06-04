@@ -6,11 +6,12 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -60,10 +61,10 @@ public class Credito implements Serializable {
     @Column(name = "elimado")
     private Short elimado;
     @JoinColumn(name = "cuenta", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Cuenta cuenta;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "credito")
-    private Collection<Amortizacion> amortizacionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "credito", fetch = FetchType.EAGER)
+    private List<Amortizacion> amortizacionList;
 
     public Credito() {
     }
@@ -136,12 +137,12 @@ public class Credito implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Amortizacion> getAmortizacionCollection() {
-        return amortizacionCollection;
+    public List<Amortizacion> getAmortizacionList() {
+        return amortizacionList;
     }
 
-    public void setAmortizacionCollection(Collection<Amortizacion> amortizacionCollection) {
-        this.amortizacionCollection = amortizacionCollection;
+    public void setAmortizacionList(List<Amortizacion> amortizacionList) {
+        this.amortizacionList = amortizacionList;
     }
 
     @Override

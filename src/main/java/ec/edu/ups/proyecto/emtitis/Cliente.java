@@ -6,11 +6,12 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -70,16 +71,15 @@ public class Cliente implements Serializable {
     @Column(name = "contracenia")
     private String contracenia;
     @Column(name = "eliminado")
-    private Short eliminado;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    private boolean eliminado;
     @Column(name = "activo")
-    private Double activo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private Collection<Alogin> aloginCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private Collection<Solicitud> solicitudCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private Collection<Cuenta> cuentaCollection;
+    private boolean activo;
+    @OneToMany( mappedBy = "cliente")
+    private List<Alogin> aloginList;
+    @OneToMany(mappedBy = "cliente")
+    private List<Solicitud> solicitudList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.EAGER)
+    private List<Cuenta> cuentaList;
 
     public Cliente() {
     }
@@ -163,47 +163,47 @@ public class Cliente implements Serializable {
         this.contracenia = contracenia;
     }
 
-    public Short getEliminado() {
+    public boolean getEliminado() {
         return eliminado;
     }
 
-    public void setEliminado(Short eliminado) {
+    public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
     }
 
-    public Double getActivo() {
+    public boolean getActivo() {
         return activo;
     }
 
-    public void setActivo(Double activo) {
+    public void setActivo(boolean activo) {
         this.activo = activo;
     }
 
     @XmlTransient
-    public Collection<Alogin> getAloginCollection() {
-        return aloginCollection;
+    public List<Alogin> getAloginList() {
+        return aloginList;
     }
 
-    public void setAloginCollection(Collection<Alogin> aloginCollection) {
-        this.aloginCollection = aloginCollection;
-    }
-
-    @XmlTransient
-    public Collection<Solicitud> getSolicitudCollection() {
-        return solicitudCollection;
-    }
-
-    public void setSolicitudCollection(Collection<Solicitud> solicitudCollection) {
-        this.solicitudCollection = solicitudCollection;
+    public void setAloginList(List<Alogin> aloginList) {
+        this.aloginList = aloginList;
     }
 
     @XmlTransient
-    public Collection<Cuenta> getCuentaCollection() {
-        return cuentaCollection;
+    public List<Solicitud> getSolicitudList() {
+        return solicitudList;
     }
 
-    public void setCuentaCollection(Collection<Cuenta> cuentaCollection) {
-        this.cuentaCollection = cuentaCollection;
+    public void setSolicitudList(List<Solicitud> solicitudList) {
+        this.solicitudList = solicitudList;
+    }
+
+    @XmlTransient
+    public List<Cuenta> getCuentaList() {
+        return cuentaList;
+    }
+
+    public void setCuentaList(List<Cuenta> cuentaList) {
+        this.cuentaList = cuentaList;
     }
 
     @Override
