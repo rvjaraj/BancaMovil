@@ -7,6 +7,7 @@ package ec.edu.ups.proyecto.dao;
 
 import ec.edu.ups.proyecto.emtitis.Alogin;
 import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.emtitis.Trabajador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -28,9 +29,9 @@ public class AloginDAO {
 
     public AloginDAO() {
     }
-    
-    
-    public void insert(Alogin login) throws Exception {
+
+
+    public void insert(Trabajador login) throws Exception {
         try {
             System.out.println("si creo que llega aca");
             em.persist(login);

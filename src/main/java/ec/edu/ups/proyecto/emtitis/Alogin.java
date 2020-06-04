@@ -55,7 +55,7 @@ public class Alogin implements Serializable {
     private short acceso;
     @JoinColumn(name = "Cliente", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Cliente cliente;
+    private Trabajador cliente;
 
     public Alogin() {
     }
@@ -103,13 +103,15 @@ public class Alogin implements Serializable {
         this.acceso = acceso;
     }
 
-    public Cliente getCliente() {
+    public Trabajador getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Trabajador cliente) {
         this.cliente = cliente;
     }
+
+ 
 
     @Override
     public int hashCode() {

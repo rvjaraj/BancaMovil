@@ -5,7 +5,11 @@
  */
 package ec.edu.ups.proyecto.business;
 
+import ec.edu.ups.proyecto.dao.AloginDAO;
 import ec.edu.ups.proyecto.emtitis.Alogin;
+import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.emtitis.Trabajador;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -17,20 +21,23 @@ import javax.inject.Inject;
 @Stateless
 public class AloginON {
     @Inject
-    AloginON loginDAO;
+    AloginDAO loginDAO;
     
-    
+        
 
     public AloginON() {
     }
-   
-
-    public boolean guardarLogin(Alogin login) throws Exception {
-        
-
-        return true;
-    }
-
   
-    
+
+    public boolean guardarLogin(String correo, String contrasenia) throws Exception {
+       Trabajador t = new Trabajador();
+        try {
+            loginDAO.insert(t);
+        } catch (Exception e) {
+            
+        }
+        
+   return true;
+
+}
 }
