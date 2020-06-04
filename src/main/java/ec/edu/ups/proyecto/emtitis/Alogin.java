@@ -6,6 +6,7 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -55,7 +56,7 @@ public class Alogin implements Serializable {
     private short acceso;
     @JoinColumn(name = "Cliente", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Trabajador cliente;
+    private Cliente cliente;
 
     public Alogin() {
     }
@@ -103,14 +104,15 @@ public class Alogin implements Serializable {
         this.acceso = acceso;
     }
 
-    public Trabajador getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(Trabajador cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
+  
  
 
     @Override
@@ -136,6 +138,10 @@ public class Alogin implements Serializable {
     @Override
     public String toString() {
         return "ec.edu.ups.proyecto.emtitis.Alogin[ id=" + id + " ]";
+    }
+
+    public void setIp(InetAddress IP) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

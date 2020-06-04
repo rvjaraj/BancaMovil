@@ -5,11 +5,10 @@
  */
 package ec.edu.ups.proyecto.business;
 
-import ec.edu.ups.proyecto.dao.AloginDAO;
-import ec.edu.ups.proyecto.emtitis.Alogin;
-import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.dao.TrabajadorDAO;
 import ec.edu.ups.proyecto.emtitis.Trabajador;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -20,24 +19,30 @@ import javax.inject.Inject;
 
 @Stateless
 public class AloginON {
-    @Inject
-    AloginDAO loginDAO;
     
-        
-
-    public AloginON() {
-    }
-  
-
-    public boolean guardarLogin(String correo, String contrasenia) throws Exception {
-       Trabajador t = new Trabajador();
+    @Inject
+    TrabajadorDAO trabajadorDAO;
+    
+    
+    public Trabajador loginTra(String cedula, String contrasenia){
         try {
-            loginDAO.insert(t);
-        } catch (Exception e) {
-            
+            Trabajador trabajador= trabajadorDAO.findByCedula(cedula);
+            if(trabajador!=null){
+                
+                if(trabajador.getContracenia().equals(contrasenia)){
+                    
+                    //guardarLogina(trabajdor,true)
+                    return trabajador;
+                }
+             }
+        } catch (Exception ex) {
+            Logger.getLogger(AloginON.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-   return true;
-
-}
+        return null;
+        
+    }
+    
+    
+    
 }
