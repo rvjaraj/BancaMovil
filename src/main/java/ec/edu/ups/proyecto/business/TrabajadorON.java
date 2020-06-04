@@ -28,6 +28,14 @@ public class TrabajadorON {
     public TrabajadorON() {
     }
     
+    public void actualizarTrabajador(Trabajador trabajador){
+        try {
+            trabajadorDAO.update(trabajador);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public Trabajador buscarTrabajador(String id){
         try {
             return trabajadorDAO.findByID(id);
@@ -56,7 +64,7 @@ public class TrabajadorON {
         return null;
     }
 
-    public boolean guardarFactura(Trabajador trabajador) throws Exception {
+    public boolean guardarTrabajador(Trabajador trabajador) throws Exception {
         if (validarCedula(trabajador.getCedula())) {
             try {
                 trabajador.setContracenia("1234");

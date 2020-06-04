@@ -33,23 +33,32 @@ public class TrabajadorBEAN {
     private ArrayList<String> listaOpc;
     private String textoBuscar;
 
+    public TrabajadorBEAN() {
+    }
+    
+    
+
     @Inject
     private TrabajadorON trabajadorON;
 
     @PostConstruct
     public void init() {
         newTrabajador = new Trabajador();
+        
         listaOpc = new ArrayList<>();
         listaOpc.add("Administrador");
         listaOpc.add("Secretaria");
         listaOpc.add("Cajero");
         listaOpc.add("Jefe Credito");
         listaTrabajadores = trabajadorON.listaTrabajadores();
+        
+        textoBuscar = "";
+        auxTrabajador = new Trabajador();
     }
 
     public String guardarTrabajador() {
         try {
-            trabajadorON.guardarFactura(newTrabajador);
+            trabajadorON.guardarTrabajador(newTrabajador);
             init();
         } catch (Exception ex) {
             Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
@@ -68,15 +77,30 @@ public class TrabajadorBEAN {
     }
     
     public String buscaTrabajadorID(String id) {
-        System.out.println(id+ ">>>>>>>>>>");
         try {
              auxTrabajador = trabajadorON.buscarTrabajador(id);
+             System.out.println("hireS");
         } catch (Exception ex) {
             Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-
+    
+    public String actualizarTrabajador(){
+        trabajadorON.actualizarTrabajador(auxTrabajador);
+        init();
+        System.out.println("actualizado");
+        return null;
+    }
+    
+    public String eliminarTrabajador(){
+        auxTrabajador.setEliminado(true);
+        trabajadorON.actualizarTrabajador(auxTrabajador);
+        init();
+        System.out.println("Eliminado");
+        return null;
+    }
+    
     // -------------------> 
     public Trabajador getNewTrabajador() {
         return newTrabajador;

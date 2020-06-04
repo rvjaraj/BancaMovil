@@ -70,7 +70,7 @@
                                             <th style="width: 100%"><h:inputText id='buscar' value="#{trabajadorBEAN.textoBuscar}" class="form-control" a:placeholder="Buscar, Ingresar Cedula, Nombre o Apellido" a:aria-label="">
                                                     <f:ajax event="keyup" listener="#{trabajadorBEAN.buscaTrabajadores()}" render="tablatrabajadores" execute="formBuscar"></f:ajax>
                                                 </h:inputText></th>
-                                            <th><button type="button" class="btn btn-outline-danger" onclick="window.location.href = '/vistaCliente'">X</button></th>
+                                            <th><button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'trabajador.xhtml'">X</button></th>
                                         </h:form>
                                     </tr>
                                 </thead>
@@ -108,12 +108,18 @@
                                         <label class="col-md-12">#{trabajador.rol}</label>
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header">Opciones</f:facet>
+                                        <f:facet name="header">EDITAR</f:facet>
                                         <h:commandButton class="btn btn-success" value="EDITAR" action="#{trabajadorBEAN.buscaTrabajadorID(trabajador.id)}" a:data-toggle="modal"  a:data-target="#exampleModalLong">
                                             <f:ajax render="editarTrabajadores"/>
                                         </h:commandButton>
-                                        <a href="/eliminar/{{usr.0}}" onclick="confirmarEliminacion('USUARIO', event)" class="btn btn-danger btn-delete">ELIMINAR</a>
                                     </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Eliminar</f:facet>  
+                                        <h:commandButton class="btn btn-danger" value="ELIMINAR" action="#{trabajadorBEAN.buscaTrabajadorID(trabajador.id)}" a:data-toggle="modal" a:data-target="#exampleModalCenter">
+                                            <f:ajax render="formEditar"/>
+                                        </h:commandButton>
+                                    </h:column>
+
                                 </h:dataTable>
                             </div>
                         </h:panelGroup>
@@ -168,8 +174,8 @@
                                                 <f:selectItems value="#{trabajadorBEAN.listaOpc}" />
                                             </h:selectOneMenu> 
                                         </div><br/>
-                                        <h:commandButton class=" btn btn-primary btn-block" value="GUARDAR" action="#{trabajadorBEAN.guardarTrabajador()}">
-                                            <f:ajax render="@all" execute="crearTrabajadores"/>
+                                        <h:commandButton class=" btn btn-success btn-block" value="ACTUALIZAR" action="#{trabajadorBEAN.actualizarTrabajador()}">
+                                            <f:ajax render="@all" execute="editarTrabajadores"/>
                                         </h:commandButton>
                                     </h:form>
                                 </div>
@@ -180,6 +186,35 @@
 
                 </div>
             </div>
+
+            <!-- Modal -->
+
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Trabajador</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <h:panelGroup id="formEditar">
+                            <div class="modal-body">
+                                <h4>#{trabajadorBEAN.auxTrabajador.nombres}</h4>
+                                <h4>#{trabajadorBEAN.auxTrabajador.apellido}</h4>
+                            </div>
+                        </h:panelGroup>
+                        <div class="modal-footer">
+                            <h:commandButton type="button" class="btn btn-dark" value="Cancelar" a:data-dismiss="modal">
+                            </h:commandButton>
+                            <h:commandButton type="button" class="btn btn-danger" value="Eliminar" action="#{trabajadorBEAN.eliminarTrabajador()}">
+                                <f:ajax render="@all"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </ui:define>
 
     </ui:composition>
