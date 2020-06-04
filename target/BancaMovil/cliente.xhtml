@@ -11,7 +11,154 @@
             Vista Cliente
         </ui:define>
         <ui:define name="content">
-            <h1> Esto es el body</h1>
+            <div class="row">
+    <div class="col-md-3" style="margin-left: -15%;">
+
+        <div class="card card-body" style="margin-left: -20%;">
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+            <form method="POST" action="/addUsuario" onsubmit=" return  validarIngresoCliente()">
+                <h5 class="card-title bg-white">CREACION DE USUARIOS</h5>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="cedula" name="cedula" value="" placeholder="Cedula" onkeydown="return soloNumeros(event, this)" onkeyup="validarCedula(this)">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="nombres" name="nombres" value="" placeholder="Nombres" onkeypress="return soloLetras(event)" onkeyup="validarLetras(this)" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="apellidos" name="apellidos" value="" placeholder="Apellidos" onkeydown="return soloLetras(event)" onkeyup="validarLetras(this)" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="direccion" name="direccion" value="" placeholder="Dirección" onkeyup="validarLetras(this)" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="telefono" name="telefono" value="" placeholder="Teléfono" onkeydown="return soloNumeros(event, this)" onkeyup=" return validarCantidad(this,10)" />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="correo" name="correo" value="" placeholder="Correo" onkeyup=" validarCorreo(this) " />
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="date" name="fechaNac" id="fechaNac" placeholder="Ingrese su fecha de nacimiento" onchange="validarFecha(this)">
+                </div>
+                <button class=" btn btn-primary btn-block ">
+                    GUARDAR
+                </button>
+            </form>
+            <div id="alertError">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="card card-body" style="margin-right: -50%;">
+            <div class="active-pink-3 active-pink-4 mb-4">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 100%"><input name="buscar" id='buscar' onkeyup="cargarBusqueda()" class="form-control" type="text" placeholder="Buscar, Ingresar Cedula, Nombre o Apellido" aria-label="Buscar, Ingresar Cedula"></th>
+                            <th><button type="button" class="btn btn-outline-danger" onclick="window.location.href='/vistaCliente'">X</button></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <table class="table table-striped table-dark table-sm">
+                <thead>
+                    <tr>
+
+                        <td>Cedula</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>Teléfono</td>
+                        <td>Dirección</td>
+                        <td>Correo electrónico</td>
+                        <td>Fecha de Nacimiento</td>
+                        <td>Opciones</td>
+                    </tr>
+                </thead>
+                <tbody id='filas'>
+                    {% for usr in usuaarios %}
+                    <t-r>
+                        <td>{{usr.1}} </td>
+                        <td>{{usr.2}}</td>
+                        <td>{{usr.3}}</td>
+                        <td>{{usr.4}}</td>
+                        <td>{{usr.5}}</td>
+                        <td>{{usr.6}}</td>
+                        <td>{{usr.7}}</td>
+                        <td>
+                            <a class="btn btn-secondary" data-toggle="modal" onclick="cargarDatosCLiente('{{usr.0}}')" data-target="#exampleModalLong">EDITAR</a>
+                            <a href="/eliminar/{{usr.0}}" onclick="confirmarEliminacion('USUARIO',event)" class="btn btn-danger btn-delete">ELIMINAR</a>
+                        </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">EDITAR USUARIO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+            </div>
+            <div class="modal-body" name="modal">
+                <div class="row">
+                    <div class="card card-body">
+                        <form id="formularioEditar" method="POST" action="/actualizar">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="idE" name="idE" value="" hidden>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="cedulaE" name="cedulaE" value="" placeholder="Cedula" onkeydown="return soloNumeros(event, this)" onkeyup="validarCedula(this)">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="nombresE" name="nombresE" value="" placeholder="Nombres" onkeypress="return soloLetras(event)" onkeyup="validarLetras(this)" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="apellidosE" name="apellidosE" value="" placeholder="Apellidos" onkeypress="return soloLetras(event)" onkeyup="validarLetras(this)" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="direccionE" name="direccionE" value="" placeholder="Dirección" onkeyup="validarLetras(this)" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="telefonoE" name="telefonoE" value="" placeholder="Teléfono" onkeydown="return soloNumeros(event, this)" onkeyup=" return validarCantidad(this,10)" />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="correoE" name="correoE" value="" placeholder="Correo" onkeyup=" validarCorreo(this) " />
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="date" name="fechaNacE" id="fechaNacE" placeholder="Ingrese su fecha de nacimiento" onchange="validarFecha(this)">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+                                <button type="button" class="btn btn-primary" onclick="validarEditarCliente()">GUARDAR CAMBIOS</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div id="alertErrorE">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
         </ui:define>
         
     </ui:composition>
