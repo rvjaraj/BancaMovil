@@ -67,14 +67,17 @@ public class TrabajadorON {
     public boolean guardarTrabajador(Trabajador trabajador) throws Exception {
         if (validarCedula(trabajador.getCedula())) {
             try {
-                trabajador.setContracenia("1234");
+            	CorreoON c = new CorreoON();
+            	String contrasena=c.contrasenaAleatoria();
+                trabajador.setContracenia(contrasena);
                 trabajador.setActivo(true);
                 trabajador.setEliminado(false);
                 boolean respuesta=trabajadorDAO.insert(trabajador);
-                CorreoON c = new CorreoON();
+                
                 String correo=trabajador.getCorreo();
                 if (respuesta==true) {
-					c.sendAsHtml(correo, "Bienvenido a SimonBank!!", "Ahora..Ingrese con su usuario: "+trabajador.getCedula()+"Su Contrasena: "+trabajador.getContracenia());
+					c.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Datos: </p>\" Su usuario es: "+trabajador.getCedula()+" Su Contrasena: "+trabajador.getContracenia()+""
+							+ " RECUERDE ESTIMADO CLIENTE, CAMBIAR LA CONTRASENA POR SU SEGURIDAD.\nCuenca-Ecuador");
 				}else {
 					c.sendAsHtml(correo, "No se registro", "Datos incompletos");
 				}

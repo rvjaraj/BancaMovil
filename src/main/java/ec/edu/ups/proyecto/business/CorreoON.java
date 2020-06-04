@@ -1,6 +1,7 @@
 package ec.edu.ups.proyecto.business;
 
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -50,4 +51,29 @@ public class CorreoON {
 	      });
 	      return session;
 	  }
+	  
+	  public String contrasenaAleatoria() {
+			 int length = 10;
+		        String simbolos = "-/.;&*_!@%=+>)"; 
+		        String mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+		        String minusculas = "abcdefghijklmnopqrstuvwxyz"; 
+		        String numeros = "0123456789"; 
+
+		        String finalString = mayusculas + numeros + minusculas  + simbolos; 
+
+		        Random random = new Random(); 
+
+		        //char[] password = new char[length]; 
+		        String pswd = "";
+
+		        for (int i = 0; i < length; i++) 
+		        { 
+		            //password[i] = finalString.charAt(random.nextInt(finalString.length()));
+		            pswd+=(finalString.charAt((int)(Math.random() * finalString.length())));
+
+		        } 
+		        System.out.println(pswd);
+		        return pswd;
+		        
+		}
 }
