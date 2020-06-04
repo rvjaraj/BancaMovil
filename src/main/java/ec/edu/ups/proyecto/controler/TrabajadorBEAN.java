@@ -28,6 +28,7 @@ import javax.inject.Inject;
 public class TrabajadorBEAN {
 
     private Trabajador newTrabajador;
+    private Trabajador auxTrabajador;
     private List<Trabajador> listaTrabajadores;
     private ArrayList<String> listaOpc;
     private String textoBuscar;
@@ -38,26 +39,18 @@ public class TrabajadorBEAN {
     @PostConstruct
     public void init() {
         newTrabajador = new Trabajador();
-        newTrabajador.setCedula("0105452171");
-        newTrabajador.setNombres("Ricaro Vinicio");
-        newTrabajador.setApellido("Jara Jara");
-        newTrabajador.setTelefono("0990550717");
-        newTrabajador.setDireccion("Cuenca");
-        newTrabajador.setCorreo("vinicio1004@hotmailc.com");
-        newTrabajador.setSueldo(1200);
-        newTrabajador.setRol("Administrador");
-
         listaOpc = new ArrayList<>();
         listaOpc.add("Administrador");
         listaOpc.add("Secretaria");
         listaOpc.add("Cajero");
-        
+        listaOpc.add("Jefe Credito");
         listaTrabajadores = trabajadorON.listaTrabajadores();
     }
 
     public String guardarTrabajador() {
         try {
             trabajadorON.guardarFactura(newTrabajador);
+            init();
         } catch (Exception ex) {
             Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,6 +61,16 @@ public class TrabajadorBEAN {
         System.out.println(textoBuscar);
         try {
             listaTrabajadores = trabajadorON.listaTrabajadoresCodigo(textoBuscar);
+        } catch (Exception ex) {
+            Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public String buscaTrabajadorID(String id) {
+        System.out.println(id+ ">>>>>>>>>>");
+        try {
+             auxTrabajador = trabajadorON.buscarTrabajador(id);
         } catch (Exception ex) {
             Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -115,4 +118,13 @@ public class TrabajadorBEAN {
         this.textoBuscar = textoBuscar;
     }
 
+    public Trabajador getAuxTrabajador() {
+        return auxTrabajador;
+    }
+
+    public void setAuxTrabajador(Trabajador auxTrabajador) {
+        this.auxTrabajador = auxTrabajador;
+    }
+    
+    
 }
