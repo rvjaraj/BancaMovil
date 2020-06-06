@@ -53,7 +53,8 @@ public class ClienteBEAN {
 
     public String guardarCliente() {
         try {
-//            clienteON.guardarCliente(newCliente);
+            System.out.println(newCliente.toString()+">>>>");
+            clienteON.guardarCliente(newCliente, cuenta);
             init();
         } catch (Exception ex) {
             Logger.getLogger(ClienteBEAN.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,7 +65,7 @@ public class ClienteBEAN {
     public String buscaClientees() {
         System.out.println(textoBuscar);
         try {
-            //listaClientees = clienteON.listaClienteesCodigo(textoBuscar);
+            listaClientees = clienteON.listaClienteesCodigo(textoBuscar);
         } catch (Exception ex) {
             Logger.getLogger(ClienteBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,8 +74,7 @@ public class ClienteBEAN {
     
     public String buscaClienteID(String id) {
         try {
-             //auxCliente = clienteON.buscarCliente(id);
-             System.out.println("hireS");
+             auxCliente = clienteON.buscarCliente(id);
         } catch (Exception ex) {
             Logger.getLogger(ClienteBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,7 +82,7 @@ public class ClienteBEAN {
     }
     
     public String actualizarCliente(){
-//        clienteON.actualizarCliente(auxCliente);
+        clienteON.actualizarCliente(auxCliente);
         init();
         System.out.println("actualizado");
         return null;
@@ -90,7 +90,8 @@ public class ClienteBEAN {
     
     public String eliminarCliente(){
         auxCliente.setEliminado(true);
-       // clienteON.actualizarCliente(auxCliente);
+        auxCliente.getCuentaList().get(0).setEliminado(true);
+        clienteON.actualizarCliente(auxCliente);
         init();
         System.out.println("Eliminado");
         return null;

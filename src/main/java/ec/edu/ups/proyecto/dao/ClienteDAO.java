@@ -105,10 +105,10 @@ public class ClienteDAO {
     public Cliente findByID(String id) throws Exception {
         try {
             Query q = em.createNamedQuery("Cliente.findById");
-            q.setParameter("ID", Integer.parseInt(id));
+            q.setParameter("id", Integer.parseInt(id));
             return (Cliente) q.getSingleResult();
         } catch (Exception e) {
-            throw new Exception("Erro buscar por  ID ");
+            throw new Exception("Erro buscar por  ID " +e.getMessage());
         }
 
     }
@@ -129,9 +129,7 @@ public class ClienteDAO {
 
     public int maxId() throws Exception {
         try {
-            String jpql = "SELECT P FROM Cliente p "
-                    + "WHERE cedula = :cedula";
-            Query q = em.createQuery(jpql, Cliente.class);
+            Query q = em.createNamedQuery("Cliente.maxId");
             return (int) q.getSingleResult();
         } catch (Exception e) {
             throw new Exception("Error MaxID", e.getCause());

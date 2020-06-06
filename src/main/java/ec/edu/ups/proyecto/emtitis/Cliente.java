@@ -6,6 +6,7 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -30,8 +31,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "cliente")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
-    @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :id"),
+    @NamedQuery(name = "Cliente.findAllCodigo", query = "SELECT t FROM Cliente t WHERE t.eliminado = 0 AND t.nombres LIKE :codigo OR t.eliminado = 0 AND t.apellido LIKE :codigo OR t.eliminado = 0 AND t.cedula LIKE :codigo"),
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c WHERE c.eliminado = 0"),
+    @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.eliminado = 0 AND c.id = :id"),
+    @NamedQuery(name = "Cliente.maxId", query = "SELECT MAX(c.id) FROM Cliente c"),
     @NamedQuery(name = "Cliente.findByCedula", query = "SELECT c FROM Cliente c WHERE c.cedula = :cedula"),
     @NamedQuery(name = "Cliente.findByNombres", query = "SELECT c FROM Cliente c WHERE c.nombres = :nombres"),
     @NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido"),
@@ -76,6 +79,10 @@ public class Cliente implements Serializable {
     private boolean activo;
     @OneToMany( mappedBy = "cliente")
     private List<Alogin> aloginList;
+    
+    @OneToMany( mappedBy = "cliente")
+    private List<Preguntas> pregutnasList;
+    
     @OneToMany(mappedBy = "cliente")
     private List<Solicitud> solicitudList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.EAGER)
@@ -206,6 +213,16 @@ public class Cliente implements Serializable {
         this.cuentaList = cuentaList;
     }
 
+    public List<Preguntas> getPregutnasList() {
+        return pregutnasList;
+    }
+
+    public void setPregutnasList(List<Preguntas> pregutnasList) {
+        this.pregutnasList = pregutnasList;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -230,5 +247,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return "ec.edu.ups.proyecto.emtitis.Cliente[ id=" + id + " ]";
     }
-    
-}
+
+    }

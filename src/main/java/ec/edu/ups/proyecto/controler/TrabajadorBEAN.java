@@ -32,6 +32,7 @@ public class TrabajadorBEAN {
     private List<Trabajador> listaTrabajadores;
     private ArrayList<String> listaOpc;
     private String textoBuscar;
+    private String mensaje;
 
     public TrabajadorBEAN() {
     }
@@ -61,6 +62,7 @@ public class TrabajadorBEAN {
             trabajadorON.guardarTrabajador(newTrabajador);
             init();
         } catch (Exception ex) {
+            mensaje = ex.getMessage();
             Logger.getLogger(TrabajadorBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -148,6 +150,14 @@ public class TrabajadorBEAN {
 
     public void setAuxTrabajador(Trabajador auxTrabajador) {
         this.auxTrabajador = auxTrabajador;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
     
     

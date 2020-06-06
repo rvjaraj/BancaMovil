@@ -60,7 +60,7 @@ public class Cuenta implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Column(name = "eliminado")
-    private Double eliminado;
+    private boolean eliminado;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cliente cliente;
@@ -119,11 +119,11 @@ public class Cuenta implements Serializable {
         this.fecha = fecha;
     }
 
-    public Double getEliminado() {
+    public boolean getEliminado() {
         return eliminado;
     }
 
-    public void setEliminado(Double eliminado) {
+    public void setEliminado(boolean eliminado) {
         this.eliminado = eliminado;
     }
 
