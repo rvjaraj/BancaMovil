@@ -6,6 +6,7 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -78,6 +79,10 @@ public class Cliente implements Serializable {
     private boolean activo;
     @OneToMany( mappedBy = "cliente")
     private List<Alogin> aloginList;
+    
+    @OneToMany( mappedBy = "cliente")
+    private List<Preguntas> pregutnasList;
+    
     @OneToMany(mappedBy = "cliente")
     private List<Solicitud> solicitudList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente", fetch = FetchType.EAGER)
@@ -208,6 +213,16 @@ public class Cliente implements Serializable {
         this.cuentaList = cuentaList;
     }
 
+    public List<Preguntas> getPregutnasList() {
+        return pregutnasList;
+    }
+
+    public void setPregutnasList(List<Preguntas> pregutnasList) {
+        this.pregutnasList = pregutnasList;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -232,5 +247,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return "ec.edu.ups.proyecto.emtitis.Cliente[ id=" + id + " ]";
     }
-    
-}
+
+    }
