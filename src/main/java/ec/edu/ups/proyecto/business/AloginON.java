@@ -31,8 +31,10 @@ public class AloginON {
                 
                 if(trabajador.getContracenia().equals(contrasenia)){
                     
-                    //guardarLogina(trabajdor,true)
+                    //Enviar correo de login con ip
                     return trabajador;
+                }else{
+                    //enviar correo de login erroneo, alguien intenta usar su cedula para entrar
                 }
             }
         } catch (Exception ex) {
