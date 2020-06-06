@@ -7,6 +7,9 @@ package ec.edu.ups.proyecto.business;
 
 import ec.edu.ups.proyecto.dao.ClienteDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.emtitis.Cuenta;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +32,16 @@ public class ClienteON {
     }
     
     public String numeroCuenta(){
-        return "cuenta";
+        String c = "";
+        try {
+            int cuenta = clienteDAO.maxId();
+             c = "CUHA" + cuenta+ new Date().getDay() +"S"+ new Date().getSeconds();
+        } catch (Exception ex) {
+            c = "CUHA" + 0+ new Date().getDay() +"S"+ new Date().getSeconds();
+            System.out.println(c);
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return c;
     }
     
     public void actualizarCliente(Cliente cliente){
@@ -68,7 +80,7 @@ public class ClienteON {
         return null;
     }
 
-    public boolean guardarCliente(Cliente cliente) throws Exception {
+    public boolean guardarCliente(Cliente cliente, String cuenta) throws Exception {
         if (validarCedula(cliente.getCedula())) {
             try {
             	CorreoON c = new CorreoON();
@@ -76,6 +88,16 @@ public class ClienteON {
                 cliente.setContracenia(contrasena);
                 cliente.setActivo(true);
                 cliente.setEliminado(false);
+                
+                Cuenta cu = new Cuenta();
+                cu.setNumero(cuenta);
+                cu.setSaldo(0);
+                cu.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay()));
+                cu.setEliminado(false);
+                cu.setCliente(cliente);
+                List<Cuenta> listaCu = new ArrayList<>();
+                listaCu.add(cu);
+                cliente.setCuentaList(listaCu);
                 boolean respuesta=clienteDAO.insert(cliente);
                 
                 String correo=cliente.getCorreo();

@@ -34,7 +34,7 @@ public class AloginON {
                     //guardarLogina(trabajdor,true)
                     return trabajador;
                 }
-             }
+            }
         } catch (Exception ex) {
             Logger.getLogger(AloginON.class.getName()).log(Level.SEVERE, null, ex);
         }

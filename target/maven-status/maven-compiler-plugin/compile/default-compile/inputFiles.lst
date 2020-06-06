@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\AloginON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Alogin.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Trabajador.java
@@ -19,22 +18,3 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transaciones.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\ClienteDAO.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\TrabajadorON.java
-=======
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Alogin.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Solicitud.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\TrabajadorBEAN.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Trabajador.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transaciones.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\AloginON.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\AloginBEAN.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\TrabajadorDAO.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Amortizacion.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\CorreoON.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Cuenta.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transferencias.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\TrabajadorON.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\AloginDAO.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Credito.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\view\Vista.java
-C:\Users\fanny\OneDrive\Noveno Ciclo\Proyectos de Software\ProyectoAppDis\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Cliente.java
->>>>>>> 937c8ae479407fbef435246e947de8e744d311f7

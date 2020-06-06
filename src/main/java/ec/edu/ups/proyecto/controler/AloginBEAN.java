@@ -44,6 +44,7 @@ public class AloginBEAN {
 
         if (trabajador != null) {
             System.out.println("si esxite"+trabajador.getRol());
+            //
             if(trabajador.getRol().toString().equals("Administrador")){
                 System.out.println("aquiii");
                return "trabajador";
