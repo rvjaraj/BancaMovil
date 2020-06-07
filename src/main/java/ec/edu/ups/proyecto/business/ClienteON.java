@@ -79,6 +79,15 @@ public class ClienteON {
         return null;
     }
     
+    public Cliente buscarClienteCedula(String cedula){
+        try {
+            return clienteDAO.findByCedula(cedula);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public List<Cliente> listaClientees(){
         try {
             return clienteDAO.findAll();

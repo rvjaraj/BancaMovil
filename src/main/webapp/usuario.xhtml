@@ -11,13 +11,71 @@
             Usuario
         </ui:define>
         <ui:define name="cuenta">
-            <h1>Esto es el cuenta </h1>
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+
+                        <h5 class="card-title text-center">Mi Cuenta</h5>
+                        <h:panelGroup id="panel">
+                            <div class="card border-primary mb-7 mx-aut">
+                                <div class="card-body bg-info">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Cedula</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cedula}" class="form-control" a:placeholder="cedula"/>
+
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Nombre</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.nombres}" class="form-control" a:placeholder="cedula"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Apellidos</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.apellido}" class="form-control" a:placeholder="cedula"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Correo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.correo}" class="form-control" a:placeholder="cedula"/>
+                                    </div>
+                                </div>
+                            </div><br></br>
+                            <div class="card border-success mb-3" >
+                                <div class="card-header">Cuenta</div>
+                                <div class="card-body text-success">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Numero</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cuentaList.get(0).numero}" class="form-control" a:placeholder="cedula"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Saldo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cuentaList.get(0).saldo}" class="form-control" a:placeholder="cedula"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </div>
         </ui:define>
 
         <ui:define name="transaciones">
             <h1>Esto es el transaciones </h1>
         </ui:define>
-        
+
         <ui:define name="historial">
             <h1>Esto es el historial </h1>
         </ui:define>

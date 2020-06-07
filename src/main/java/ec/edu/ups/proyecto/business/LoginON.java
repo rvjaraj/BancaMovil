@@ -14,6 +14,7 @@ import ec.edu.ups.proyecto.emtitis.Trabajador;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -122,6 +123,15 @@ public class LoginON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
             return "";
         }
+    }
+    
+    public List<Alogin> listaLogin(String cedula){
+        try {
+            return aloginDAO.findAllbyCedula(cedula);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public void enviarCorreoIngreso( String correo, boolean acceso, String ip) {

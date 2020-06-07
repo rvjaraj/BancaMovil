@@ -92,6 +92,19 @@ public class AloginDAO {
 
     }
     
+    public List<Alogin> findAllbyCedula(String cedula) throws Exception {
+
+        try {
+            Query q = em.createNamedQuery("Alogin.findByCedula");
+            q.setParameter("cedula", cedula);
+            List<Alogin> lista = q.getResultList();
+            return lista;
+        } catch (Exception e) {
+            throw new Exception("Erro listar Alogin " +e.getMessage());
+        }
+
+    }
+    
     public List<Alogin> findAllCodigo(String codigo) throws Exception {
 
         try {
