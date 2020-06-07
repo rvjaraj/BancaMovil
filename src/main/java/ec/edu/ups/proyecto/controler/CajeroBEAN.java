@@ -7,6 +7,9 @@ package ec.edu.ups.proyecto.controler;
 
 import ec.edu.ups.proyecto.business.ClienteON;
 import ec.edu.ups.proyecto.emtitis.Cliente;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,10 +36,9 @@ public class CajeroBEAN {
     private ArrayList<String> listaOpc;
     private String textoBuscar;
     private double saldo;
+
     public CajeroBEAN() {
     }
-    
-    
 
     @Inject
     private ClienteON clienteON;
@@ -59,24 +61,34 @@ public class CajeroBEAN {
         }
         return null;
     }
-    
+
     public String buscaClienteID(String id) {
         try {
-             auxCliente = clienteON.buscarCliente(id);
+            auxCliente = clienteON.buscarCliente(id);
         } catch (Exception ex) {
             Logger.getLogger(CajeroBEAN.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
-    
-    public String actualizarCliente(){
-        auxCliente.getCuentaList().get(0).setSaldo(auxCliente.getCuentaList().get(0).getSaldo()+saldo);
+
+    public String actualizarCliente() {
+        BigDecimal bd = new BigDecimal(auxCliente.getCuentaList().get(0).getSaldo() + saldo);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        auxCliente.getCuentaList().get(0).setSaldo(bd.doubleValue());
         clienteON.actualizarCliente(auxCliente);
         init();
         return null;
     }
-    
-   
+
+    public String actualizarClienteR() {
+        BigDecimal bd = new BigDecimal(auxCliente.getCuentaList().get(0).getSaldo() - saldo);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        auxCliente.getCuentaList().get(0).setSaldo(bd.doubleValue());
+        clienteON.actualizarCliente(auxCliente);
+        init();
+        return null;
+    }
+
     // -------------------> 
     public Cliente getNewCliente() {
         return newCliente;
@@ -101,8 +113,6 @@ public class CajeroBEAN {
     public void setListaOpc(ArrayList<String> listaOpc) {
         this.listaOpc = listaOpc;
     }
-
-
 
     public String getTextoBuscar() {
         return textoBuscar;
@@ -135,6 +145,5 @@ public class CajeroBEAN {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    
-    
+
 }

@@ -11,7 +11,7 @@
             CAJERO
         </ui:define>
         <ui:define name="RETIROS-DEPOSITOS">
-            <div class="col-md-12">
+            <div class="col-md-12 mx-auto">
 
                 <div class="card card-body mx-auto" >
                     <div class="active-pink-3 active-pink-4 mb-4 ">
@@ -28,8 +28,8 @@
                             </thead>
                         </table>
                     </div>
-                    <h:panelGroup id="tablatrabajadores" style="max-width: 100%">
-                        <div class="form-group">
+                    <h:panelGroup id="tablatrabajadores"  style="max-width: 100%">
+                        <div class="form-group mx-auto">
                             <h:dataTable class="table table-striped table-dark table-sm" id="detalleT" value="#{cajeroBEAN.listaClientees}"  var="cliente">
                                 <h:column> 
                                     <f:facet name="header">Cedula</f:facet>
@@ -72,7 +72,7 @@
                                 <h:column>
                                     <f:facet name="header">Retirar</f:facet>  
                                     <h:commandButton class="btn btn-info" value="RETIRO" action="#{cajeroBEAN.buscaClienteID(cliente.id)}" a:data-toggle="modal" a:data-target=".modal-retiro">
-                                        <f:ajax render="formEditar"/>
+                                        <f:ajax render="infRet"/>
                                     </h:commandButton>
                                 </h:column>
 
@@ -121,14 +121,14 @@
                         <div class="card w-75 p-3 mx-auto bg-success">
                             <h5 class="card-header">DEPOSITAR</h5>
                             <div class="card-body">
-                                <h:panelGroup id="depo">
-                                    <h:form id="editarCuenta">
+                                <h:panelGroup id="reti">
+                                    <h:form id="editarCuentaR">
                                         <div class="form-group">
                                             <label class="text-center" for="cantidad">INGRESE CANTIDAD</label>
-                                            <h:inputText class="form-control" a:type="number" a:step="0.01" id="cantidad" value="#{cajeroBEAN.saldo}"/>
+                                            <h:inputText class="form-control" a:type="number" a:pattern="^[0-9]+" onkeyup="comprueba(this)" id="cantidad" value="#{cajeroBEAN.saldo}"/>
                                         </div>
-                                        <h:commandButton class=" btn btn-dark btn-block" value="ACTUALIZAR" action="#{cajeroBEAN.actualizarCliente()}">
-                                            <f:ajax render="@all" execute="editarCuenta"/>
+                                        <h:commandButton class=" btn btn-dark btn-block" value="DEPOSITAR" action="#{cajeroBEAN.actualizarCliente()}">
+                                            <f:ajax render="@all" execute="editarCuentaR"/>
                                         </h:commandButton>
                                     </h:form>
                                 </h:panelGroup>
@@ -143,8 +143,61 @@
 
             <div class="modal fade modal-retiro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg ">
-                    <div class="modal-content bg-info">
-                        <h1>Vamo a hacer el Retiro</h1>
+                    <div class="modal-content" style="background: #4CA1AF;">
+                        <br></br>
+                        <div class="card w-75 p-3 mx-auto bg-secondary">
+                            <h5 class="card-header">CLIENTE</h5>
+                            <div class="card-body bg-dark">
+                                <h:panelGroup id="infRet">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key">Cedula</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" readonly="true" value="#{cajeroBEAN.auxCliente.cedula}"  class="form-control" a:placeholder="password"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key">Nombres</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" readonly="true" value="#{cajeroBEAN.auxCliente.nombres}"  class="form-control" a:placeholder="password"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-key">Apellidos</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" readonly="true" value="#{cajeroBEAN.auxCliente.apellido}"  class="form-control" a:placeholder="password"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text"><i class="fas fa-key">Saldo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" readonly="true" id="saldoR" value="#{cajeroBEAN.auxCliente.cuentaList.get(0).saldo}"  class="form-control text-success" />
+                                    </div>
+
+                                </h:panelGroup>
+                            </div>
+                        </div><br></br>
+                        <div class="card w-75 p-3 mx-auto bg-success">
+                            <h5 class="card-header">RETIRAR</h5>
+                            <div class="card-body">
+                                <h:panelGroup id="depo">
+                                    <h:form id="editarCuenta">
+                                        <div class="form-group">
+                                            <label class="text-center" for="cantidadR">INGRESE CANTIDAD</label>
+                                            <h:inputText class="form-control" a:type="number" a:step="0.01" a:pattern="^[0-9]+" onkeyup="validarRetiro(this.value)"  value="#{cajeroBEAN.saldo}"/>
+                                        </div>
+                                        <div id="divRetirar">
+                                            <h:commandButton class=" btn btn-dark btn-block" id="btnRetirar" value="Retirar Dinero" action="#{cajeroBEAN.actualizarClienteR()}" disabled="true">
+                                                <f:ajax render="@all" execute="editarCuenta"/>
+                                            </h:commandButton>
+                                        </div>
+                                    </h:form>
+                                </h:panelGroup>
+                            </div>
+                        </div><br></br>                        
+
+
+
                     </div>
                 </div>
             </div>
