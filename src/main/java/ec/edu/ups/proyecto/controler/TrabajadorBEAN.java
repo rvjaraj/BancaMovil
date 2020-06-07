@@ -48,7 +48,6 @@ public class TrabajadorBEAN {
         
         listaOpc = new ArrayList<>();
         listaOpc.add("Administrador");
-        listaOpc.add("Secretaria");
         listaOpc.add("Cajero");
         listaOpc.add("Jefe Credito");
         listaTrabajadores = trabajadorON.listaTrabajadores();
