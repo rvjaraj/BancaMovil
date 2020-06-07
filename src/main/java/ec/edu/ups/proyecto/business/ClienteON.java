@@ -8,6 +8,7 @@ package ec.edu.ups.proyecto.business;
 import ec.edu.ups.proyecto.dao.ClienteDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Cuenta;
+import ec.edu.ups.proyecto.emtitis.Transaciones;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,8 @@ public class ClienteON {
     @Inject
     ClienteDAO clienteDAO;
     
-    
+    @Inject
+    TransaccionesON transaccionesON;
 
     public ClienteON() {
     }
@@ -47,6 +49,22 @@ public class ClienteON {
     public void actualizarCliente(Cliente cliente){
         try {
             clienteDAO.update(cliente);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void actualizarClienteTrasaccion(Cliente cliente, String tipo, double cantidad){
+        try {
+            clienteDAO.update(cliente);
+            Transaciones transacion  = new Transaciones();
+            
+            transacion.setCantidad(String.valueOf(cantidad));
+            transacion.setCuentaid(cliente.getCuentaList().get(0));
+            transacion.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay()));
+            transacion.setTipo(tipo);
+            
+            transaccionesON.guardarTransaciones(transacion);
         } catch (Exception ex) {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
         }

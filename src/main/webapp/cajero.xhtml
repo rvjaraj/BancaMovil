@@ -187,7 +187,7 @@
                                             <h:inputText class="form-control" a:type="number" a:step="0.01" a:pattern="^[0-9]+" onkeyup="validarRetiro(this.value)"  value="#{cajeroBEAN.saldo}"/>
                                         </div>
                                         <div id="divRetirar">
-                                            <h:commandButton class=" btn btn-dark btn-block" id="btnRetirar" value="Retirar Dinero" action="#{cajeroBEAN.actualizarClienteR()}" disabled="true">
+                                            <h:commandButton class=" btn btn-dark btn-block" id="btnRetirar" value="Retirar Dinero" action="#{cajeroBEAN.actualizarClienteR()}" disabled="false">
                                                 <f:ajax render="@all" execute="editarCuenta"/>
                                             </h:commandButton>
                                         </div>

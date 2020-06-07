@@ -19,13 +19,13 @@ import javax.persistence.Query;
  */
 
 @Stateless
-public class transaccionesDAO {
+public class TransaccionesDAO {
     
     
     @PersistenceContext(name="BancaMovilPersistenceUnit")
     private EntityManager em;
 
-    public transaccionesDAO() {
+    public TransaccionesDAO() {
     }
 
   

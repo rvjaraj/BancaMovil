@@ -11,6 +11,7 @@ ec\edu\ups\proyecto\business\ClienteON.class
 ec\edu\ups\proyecto\business\LoginON.class
 ec\edu\ups\proyecto\emtitis\Alogin.class
 ec\edu\ups\proyecto\business\AloginON.class
+ec\edu\ups\proyecto\controler\LoginBEAN.class
 ec\edu\ups\proyecto\controler\AloginBEAN.class
 ec\edu\ups\proyecto\emtitis\Trabajador.class
 ec\edu\ups\proyecto\view\Vista.class
@@ -21,4 +22,3 @@ ec\edu\ups\proyecto\business\CorreoON.class
 ec\edu\ups\proyecto\business\TrabajadorON.class
 ec\edu\ups\proyecto\dao\TrabajadorDAO.class
 ec\edu\ups\proyecto\emtitis\Credito.class
-ec\edu\ups\proyecto\controler\loginBEAN.class

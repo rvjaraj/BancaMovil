@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @ManagedBean
 @ViewScoped
-public class loginBEAN {
+public class LoginBEAN {
 
     private String cedula = "";
     private String contra = "";
@@ -36,7 +36,7 @@ public class loginBEAN {
     @Inject
     private LoginON loginON;
 
-    public loginBEAN() {
+    public LoginBEAN() {
     }
 
     @PostConstruct
