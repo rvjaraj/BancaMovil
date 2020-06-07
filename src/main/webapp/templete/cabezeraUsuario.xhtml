@@ -20,24 +20,35 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark"><br></br>
             <ul class="nav nav-pills col-sm-9  mx-auto" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">RETIROS  / DEPOSITOS</a>
+                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-cuenta" role="tab" aria-controls="pills-home" aria-selected="true">Mi Cuenta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">TRANSFERENCIAS</a>
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-transaciones" role="tab" aria-controls="pills-profile" aria-selected="false">TRANSFERENCIAS</a>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-historial" role="tab" aria-controls="pills-profile" aria-selected="false">HISTORIAL</a>
+                </li>
+
             </ul>
         </nav>
-        
+
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                <ui:insert name="RETIROS-DEPOSITOS">
+            <div class="tab-pane fade show active" id="pills-cuenta" role="tabpanel" aria-labelledby="pills-home-tab">
+                <ui:insert name="cuenta">
 
-            </ui:insert>
+                </ui:insert>
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <ui:insert name="TRANSFERENCIAS">
+            <div class="tab-pane fade" id="pills-transaciones" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <ui:insert name="transaciones">
 
-            </ui:insert>
+                </ui:insert>
+            </div>
+
+            <div class="tab-pane fade" id="pills-historial" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <ui:insert name="historial">
+
+                </ui:insert>
             </div>
         </div>
 
@@ -48,8 +59,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.0.4/popper.js" type="text/javascript"></script>
         <script src="templete/js/bootstrap.js" type="text/javascript" ></script>
 
-         <script src="templete/js/validaciones.js" type="text/javascript" ></script>
-         
+        <script src="templete/js/validaciones.js" type="text/javascript" ></script>
+
     </h:body>
 </html>
 
