@@ -23,13 +23,13 @@ import javax.servlet.http.HttpServletRequest;
 @ViewScoped
 public class loginBEAN {
 
-    private String cedula = "0105452171";
-    private String contra = "123";
+    private String cedula = "";
+    private String contra = "";
     private String tipo;
     private Trabajador trabajador;
     private Cliente cliente;
-    private String contra1 = "12345";
-    private String contra2 = "12345";
+    private String contra1 = "";
+    private String contra2 = "";
     private String mesaje;
     private String tipe = "";
 
@@ -41,8 +41,8 @@ public class loginBEAN {
 
     @PostConstruct
     public void init() {
-        cedula = "0105452171";
-        contra = "12345";
+        cedula = "";
+        contra = "";
         action();
         tipe = tipo;
 
@@ -93,10 +93,13 @@ public class loginBEAN {
                     return "loginc?faces-redirect=true&tipo=cliente&msj=cedula o contraseña incorrecta";
                 }
             } else {
-                return "index?faces-redirect=true";
+                System.out.println("no hay tipo");
+                return "loginc?faces-redirect=true&tipo=trabajador&msj=Erro: Verificar Tipo";
             }
+        }else{
+            return "loginc?faces-redirect=true&tipo=trabajador&msj=Erro: Verificar Tipo";
         }
-        return "index?faces-redirect=truetipo=x";
+        return "loginc?faces-redirect=true&tipo=trabajador&msj=Erro: Verificar Tipo";
 
     }
 
@@ -119,7 +122,7 @@ public class loginBEAN {
                 cliente.setActivo(false);
                 loginON.actualizarCliente(cliente);
                 System.out.println("Contra de cliente actualizada");
-                return "loginc?faces-redirect=true&tipo=trabajador&msj=contraseña actualizada";
+                return "loginc?faces-redirect=true&tipo=cliente&msj=contraseña actualizada";
             } else {
                 mesaje = "las contraseñas no coinciden";
             }
