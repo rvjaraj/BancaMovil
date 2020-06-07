@@ -55,7 +55,7 @@ public class Alogin implements Serializable {
     private String ip;
     @Basic(optional = false)
     @Column(name = "acceso")
-    private short acceso;
+    private boolean acceso;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cliente cliente;
@@ -67,7 +67,7 @@ public class Alogin implements Serializable {
         this.id = id;
     }
 
-    public Alogin(Integer id, Date fecha, String ip, short acceso) {
+    public Alogin(Integer id, Date fecha, String ip, boolean acceso) {
         this.id = id;
         this.fecha = fecha;
         this.ip = ip;
@@ -98,11 +98,11 @@ public class Alogin implements Serializable {
         this.ip = ip;
     }
 
-    public short getAcceso() {
+    public boolean getAcceso() {
         return acceso;
     }
 
-    public void setAcceso(short acceso) {
+    public void setAcceso(boolean acceso) {
         this.acceso = acceso;
     }
 
