@@ -55,7 +55,11 @@ public class TrabajadorBEAN {
         textoBuscar = "";
         auxTrabajador = new Trabajador();
     }
-
+    /**
+     * Permiten guardar trabajador
+     * Consume la logica de negocio del on
+     * @return
+     */
     public String guardarTrabajador() {
         try {
             trabajadorON.guardarTrabajador(newTrabajador);
@@ -66,7 +70,11 @@ public class TrabajadorBEAN {
         }
         return null;
     }
-    
+    /**
+     * Busca trabajadores desde el texto ingresado 
+     * desde la vista
+     * @return
+     */
     public String buscaTrabajadores() {
         System.out.println(textoBuscar);
         try {
@@ -76,7 +84,12 @@ public class TrabajadorBEAN {
         }
         return null;
     }
-    
+    /**
+     * Buscar trabajador mediante el id
+     * 
+     * @param id
+     * @return
+     */
     public String buscaTrabajadorID(String id) {
         try {
              auxTrabajador = trabajadorON.buscarTrabajador(id);
@@ -86,14 +99,23 @@ public class TrabajadorBEAN {
         }
         return null;
     }
-    
+    /**
+     * Actualiza el trabajador pasandole el auxtrabajador
+     * y llama al init
+     * @return
+     */
     public String actualizarTrabajador(){
         trabajadorON.actualizarTrabajador(auxTrabajador);
         init();
         System.out.println("actualizado");
         return null;
     }
-    
+    /**
+     * Elimina trabajador le pasa al objeto de negocio 
+     * el objeto trabajador
+     * 
+     * @return
+     */
     public String eliminarTrabajador(){
         auxTrabajador.setEliminado(true);
         trabajadorON.actualizarTrabajador(auxTrabajador);

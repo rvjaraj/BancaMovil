@@ -51,7 +51,11 @@ public class CajeroBEAN {
         auxCliente = new Cliente();
         saldo = 0;
     }
-
+    /**
+     * Busca los clientes , consume la logica de negocio del cliente
+     * Esta metodo se utiliza en la vista
+     * @return
+     */
     public String buscaClientees() {
         System.out.println(textoBuscar);
         try {
@@ -61,7 +65,12 @@ public class CajeroBEAN {
         }
         return null;
     }
-
+    /**
+     * Busca el cliente por el id
+     * Utiliza la logica de negocio 
+     * @param id
+     * @return
+     */
     public String buscaClienteID(String id) {
         try {
             auxCliente = clienteON.buscarCliente(id);
@@ -70,7 +79,12 @@ public class CajeroBEAN {
         }
         return null;
     }
-
+    
+    /**
+     * Actualiza al cliente 
+     * Esta logica es consuimida desde el cliente 
+     * @return
+     */
     public String actualizarCliente() {
         System.out.println("Deposito");
         BigDecimal bd = new BigDecimal(auxCliente.getCuentaList().get(0).getSaldo() + saldo);
@@ -80,7 +94,11 @@ public class CajeroBEAN {
         init();
         return null;
     }
-
+    /**
+     * Permite actualizar al cliente Cuando este realiza un 
+     * retiro
+     * @return
+     */
     public String actualizarClienteR() {
         System.out.println("Retiro");
         BigDecimal bd = new BigDecimal(auxCliente.getCuentaList().get(0).getSaldo() - saldo);

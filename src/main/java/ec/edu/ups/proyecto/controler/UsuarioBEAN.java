@@ -50,7 +50,11 @@ public class UsuarioBEAN {
         cedula = "";
         action();
     }
-
+    /**
+     * Captura el parametro enviado desde la vista y 
+     * mediante ese parametro se puede llamar 
+     * a las distintas interfaces 
+     */
     public void action() {
         HttpServletRequest request = (HttpServletRequest) FacesContext
                 .getCurrentInstance().getExternalContext().getRequest();

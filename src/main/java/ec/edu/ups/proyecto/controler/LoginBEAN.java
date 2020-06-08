@@ -54,7 +54,12 @@ public class LoginBEAN {
         String param = request.getParameter("tipo");
         tipo = param;
     }
-
+    /**
+     * Se utiliza el dato que traemos por la url 
+     * para poder cambiar la contrasena
+     * Metodo que valida si el usuario esta correcto o no
+     * @return
+     */
     public String loginUser() {
         System.out.println(" tipo: " + tipe);
         if (tipe != null) {
@@ -102,7 +107,11 @@ public class LoginBEAN {
         return "loginc?faces-redirect=true&tipo=trabajador&msj=Erro: Verificar Tipo";
 
     }
-
+    /**
+     * Metodo que permite actualizar la contrasena 
+     * recibe parametros mediante la url
+     * @return
+     */
     public String actualizarCotra() {
         if (tipe.equals("trabajador")) {
             if (contra1.equals(contra2)) {

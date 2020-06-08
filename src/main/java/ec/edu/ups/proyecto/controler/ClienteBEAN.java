@@ -74,7 +74,10 @@ public class ClienteBEAN {
         
         action();
     }
-    
+    /**
+     * Permite obtener el dato que se pasa a traves de la url para
+     * poder manejar en los distintos metodos.
+     */
     public void action() {
         HttpServletRequest request = (HttpServletRequest) FacesContext
                 .getCurrentInstance().getExternalContext().getRequest();
@@ -82,7 +85,11 @@ public class ClienteBEAN {
         tipo = param;
         
     }
-
+    /**
+     * Guarda el cliente desde la vista consumiendo 
+     * la logica de negocio existente.
+     * @return
+     */
     public String guardarCliente() {
         try {
             System.out.println(newCliente.toString()+">>>>");
@@ -93,7 +100,11 @@ public class ClienteBEAN {
         }
         return null;
     }
-    
+    /**
+     * Busca los clientes por el codigo que se le pase como parametro desde
+     * la vista y se pasa al objeto de negocio.
+     * @return
+     */
     public String buscaClientees() {
         System.out.println(textoBuscar);
         try {
@@ -103,7 +114,12 @@ public class ClienteBEAN {
         }
         return null;
     }
-    
+    /**
+     * Busca a los clientes por id y pasa el parametro a 
+     * los objetos de negocio 
+     * @param id
+     * @return
+     */
     public String buscaClienteID(String id) {
         try {
              auxCliente = clienteON.buscarCliente(id);
@@ -113,13 +129,21 @@ public class ClienteBEAN {
         return null;
     }
     
+    /**
+     * Actualiza el cliente hace uso de la logica de negocio
+     * @return
+     */
     public String actualizarCliente(){
         clienteON.actualizarCliente(auxCliente);
         init();
         System.out.println("actualizado");
         return null;
     }
-    
+    /***
+     * Elimina el cliente, recibe al objeto
+     * cliente para poder actualizar los datos. 
+     * @return
+     */
     public String eliminarCliente(){
         auxCliente.setEliminado(true);
         auxCliente.getCuentaList().get(0).setEliminado(true);
@@ -129,6 +153,11 @@ public class ClienteBEAN {
         return null;
     }
     
+    /**
+     * Metodo de prueba que carga el resumen del cliente, 
+     * buscado por la cedula, imprime lo que retorna.
+     * @return
+     */
     public String loadResumenCliente() {
     	listaClientes = resumenCuentaON.getClienteByCedelua("0106");
     	for (Cliente cliente : listaClientes) {
@@ -136,13 +165,22 @@ public class ClienteBEAN {
 		}
     	return null;
     }
-    
+    /**
+     * Metodo de prueba que carga el resumen del cliente
+     * recibe como parametro al numero
+     * @param numero
+     * @return
+     */
     public String loadResumenCuenta(String numero) {
     	listaCuentasClientes = resumenCuentaON.getResumenCuentaCliente(numero);
     	return null;
     }
     
-    
+    /**
+     * Metodo de prueba que carga el resumen del cliente
+     * Carga el estado de la cuenta 
+     * @return
+     */
     public String loadEstadoCta() {
     	listaEstadosCta = resumenCuentaON.getEstadoCtaByMes(tipo, fechaInicio, fechaFin);
     	System.out.println("llega los paametros >>>>> "+ tipo +" fehcIni: "+ fechaInicio+ " fechaFin: "+ fechaFin);

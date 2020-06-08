@@ -37,7 +37,11 @@ public class AloginBEAN {
         contra = "0225";
 
     }
-
+    /**
+     * Permite guardar el login desde la vista, 
+     * Consume la logica de los objetos de negocios.
+     * @return
+     */
     public String guardarLogin() {
         System.out.println("cedula" + cedula + "contra" + contra);
         Trabajador trabajador = aloginON.loginTra(cedula, contra);
