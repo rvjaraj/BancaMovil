@@ -10,7 +10,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+/**
+ *
+ * @author Juan
+ */
 public class CorreoON {
 	private static final String senderEmail = "appdisup@gmail.com";//change with your sender email
 	  private static final String senderPassword = "12345UPS";//change with your sender password
