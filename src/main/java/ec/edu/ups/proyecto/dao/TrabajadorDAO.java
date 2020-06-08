@@ -23,8 +23,8 @@ public class TrabajadorDAO {
     public TrabajadorDAO() {
     }
      /**
-     * Inserta el login mediante el numero el objeto de Alogin.
-     * @param alogin
+     * Inserta el trabajador  mediante  el objeto de Trabajador.
+     * @param trabajador
      * @return si inserto o no.
      */
     
@@ -44,7 +44,7 @@ public class TrabajadorDAO {
     }
       /**
      * Elimina el metodo mediante el numero el objeto de Alogin.
-     * @param alogin
+     * @param trabajador
      * @remove
      */
     public void delete(Trabajador trabajador) throws Exception {
@@ -57,7 +57,7 @@ public class TrabajadorDAO {
     }
     /**
      * Elimina el metodo mediante el id.
-     * @param alogin
+     * @param trabajador
      * @remove
      */
     public void deleteId(int id) throws Exception {
@@ -70,7 +70,7 @@ public class TrabajadorDAO {
     }
           /**
      * Actualiza  el metodo mediante el objeto de Alogin
-     * @param alogin
+     * @param trabajador
      * @merge
      */
 
@@ -97,7 +97,7 @@ public class TrabajadorDAO {
     }
     
        /**
-     * El metodo lista todos los logines realizados
+     * El metodo lista todos los trabajadores
      * @createNamedQuery crea un querry para poder listar
      * @return
      */
@@ -113,8 +113,8 @@ public class TrabajadorDAO {
 
     }
              /**
-     * El metodo lista todos los logines realizados mediante la cedula
-     * @param cedula
+     * El metodo lista todos los trabajadores realizados mediante el codigo
+     * @param codigo
      * @createNamedQuery crea un querry para poder listar
      * @return
      */
@@ -132,9 +132,9 @@ public class TrabajadorDAO {
 
     }
                /**
-     * El metodo lista todos los logines realizados mediante la codigo
-     * @param codigo
-     * @createNamedQuery crea un querry para poder listar
+     * El metodo busca mediante el id
+     * @param  listarid
+     * @createNamedQuery crea un querry para poder encontrar el objeto buscado
      * @return
      */
     
@@ -149,9 +149,9 @@ public class TrabajadorDAO {
 
     }
              /**
-     * El metodo lista todos los logines realizados mediante id
-     * @param codigo
-     * @createNamedQuery crea un querry para poder listar
+     * El metodo buscar mediante la cedula
+     * @param cedula
+     * @createNamedQuery crea un querry para poder buscar la sentencia ante la clase
      * @return
      */
     public Trabajador findByCedula(String cedula) throws Exception {

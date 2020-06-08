@@ -46,8 +46,8 @@ public class TransaccionesDAO {
         return bandera;
     }
       /**
-     * Elimina el metodo mediante el numero el objeto de Alogin.
-     * @param alogin
+     * Elimina el metodo mediante el numero el objeto de Transaciones.
+     * @param transaciones
      * @remove
      */
     public void delete(Transaciones transaciones) throws Exception {
@@ -60,7 +60,7 @@ public class TransaccionesDAO {
     }
     /**
      * Elimina el metodo mediante el id.
-     * @param alogin
+     * @param id
      * @remove
      */
     public void deleteId(int id) throws Exception {
@@ -72,8 +72,8 @@ public class TransaccionesDAO {
         }
     }
       /**
-     * Actualiza  el metodo mediante el objeto de Alogin
-     * @param alogin
+     * Actualiza  el metodo mediante el objeto de Transaciones
+     * @param transaciones
      * @merge
      */
 
@@ -100,7 +100,7 @@ public class TransaccionesDAO {
     }
     
        /**
-     * El metodo lista todos los logines realizados
+     * El metodo lista todos los transaciones realizados
      * @createNamedQuery crea un querry para poder listar
      * @return
      */
@@ -116,8 +116,8 @@ public class TransaccionesDAO {
 
     }
          /**
-     * El metodo lista todos los logines realizados mediante la cedula
-     * @param cedula
+     * El metodo lista todos las transaciones realizados mediante el codig
+     * @param codigo
      * @createNamedQuery crea un querry para poder listar
      * @return
      */
@@ -135,9 +135,9 @@ public class TransaccionesDAO {
 
     }
            /**
-     * El metodo lista todos los logines realizados mediante la codigo
-     * @param codigo
-     * @createNamedQuery crea un querry para poder listar
+     * El metodo busca mendiante el id
+     * @param id
+     * @createNamedQuery crea un querry para encontrar el objeto buscado
      * @return
      */
     
