@@ -115,11 +115,8 @@ public class ClienteDAO {
 
     public Cliente findByCedula(String cedula) throws Exception {
         try {
-            String jpql = "SELECT P FROM Cliente p "
-                    + "WHERE cedula = :cedula";
-            Query q = em.createQuery(jpql, Cliente.class);
+            Query q = em.createNamedQuery("Cliente.findByCedula");
             q.setParameter("cedula", cedula);
-
             return (Cliente) q.getSingleResult();
         } catch (Exception e) {
             throw new Exception("Erro buscar por  cedula");

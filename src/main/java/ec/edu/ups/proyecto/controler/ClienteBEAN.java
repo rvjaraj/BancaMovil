@@ -6,8 +6,13 @@
 package ec.edu.ups.proyecto.controler;
 
 import ec.edu.ups.proyecto.business.ClienteON;
+import ec.edu.ups.proyecto.business.ResumenCuentaON;
 import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.emtitis.Cuenta;
+import ec.edu.ups.proyecto.emtitis.Transaciones;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +20,9 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -33,7 +40,15 @@ public class ClienteBEAN {
     private ArrayList<String> listaOpc;
     private String textoBuscar;
     private String cuenta;
-
+    private String cedulaPersona;
+    private List<Transaciones> listaCuentasClientes =  new ArrayList<Transaciones>();
+    private List<Cliente> listaClientes =  new ArrayList<Cliente>();
+    private List<Transaciones> listaEstadosCta = new ArrayList<Transaciones>();
+    private Date fechaInicio;
+    private Date fechaFin;
+    private String tipo;
+    private Transaciones newTransaciones = new Transaciones();
+    
     public ClienteBEAN() {
     }
     
@@ -41,6 +56,9 @@ public class ClienteBEAN {
 
     @Inject
     private ClienteON clienteON;
+    
+    @Inject
+    private ResumenCuentaON resumenCuentaON;
 
     @PostConstruct
     public void init() {
@@ -48,7 +66,21 @@ public class ClienteBEAN {
         cuenta = clienteON.numeroCuenta();
         listaClientees = clienteON.listaClientees();
         textoBuscar = "";
+//        fechaInicio = null;
+//        fechaFin = null;
+//        tipo = "";
         auxCliente = new Cliente();
+        loadResumenCliente();
+        
+        action();
+    }
+    
+    public void action() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext
+                .getCurrentInstance().getExternalContext().getRequest();
+        String param = request.getParameter("tipo");
+        tipo = param;
+        
     }
 
     public String guardarCliente() {
@@ -97,6 +129,30 @@ public class ClienteBEAN {
         return null;
     }
     
+    public String loadResumenCliente() {
+    	listaClientes = resumenCuentaON.getClienteByCedelua("0106");
+    	for (Cliente cliente : listaClientes) {
+    		loadResumenCuenta(cliente.getCuentaList().get(0).getNumero());
+		}
+    	return null;
+    }
+    
+    public String loadResumenCuenta(String numero) {
+    	listaCuentasClientes = resumenCuentaON.getResumenCuentaCliente(numero);
+    	return null;
+    }
+    
+    
+    public String loadEstadoCta() {
+    	listaEstadosCta = resumenCuentaON.getEstadoCtaByMes(tipo, fechaInicio, fechaFin);
+    	System.out.println("llega los paametros >>>>> "+ tipo +" fehcIni: "+ fechaInicio+ " fechaFin: "+ fechaFin);
+    	for (Transaciones t : listaEstadosCta) {
+			System.out.println("fechas--"+t.getFecha());
+		}
+    	return null;
+    }
+    
+    
     // -------------------> 
     public Cliente getNewCliente() {
         return newCliente;
@@ -121,8 +177,6 @@ public class ClienteBEAN {
     public void setListaOpc(ArrayList<String> listaOpc) {
         this.listaOpc = listaOpc;
     }
-
-
 
     public String getTextoBuscar() {
         return textoBuscar;
@@ -155,6 +209,65 @@ public class ClienteBEAN {
     public void setCuenta(String cuenta) {
         this.cuenta = cuenta;
     }
-    
-    
+
+	public String getCedulaPersona() {
+		return cedulaPersona;
+	}
+
+	public void setCedulaPersona(String cedulaPersona) {
+		this.cedulaPersona = cedulaPersona;
+	}
+
+	public List<Transaciones> getListaCuentasClientes() {
+		return listaCuentasClientes;
+	}
+
+	public void setListaCuentasClientes(List<Transaciones> listaCuentasClientes) {
+		this.listaCuentasClientes = listaCuentasClientes;
+	}
+
+	public List<Cliente> getListaClientes() {
+		return listaClientes;
+	}
+
+	public void setListaClientes(List<Cliente> listaClientes) {
+		this.listaClientes = listaClientes;
+	}
+
+	public List<Transaciones> getListaEstadosCta() {
+		return listaEstadosCta;
+	}
+
+	public void setListaEstadosCta(List<Transaciones> listaEstadosCta) {
+		this.listaEstadosCta = listaEstadosCta;
+	}
+
+	public Date getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(Date fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public Date getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(Date fechaFin) {
+		this.fechaFin = fechaFin;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	
+	
+	
+
 }

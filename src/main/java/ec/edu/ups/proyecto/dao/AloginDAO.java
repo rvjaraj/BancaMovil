@@ -30,11 +30,10 @@ public class AloginDAO {
 
   
 
-     public boolean insert(Alogin trabajador) throws Exception {
+     public boolean insert(Alogin alogin) throws Exception {
         boolean bandera = true;
     	try {
-            System.out.println("si creo que llega aca");
-            em.persist(trabajador);
+            em.persist(alogin);
             bandera=true;
         } catch (Exception e) {
         	bandera=false;
@@ -45,10 +44,10 @@ public class AloginDAO {
         return bandera;
     }
 
-    public void delete(Alogin trabajador) throws Exception {
+    public void delete(Alogin alogin) throws Exception {
         try {
             System.out.println("borrando");
-            em.remove(read(trabajador.getId()));
+            em.remove(read(alogin.getId()));
         } catch (Exception e) {
             throw new Exception("oErro Eliminar Alogin " +e.getMessage());
         }
@@ -63,9 +62,9 @@ public class AloginDAO {
         }
     }
     
-    public void update(Alogin trabajador) throws Exception {
+    public void update(Alogin alogin) throws Exception {
         try {
-            em.merge(trabajador);
+            em.merge(alogin);
         } catch (Exception e) {
             throw new Exception("Erro actualizar Alogin " +e.getMessage());
         }
@@ -84,6 +83,20 @@ public class AloginDAO {
 
         try {
             Query q = em.createNamedQuery("Alogin.findAll");
+            List<Alogin> lista = q.getResultList();
+            return lista;
+        } catch (Exception e) {
+            throw new Exception("Erro listar Alogin " +e.getMessage());
+        }
+
+    }
+    
+    public List<Alogin> findAllbyCedula(String cedula) throws Exception {
+        System.out.println("Cedula ++: "+cedula);
+        try {
+            System.out.println("Cedula ++: "+cedula);
+            Query q = em.createNamedQuery("Alogin.findByCedula");
+            q.setParameter("cedula", cedula);
             List<Alogin> lista = q.getResultList();
             return lista;
         } catch (Exception e) {

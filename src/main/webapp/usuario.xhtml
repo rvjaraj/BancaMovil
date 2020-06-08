@@ -1,12 +1,228 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+<<<<<<< HEAD
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  
+    <ui:composition template="templete/cabezeraLogin.xhtml">
+    
+    	<ui:define name="title">
+            Vista Resumen
+        </ui:define>
+        
+        <ui:define name="content">
+        	<h:panelGroup>
+        		<div class="form-group">
+        			<h:dataTable value="#{clienteBEAN.listaClientes}" var="listadoClientes" class="table">
+        				<h:column>
+						<f:facet name="header">Num.Cuenta </f:facet>
+						#{listadoClientes.cuentaList.get(0).numero}
+						</h:column>
+						<h:column>
+						<f:facet name="header">Nombre </f:facet>
+						#{listadoClientes.nombres} #{listadoClientes.apellido} 
+						</h:column>
+						
+        			
+        			</h:dataTable>
+        		
+        			<h:dataTable value="#{clienteBEAN.listaCuentasClientes}" var="listadoCtaClientes" class="table">
+        				<h:column>
+						<f:facet name="header">Num.Cuenta </f:facet>
+						#{listadoCtaClientes.cuentaid.numero}
+						</h:column>
+						<h:column>
+						<f:facet name="header">Saldo Efectivo </f:facet>
+						#{listadoCtaClientes.cuentaid.saldo}
+						</h:column>
+						<h:column>
+						<f:facet name="header">Fech. Ult.Trans </f:facet>
+						#{listadoCtaClientes.fecha}
+						</h:column>
+        			
+        			</h:dataTable>
+        		
+        		
+        		</div>
+        	
+        	</h:panelGroup>
+        </ui:define>
+        
+    </ui:composition>
+    
+    
     <h:body>
         Usuario
     </h:body>
 </html>
+=======
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
+    <ui:composition template="templete/cabezeraUsuario.xhtml">
+        <ui:define name="title">
+            Usuario
+        </ui:define>
+        <ui:define name="cuenta">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Mi Cuenta</h5>
+                        <h:panelGroup id="panel">
+                            <div class="card border-primary mb-7 mx-aut">
+                                <div class="card-body bg-info">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Cedula</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cedula}" class="form-control" readonly="true"/>
+
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Nombre</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.nombres}" class="form-control" readonly="true"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Apellidos</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.apellido}" class="form-control" readonly="true"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Correo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.correo}" class="form-control" readonly="true"/>
+                                    </div>
+                                </div>
+                            </div><br></br>
+                            <div class="card border-success mb-3" >
+                                <div class="card-header">Cuenta</div>
+                                <div class="card-body text-success">
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Numero</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cuentaList.get(0).numero}" class="form-control" readonly="true"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Saldo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cuentaList.get(0).saldo}" class="form-control" readonly="true"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Ultima Transacciones</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.listaTransacioneses.get(0).fecha}" class="form-control" readonly="true"/>
+                                    </div>
+                                    <div class="input-group form-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Tipo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="#{usuarioBEAN.listaTransacioneses.get(0).tipo}" class="form-control" readonly="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+
+        <ui:define name="transaciones">
+            <div class="col-sm-9 col-md-7 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h:panelGroup id="tabalHitorial"  style="max-width: 100%">
+                            <h5 class="card-title text-center">TRANSACCIONES</h5>
+                            <div class="form-group mx-auto" >
+                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                    <div class="span3" style="height: 600px !important;
+                                         overflow: scroll;">
+                                        <h:dataTable class="table table-striped table-dark table-sm" id="detalleT" value="#{usuarioBEAN.listaTransacioneses}"  var="trans">
+                                            <h:column> 
+                                                <f:facet name="header">ID</f:facet>
+                                                <label class="col-md-12">#{trans.id}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Fecha</f:facet>
+                                                <label class="col-md-12">#{trans.fecha}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Tipo</f:facet>
+                                                <label class="col-md-12">#{trans.tipo}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Cantidad</f:facet>
+                                                <label class="col-md-12">#{trans.cantidad}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Cuenta</f:facet>
+                                                <label class="col-md-12">#{trans.cuentaid.numero}</label>
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+>>>>>>> 723959967c1c75fd06e0f626068e0631d5f52f93
+
+        <ui:define name="historial">
+            <div class="col-sm-9 col-md-7 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h:panelGroup id="tabalHitorial"  style="max-width: 100%">
+                            <h5 class="card-title text-center">Historial de Login</h5>
+                            <div class="form-group mx-auto" >
+                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                    <div class="span3" style="height: 600px !important;
+                                         overflow: scroll;">
+                                        <h:dataTable class="table table-striped table-dark table-sm" id="detalleT" value="#{usuarioBEAN.historial}"  var="hisotial">
+                                            <h:column> 
+                                                <f:facet name="header">ID</f:facet>
+                                                <label class="col-md-12">#{hisotial.id}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Fecha</f:facet>
+                                                <label class="col-md-12">#{hisotial.fecha}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">IP</f:facet>
+                                                <label class="col-md-12">#{hisotial.ip}</label>
+                                            </h:column>
+                                          
+                                            <h:column >
+                                                <f:facet name="header">ACCESO</f:facet>
+                                                <h:outputLabel value="SATISFACTORIO" rendered="#{hisotial.acceso}"/>
+                                                <h:outputLabel value="DENEGADO"  rendered="#{not hisotial.acceso}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Cedula Igreso</f:facet>
+                                                <label class="col-md-12">#{hisotial.cliente.cedula}</label>
+                                            </h:column>
+
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+</html>

@@ -6,6 +6,7 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -21,9 +22,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.ws.rs.ext.ParamConverter.Lazy;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -66,7 +69,8 @@ public class Cuenta implements Serializable {
     private Cliente cliente;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cuenta", fetch = FetchType.EAGER)
     private List<Credito> creditoList;
-    @OneToMany( mappedBy = "cuentaid")
+    @OneToMany(mappedBy = "cuentaid")
+    @OrderColumn(name = "id")
     private List<Transaciones> transacionesList;
     @OneToMany(mappedBy = "ordenante")
     private List<Transferencias> transferenciasList;

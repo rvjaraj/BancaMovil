@@ -6,8 +6,10 @@
 package ec.edu.ups.proyecto.business;
 
 import ec.edu.ups.proyecto.dao.ClienteDAO;
+import ec.edu.ups.proyecto.dao.ResumenCuentaDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Cuenta;
+import ec.edu.ups.proyecto.emtitis.Transaciones;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +28,12 @@ public class ClienteON {
     @Inject
     ClienteDAO clienteDAO;
     
-    
+<<<<<<< HEAD
+
+=======
+    @Inject
+    TransaccionesON transaccionesON;
+>>>>>>> 723959967c1c75fd06e0f626068e0631d5f52f93
 
     public ClienteON() {
     }
@@ -52,9 +59,35 @@ public class ClienteON {
         }
     }
     
+    public void actualizarClienteTrasaccion(Cliente cliente, String tipo, double cantidad){
+        try {
+            clienteDAO.update(cliente);
+            System.out.println("Cliente acutalizado "+cliente.getCuentaList().get(0).getSaldo());
+            Transaciones transacion  = new Transaciones();
+            
+            transacion.setCantidad(String.valueOf(cantidad));
+            transacion.setCuentaid(cliente.getCuentaList().get(0));
+            transacion.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay()));
+            transacion.setTipo(tipo);
+            transaccionesON.guardarTransaciones(transacion);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public Cliente buscarCliente(String id){
         try {
             return clienteDAO.findByID(id);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public Cliente buscarClienteCedula(String cedula){
+        try {
+            return clienteDAO.findByCedula(cedula);
         } catch (Exception ex) {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -161,4 +194,6 @@ public class ClienteON {
     public void enviarCorreo() {
     	
     }
+    
+    
 }

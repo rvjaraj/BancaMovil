@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Alogin.findAll", query = "SELECT a FROM Alogin a"),
     @NamedQuery(name = "Alogin.findById", query = "SELECT a FROM Alogin a WHERE a.id = :id"),
+    @NamedQuery(name = "Alogin.findByCedula", query = "SELECT a FROM Alogin a, Cliente c WHERE a.cliente.cedula = c.cedula and c.cedula = :cedula ORDER BY a.id DESC"),
     @NamedQuery(name = "Alogin.findByFecha", query = "SELECT a FROM Alogin a WHERE a.fecha = :fecha"),
     @NamedQuery(name = "Alogin.findByIp", query = "SELECT a FROM Alogin a WHERE a.ip = :ip"),
     @NamedQuery(name = "Alogin.findByAcceso", query = "SELECT a FROM Alogin a WHERE a.acceso = :acceso")})
@@ -55,7 +56,7 @@ public class Alogin implements Serializable {
     private String ip;
     @Basic(optional = false)
     @Column(name = "acceso")
-    private short acceso;
+    private boolean acceso;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cliente cliente;
@@ -67,7 +68,7 @@ public class Alogin implements Serializable {
         this.id = id;
     }
 
-    public Alogin(Integer id, Date fecha, String ip, short acceso) {
+    public Alogin(Integer id, Date fecha, String ip, boolean acceso) {
         this.id = id;
         this.fecha = fecha;
         this.ip = ip;
@@ -98,11 +99,11 @@ public class Alogin implements Serializable {
         this.ip = ip;
     }
 
-    public short getAcceso() {
+    public boolean getAcceso() {
         return acceso;
     }
 
-    public void setAcceso(short acceso) {
+    public void setAcceso(boolean acceso) {
         this.acceso = acceso;
     }
 

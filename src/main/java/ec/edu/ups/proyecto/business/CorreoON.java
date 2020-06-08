@@ -54,12 +54,11 @@ public class CorreoON {
 	  
 	  public String contrasenaAleatoria() {
 			 int length = 10;
-		        String simbolos = "-/.;&*_!@%=+>)"; 
 		        String mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
 		        String minusculas = "abcdefghijklmnopqrstuvwxyz"; 
 		        String numeros = "0123456789"; 
 
-		        String finalString = mayusculas + numeros + minusculas  + simbolos; 
+		        String finalString = mayusculas + numeros + minusculas; 
 
 		        Random random = new Random(); 
 
