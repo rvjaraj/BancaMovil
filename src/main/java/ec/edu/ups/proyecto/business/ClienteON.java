@@ -34,8 +34,10 @@ public class ClienteON {
 	 * Permite consumir la logica de transaccionesON
 	 */
 
+
     @Inject
     TransaccionesON transaccionesON;
+
 
     public ClienteON() {
     }
