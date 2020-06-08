@@ -36,7 +36,14 @@ public class LoginON {
 
     @Inject
     ClienteDAO clienteDAO;
-
+    
+    /**
+     * Se realiza las validaciones como trabajador, mediante la cedula y la contrasena
+     * 
+     * @param cedula
+     * @param contrasenia
+     * @return
+     */
     public Trabajador loginTra(String cedula, String contrasenia) {
         try {
             Trabajador trabajador = trabajadorDAO.findByCedula(cedula);
@@ -58,7 +65,13 @@ public class LoginON {
         return null;
 
     }
-
+    /**
+     * Se valida al cliente desde la interfaz de login, se realiza un envio de correo 
+     * con la direccion ip desde donde se accedio.
+     * @param cedula
+     * @param contrasenia
+     * @return
+     */
     public Cliente loginClie(String cedula, String contrasenia) {
         try {
             Cliente cliente = clienteDAO.findByCedula(cedula);
@@ -80,7 +93,13 @@ public class LoginON {
         return null;
 
     }
-
+    /**
+     * Se actualiza datos del trabajador, se realiza un envio de correo 
+     * indicando que fue actualizado.
+     * @param cedula
+     * @param contrasenia
+     * @return
+     */
     public void actualizarTrabajador(Trabajador trabajador) {
         try {
             trabajadorDAO.update(trabajador);
@@ -89,7 +108,11 @@ public class LoginON {
             Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Se actualiza datos del cliente, se realiza un envio de correo 
+     * indicando que fue actualizado.
+     * @param cliente
+     */
     public void actualizarCliente(Cliente cliente) {
         try {
             clienteDAO.update(cliente);
@@ -98,7 +121,12 @@ public class LoginON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Se registra el usuario y tambien el acceso con la ip , la fecha que trato de acceder
+     * @param cliente
+     * @param acceso
+     */
     public void guardarLogin(Cliente cliente, boolean acceso) {
         Alogin login = new Alogin();
         try {
@@ -114,6 +142,11 @@ public class LoginON {
         }
     }
     
+    /**
+     * Este metodo nos ayuda a obtener la ip para ser utilizada en 
+     * otros metodos 
+     * @return
+     */
     public String obtenerIp() {
         InetAddress ip;
         try {
@@ -125,7 +158,11 @@ public class LoginON {
             return "";
         }
     }
-    
+    /**
+     * Busca login mediante la cedula 
+     * @param cedula
+     * @return
+     */
     public List<Alogin> listaLogin(String cedula){
         try {
             System.out.println("aqui");
@@ -136,6 +173,13 @@ public class LoginON {
         return null;
     }
     
+    /**
+     * Permite enviar un correo cuando se accede a la cuenta, se adjunta al correo  la direccion ip
+     * Permite enviar un correo cuando se intenta  ingresar a  la cuenta y falla, se adjunta al correo  la direccion ip
+     * @param correo
+     * @param acceso
+     * @param ip
+     */
     public void enviarCorreoIngreso( String correo, boolean acceso, String ip) {
            	try {
            		CorreoON c = new CorreoON();
@@ -158,6 +202,11 @@ public class LoginON {
         // Ip >> lugar desde donde intentan usar
     }
     
+    /**
+     * Envia un correo indicando que la contrasena se actualizo satisfactoriamente
+     * Este metodo es consumido en metodos anteriores.
+     * @param correo
+     */
     public void enviarCorreoUpdate(String correo){
     			CorreoON c = new CorreoON();
     			try {

@@ -24,23 +24,27 @@ import javax.inject.Inject;
  */
 @Stateless
 public class ClienteON {
-
+	/**
+	 * Permite consumir la logica del clienteDAO
+	 */
     @Inject
     ClienteDAO clienteDAO;
     
-
-
-    @Inject
-    TransaccionesON transaccionesON;
-
+    /**
+	 * Permite consumir la logica de transaccionesON
+	 */
 
     @Inject
     TransaccionesON transaccionesON;
-
 
     public ClienteON() {
     }
     
+    /**
+     * Retorna un parametro c donde se concatena un day, segundo y una palabra 
+     * para formar la cuenta de la persona. 
+     * @return
+     */
     public String numeroCuenta(){
         String c = "";
         try {
@@ -54,6 +58,10 @@ public class ClienteON {
         return c;
     }
     
+    /**
+     * Se recibe como parametro al objeto cliente para proceder a actualizar
+     * @param cliente
+     */
     public void actualizarCliente(Cliente cliente){
         try {
             clienteDAO.update(cliente);
@@ -62,6 +70,14 @@ public class ClienteON {
         }
     }
     
+    /**
+     * Se recibe tres parametros, donde el cliente es la persona quien realiza la transaccion
+     * Tipo se refiere a que tipo de transaccion se realizo
+     * Cantidad es el monto con el que se realizo la transaccion
+     * @param cliente
+     * @param tipo
+     * @param cantidad
+     */
     public void actualizarClienteTrasaccion(Cliente cliente, String tipo, double cantidad){
         try {
             clienteDAO.update(cliente);
@@ -78,7 +94,12 @@ public class ClienteON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Este metodo nos ayuda a buscar el cliente por id, para poder 
+     * ser consumido desde el controllerBean
+     * @param id
+     * @return
+     */
     public Cliente buscarCliente(String id){
         try {
             return clienteDAO.findByID(id);
@@ -88,6 +109,12 @@ public class ClienteON {
         return null;
     }
     
+    /**
+     * Este metodo nos ayuda a buscar el cliente por cedula, para poder 
+     * ser consumido desde el controllerBean
+     * @param cedula
+     * @return
+     */
     public Cliente buscarClienteCedula(String cedula){
         try {
             return clienteDAO.findByCedula(cedula);
@@ -97,6 +124,10 @@ public class ClienteON {
         return null;
     }
     
+    /**
+     * Metodo para mostrar el listado de clientes busca todos loc clientes coincidentes
+     * @return
+     */
     public List<Cliente> listaClientees(){
         try {
             return clienteDAO.findAll();
@@ -106,7 +137,11 @@ public class ClienteON {
         return null;
     }
     
-    
+    /**
+     * Tenemos una lista de clientes mediante el codigo que pasamos como parametro
+     * @param codigo
+     * @return
+     */
     public List<Cliente> listaClienteesCodigo(String codigo){
         try {
             return clienteDAO.findAllCodigo(codigo);
@@ -115,7 +150,16 @@ public class ClienteON {
         }
         return null;
     }
-
+    
+    /**
+     * Este metodo nos permite guardar el cliente y tambien una cuenta asociada al cliente
+     * Se realiza la validadcion de la cedula en el caso de ser validas nos permite guardar
+     * Tambien se realiza una vakidacion para poder enviar correos con el usuario y contrasena correcta
+     * @param cliente
+     * @param cuenta
+     * @return
+     * @throws Exception
+     */
     public boolean guardarCliente(Cliente cliente, String cuenta) throws Exception {
         if (validarCedula(cliente.getCedula())) {
             try {
@@ -155,7 +199,13 @@ public class ClienteON {
     }
     
     
-
+    /**
+     * Este metodo es para validar la cedula si esta es valida nos retorna true
+     * CAso contrario nos devuelve un false
+     * Recibe como parametro la cedula
+     * @param ced
+     * @return
+     */
     public boolean validarCedula(String ced) {
         boolean verdadera = false;
         int num = 0;

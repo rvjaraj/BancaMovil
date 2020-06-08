@@ -23,7 +23,13 @@ public class AloginON {
     @Inject
     TrabajadorDAO trabajadorDAO;
     
-    
+    /**
+     * Recibe como parametros cedula y la contrasena para el inicio de sesion
+     * Si la contrasena es correcta, permitira el ingreso al sistema  
+     * @param cedula
+     * @param contrasenia
+     * @return
+     */
     public Trabajador loginTra(String cedula, String contrasenia){
         try {
             Trabajador trabajador= trabajadorDAO.findByCedula(cedula);

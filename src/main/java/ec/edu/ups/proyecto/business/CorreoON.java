@@ -14,7 +14,15 @@ import javax.mail.internet.MimeMessage;
 public class CorreoON {
 	private static final String senderEmail = "appdisup@gmail.com";//change with your sender email
 	  private static final String senderPassword = "12345UPS";//change with your sender password
-
+	  /**
+	   * El primer parametro es para quien se envia el correo 
+	   * El parametro title es para enviar el titulo del correo
+	   * El parametro html es donde se manda la informacion para el cuerpo del correo.
+	   * @param to
+	   * @param title
+	   * @param html
+	   * @throws MessagingException
+	   */
 	  public static void sendAsHtml(String to, String title, String html) throws MessagingException {
 	      System.out.println("Sending email to " + to);
 
@@ -28,7 +36,15 @@ public class CorreoON {
 	      Transport.send(message);
 	      System.out.println("Satisfactorio");
 	  }
-
+	  /**
+	   * Recibe la session del mensaje previamente creado
+	   * A quien se le envia el correo, tambien se le coloca el titulo y el cuerpo del correo
+	   * @param message
+	   * @param to
+	   * @param title
+	   * @param html
+	   * @throws MessagingException
+	   */
 	  private static void prepareEmailMessage(MimeMessage message, String to, String title, String html)
 	          throws MessagingException {
 	      message.setContent(html, "text/html; charset=utf-8");
@@ -36,7 +52,13 @@ public class CorreoON {
 	      message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 	      message.setSubject(title);
 	  }
-
+	  
+	  /**
+	   * Se envia un correo realizando el protocolo de transferencia simple
+	   * En este caso estamos utilizando el servicio de gmail
+	   * Realiza el envio mediante el puerto 587
+	   * @return
+	   */
 	  private static Session createSession() {
 	      Properties props = new Properties();
 	      props.put("mail.smtp.auth", "true");//Outgoing server requires authentication
@@ -52,6 +74,11 @@ public class CorreoON {
 	      return session;
 	  }
 	  
+	  /**
+	   * Se genera una constrasena aleatoria para ser usada en el envio de correos 
+	   * cuando se crea un usuario, se envia al correo asociado al cliente.
+	   * @return
+	   */
 	  public String contrasenaAleatoria() {
 			 int length = 10;
 		        String mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
