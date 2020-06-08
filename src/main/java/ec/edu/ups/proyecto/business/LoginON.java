@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -136,13 +137,35 @@ public class LoginON {
     }
     
     public void enviarCorreoIngreso( String correo, boolean acceso, String ip) {
-        //El correo viene en la variable correo
+           	try {
+           		CorreoON c = new CorreoON();
+           		if (acceso==true) {
+           			
+    				c.sendAsHtml(correo, "Inicio Sesion en SimonBank®", "Usted ha ingresado a su cuenta desde La direccion ip : <p>IP : </p>"+ip);
+				} else {
+					c.sendAsHtml(correo, "Registro Sesion Fallido en SimonBank®", "Desde La direccion ip : <p>IP : </p>"+ip);
+
+				}
+           		
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+    	//El correo viene en la variable correo
         //(acceso = true ) >> enviar el correo con login correcto si es acceso es true
         //(acceso = false ) >> enviar el correo con: se registra un intento erroneo de acceso con su cuenta 
         // Ip >> lugar desde donde intentan usar
     }
     
     public void enviarCorreoUpdate(String correo){
+    			CorreoON c = new CorreoON();
+    			try {
+					c.sendAsHtml(correo, "Constrasena Actualizada", "<p>Se actualizo su contrasena </p>");
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         //enviar un correo diciendo se a autualizado la contra
         //No importa si es cliente o si es trabajdor
     }
