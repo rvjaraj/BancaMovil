@@ -3,64 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-<<<<<<< HEAD
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-  
-    <ui:composition template="templete/cabezeraLogin.xhtml">
-    
-    	<ui:define name="title">
-            Vista Resumen
-        </ui:define>
-        
-        <ui:define name="content">
-        	<h:panelGroup>
-        		<div class="form-group">
-        			<h:dataTable value="#{clienteBEAN.listaClientes}" var="listadoClientes" class="table">
-        				<h:column>
-						<f:facet name="header">Num.Cuenta </f:facet>
-						#{listadoClientes.cuentaList.get(0).numero}
-						</h:column>
-						<h:column>
-						<f:facet name="header">Nombre </f:facet>
-						#{listadoClientes.nombres} #{listadoClientes.apellido} 
-						</h:column>
-						
-        			
-        			</h:dataTable>
-        		
-        			<h:dataTable value="#{clienteBEAN.listaCuentasClientes}" var="listadoCtaClientes" class="table">
-        				<h:column>
-						<f:facet name="header">Num.Cuenta </f:facet>
-						#{listadoCtaClientes.cuentaid.numero}
-						</h:column>
-						<h:column>
-						<f:facet name="header">Saldo Efectivo </f:facet>
-						#{listadoCtaClientes.cuentaid.saldo}
-						</h:column>
-						<h:column>
-						<f:facet name="header">Fech. Ult.Trans </f:facet>
-						#{listadoCtaClientes.fecha}
-						</h:column>
-        			
-        			</h:dataTable>
-        		
-        		
-        		</div>
-        	
-        	</h:panelGroup>
-        </ui:define>
-        
-    </ui:composition>
-    
-    
-    <h:body>
-        Usuario
-    </h:body>
-</html>
-=======
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="templete/cabezeraUsuario.xhtml">
         <ui:define name="title">
@@ -79,7 +23,6 @@
                                             <span class="input-group-text"><i class="fas fa-user">Cedula</i></span>
                                         </div>
                                         <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cedula}" class="form-control" readonly="true"/>
-
                                     </div>
                                     <div class="input-group form-group">
                                         <div class="input-group-prepend">
@@ -177,7 +120,7 @@
                 </div>
             </div>
         </ui:define>
->>>>>>> 723959967c1c75fd06e0f626068e0631d5f52f93
+        >>>>>>> 723959967c1c75fd06e0f626068e0631d5f52f93
 
         <ui:define name="historial">
             <div class="col-sm-9 col-md-7 mx-auto">
@@ -202,7 +145,7 @@
                                                 <f:facet name="header">IP</f:facet>
                                                 <label class="col-md-12">#{hisotial.ip}</label>
                                             </h:column>
-                                          
+
                                             <h:column >
                                                 <f:facet name="header">ACCESO</f:facet>
                                                 <h:outputLabel value="SATISFACTORIO" rendered="#{hisotial.acceso}"/>

@@ -28,12 +28,8 @@ public class ClienteON {
     @Inject
     ClienteDAO clienteDAO;
     
-<<<<<<< HEAD
-
-=======
     @Inject
     TransaccionesON transaccionesON;
->>>>>>> 723959967c1c75fd06e0f626068e0631d5f52f93
 
     public ClienteON() {
     }
