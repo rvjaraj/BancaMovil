@@ -27,7 +27,11 @@ public class TrabajadorON {
 
     public TrabajadorON() {
     }
-    
+    /**
+     * Se actualiza datos del trabajador, esta logica es consumida desde 
+     * la interfaz web
+     * @param trabajador
+     */
     public void actualizarTrabajador(Trabajador trabajador){
         try {
             trabajadorDAO.update(trabajador);
@@ -35,7 +39,11 @@ public class TrabajadorON {
             Logger.getLogger(TrabajadorON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Permite buscar el trabajador mediante el id 
+     * @param id
+     * @return
+     */
     public Trabajador buscarTrabajador(String id){
         try {
             return trabajadorDAO.findByID(id);
@@ -44,7 +52,10 @@ public class TrabajadorON {
         }
         return null;
     }
-    
+    /**
+     * Se manda a buscar la lista del trabajador 
+     * @return
+     */
     public List<Trabajador> listaTrabajadores(){
         try {
             return trabajadorDAO.findAll();
@@ -54,7 +65,11 @@ public class TrabajadorON {
         return null;
     }
     
-    
+    /**
+     * Permite buscar por codigo y rel resultado se almacena en una lista de trabajador
+     * @param codigo
+     * @return
+     */
     public List<Trabajador> listaTrabajadoresCodigo(String codigo){
         try {
             return trabajadorDAO.findAllCodigo(codigo);
@@ -63,7 +78,14 @@ public class TrabajadorON {
         }
         return null;
     }
-
+    
+    /**
+     * Permite resgistrar al trabajador y enviarle un usuario y la contrasena 
+     * para que pueda acceder a su cuenta 
+     * @param trabajador
+     * @return
+     * @throws Exception
+     */
     public boolean guardarTrabajador(Trabajador trabajador) throws Exception {
         if (validarCedula(trabajador.getCedula())) {
             try {
@@ -92,7 +114,12 @@ public class TrabajadorON {
         return true;
     }
     
-    
+    /**
+     * Este metodo nos permite validar la cedula e
+     * en caso de ser valida devuelve un true
+     * @param ced
+     * @return
+     */
 
     public boolean validarCedula(String ced) {
         boolean verdadera = false;
