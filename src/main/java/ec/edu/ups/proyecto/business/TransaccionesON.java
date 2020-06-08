@@ -64,6 +64,15 @@ public class TransaccionesON {
         }
         return null;
     }
+    
+     public List<Transaciones> listaTransacionesCedula(String cedula){
+        try {
+            return trasacionesDAO.findAllbyCedula(cedula);
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public List<Transaciones> listaTransacionesesCodigo(String codigo) {
         try {

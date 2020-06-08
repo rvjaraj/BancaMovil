@@ -33,7 +33,6 @@ public class AloginDAO {
      public boolean insert(Alogin alogin) throws Exception {
         boolean bandera = true;
     	try {
-            System.out.println("si creo que llega aca");
             em.persist(alogin);
             bandera=true;
         } catch (Exception e) {
@@ -93,8 +92,9 @@ public class AloginDAO {
     }
     
     public List<Alogin> findAllbyCedula(String cedula) throws Exception {
-
+        System.out.println("Cedula ++: "+cedula);
         try {
+            System.out.println("Cedula ++: "+cedula);
             Query q = em.createNamedQuery("Alogin.findByCedula");
             q.setParameter("cedula", cedula);
             List<Alogin> lista = q.getResultList();

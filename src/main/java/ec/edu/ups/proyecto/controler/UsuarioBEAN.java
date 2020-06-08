@@ -7,9 +7,11 @@ package ec.edu.ups.proyecto.controler;
 
 import ec.edu.ups.proyecto.business.ClienteON;
 import ec.edu.ups.proyecto.business.LoginON;
+import ec.edu.ups.proyecto.business.TransaccionesON;
 import ec.edu.ups.proyecto.emtitis.Alogin;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Trabajador;
+import ec.edu.ups.proyecto.emtitis.Transaciones;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -29,11 +31,16 @@ public class UsuarioBEAN {
     private String cedula = "";
     private Cliente cliente;
     private List<Alogin>  historial;
+    private List<Transaciones> listaTransacioneses;
 
     @Inject
     private ClienteON clienteON;
     
+    @Inject
     private LoginON loginON;
+    
+    @Inject
+    private TransaccionesON transaccionesON;
 
     public UsuarioBEAN() {
     }
@@ -52,6 +59,7 @@ public class UsuarioBEAN {
         if(cedula != null){
             cliente = clienteON.buscarClienteCedula(cedula);
             historial = loginON.listaLogin(cedula);
+            listaTransacioneses = transaccionesON.listaTransacionesCedula(cedula);
         }
         
     }
@@ -72,6 +80,22 @@ public class UsuarioBEAN {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<Alogin> getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(List<Alogin> historial) {
+        this.historial = historial;
+    }
+
+    public List<Transaciones> getListaTransacioneses() {
+        return listaTransacioneses;
+    }
+
+    public void setListaTransacioneses(List<Transaciones> listaTransacioneses) {
+        this.listaTransacioneses = listaTransacioneses;
     }
     
      

@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.proyecto.dao;
 
+import ec.edu.ups.proyecto.emtitis.Alogin;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
 import java.util.List;
@@ -17,31 +18,27 @@ import javax.persistence.Query;
  *
  * @author fanny
  */
-
 @Stateless
 public class TransaccionesDAO {
-    
-    
-    @PersistenceContext(name="BancaMovilPersistenceUnit")
+
+    @PersistenceContext(name = "BancaMovilPersistenceUnit")
     private EntityManager em;
 
     public TransaccionesDAO() {
     }
 
-  
-
-     public boolean insert(Transaciones transaciones) throws Exception {
+    public boolean insert(Transaciones transaciones) throws Exception {
         boolean bandera = true;
-    	try {
+        try {
             System.out.println("si creo que llega aca");
             em.persist(transaciones);
-            bandera=true;
+            bandera = true;
         } catch (Exception e) {
-        	bandera=false;
+            bandera = false;
             throw new Exception("Erro ingreso Transaciones " + e.getMessage());
-            
+
         }
-        
+
         return bandera;
     }
 
@@ -50,7 +47,7 @@ public class TransaccionesDAO {
             System.out.println("borrando");
             em.remove(read(transaciones.getId()));
         } catch (Exception e) {
-            throw new Exception("oErro Eliminar Transaciones " +e.getMessage());
+            throw new Exception("oErro Eliminar Transaciones " + e.getMessage());
         }
     }
 
@@ -59,15 +56,15 @@ public class TransaccionesDAO {
             System.out.println("borrando");
             em.remove(read(id));
         } catch (Exception e) {
-            throw new Exception("oErro Eliminar Transaciones " +e.getMessage());
+            throw new Exception("oErro Eliminar Transaciones " + e.getMessage());
         }
     }
-    
+
     public void update(Transaciones transaciones) throws Exception {
         try {
             em.merge(transaciones);
         } catch (Exception e) {
-            throw new Exception("Erro actualizar Transaciones " +e.getMessage());
+            throw new Exception("Erro actualizar Transaciones " + e.getMessage());
         }
     }
 
@@ -76,7 +73,7 @@ public class TransaccionesDAO {
             System.out.println("Estamos aca");
             return em.find(Transaciones.class, id);
         } catch (Exception e) {
-            throw new Exception("Erro leer Transaciones " +e.getMessage());
+            throw new Exception("Erro leer Transaciones " + e.getMessage());
         }
     }
 
@@ -87,24 +84,24 @@ public class TransaccionesDAO {
             List<Transaciones> lista = q.getResultList();
             return lista;
         } catch (Exception e) {
-            throw new Exception("Erro listar Transaciones " +e.getMessage());
+            throw new Exception("Erro listar Transaciones " + e.getMessage());
         }
 
     }
-    
+
     public List<Transaciones> findAllCodigo(String codigo) throws Exception {
 
         try {
             Query q = em.createNamedQuery("Transaciones.findAllCodigo");
-            q.setParameter("codigo",  "%" + codigo + "%");
+            q.setParameter("codigo", "%" + codigo + "%");
             List<Transaciones> lista = q.getResultList();
             return lista;
         } catch (Exception e) {
-            throw new Exception("Erro listar Transaciones " +e.getMessage());
+            throw new Exception("Erro listar Transaciones " + e.getMessage());
         }
 
     }
-    
+
     public Transaciones findByID(String id) throws Exception {
         try {
             Query q = em.createNamedQuery("Transaciones.findById");
@@ -112,20 +109,6 @@ public class TransaccionesDAO {
             return (Transaciones) q.getSingleResult();
         } catch (Exception e) {
             throw new Exception("Erro buscar por  ID ");
-        }
-
-    }
-
-    public Transaciones findByCedula(String cedula) throws Exception {
-        try {
-            String jpql = "SELECT P FROM Transaciones p "
-                    + "WHERE cedula = :cedula";
-            Query q = em.createQuery(jpql, Transaciones.class);
-            q.setParameter("cedula", cedula);
-
-            return (Transaciones) q.getSingleResult();
-        } catch (Exception e) {
-            throw new Exception("Erro buscar por  cedula");
         }
 
     }
@@ -138,6 +121,17 @@ public class TransaccionesDAO {
             return (int) q.getSingleResult();
         } catch (Exception e) {
             throw new Exception("Error MaxID", e.getCause());
+        }
+    }
+
+    public List<Transaciones> findAllbyCedula(String cedula) throws Exception {
+        try {
+            Query q = em.createNamedQuery("Transaciones.findByCedula");
+            q.setParameter("cedula", cedula);
+            List<Transaciones> lista = q.getResultList();
+            return lista;
+        } catch (Exception e) {
+            throw new Exception("Erro listar Transaciones " + e.getMessage());
         }
     }
 

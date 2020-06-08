@@ -8,6 +8,7 @@ package ec.edu.ups.proyecto.emtitis;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Transaciones.findAll", query = "SELECT t FROM Transaciones t"),
+    @NamedQuery(name = "Transaciones.findByCedula", query = "SELECT t FROM Transaciones t WHERE t.cuentaid.cliente.cedula = :cedula ORDER BY t.id DESC"),
     @NamedQuery(name = "Transaciones.findById", query = "SELECT t FROM Transaciones t WHERE t.id = :id"),
     @NamedQuery(name = "Transaciones.findByTipo", query = "SELECT t FROM Transaciones t WHERE t.tipo = :tipo"),
     @NamedQuery(name = "Transaciones.findByCantidad", query = "SELECT t FROM Transaciones t WHERE t.cantidad = :cantidad"),
@@ -52,7 +54,7 @@ public class Transaciones implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @JoinColumn(name = "Cuenta_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cuenta cuentaid;
 
     public Transaciones() {

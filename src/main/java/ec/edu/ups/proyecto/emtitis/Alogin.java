@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Alogin.findAll", query = "SELECT a FROM Alogin a"),
     @NamedQuery(name = "Alogin.findById", query = "SELECT a FROM Alogin a WHERE a.id = :id"),
-    @NamedQuery(name = "Alogin.findByCedula", query = "SELECT a FROM Alogin a, Cliente c WHERE a.cliente = c and c.cedula = :cedula"),
+    @NamedQuery(name = "Alogin.findByCedula", query = "SELECT a FROM Alogin a, Cliente c WHERE a.cliente.cedula = c.cedula and c.cedula = :cedula ORDER BY a.id DESC"),
     @NamedQuery(name = "Alogin.findByFecha", query = "SELECT a FROM Alogin a WHERE a.fecha = :fecha"),
     @NamedQuery(name = "Alogin.findByIp", query = "SELECT a FROM Alogin a WHERE a.ip = :ip"),
     @NamedQuery(name = "Alogin.findByAcceso", query = "SELECT a FROM Alogin a WHERE a.acceso = :acceso")})

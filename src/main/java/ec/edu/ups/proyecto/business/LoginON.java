@@ -117,7 +117,7 @@ public class LoginON {
         InetAddress ip;
         try {
             ip = InetAddress.getLocalHost();
-            return ip.getHostName();
+            return ip.getHostAddress();
         } catch (UnknownHostException e) {
             System.out.println("Error: " + e.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
@@ -127,6 +127,7 @@ public class LoginON {
     
     public List<Alogin> listaLogin(String cedula){
         try {
+            System.out.println("aqui");
             return aloginDAO.findAllbyCedula(cedula);
         } catch (Exception ex) {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
