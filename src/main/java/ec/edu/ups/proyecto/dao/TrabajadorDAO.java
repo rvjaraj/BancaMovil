@@ -22,7 +22,11 @@ public class TrabajadorDAO {
 
     public TrabajadorDAO() {
     }
-    
+     /**
+     * Inserta el login mediante el numero el objeto de Alogin.
+     * @param alogin
+     * @return si inserto o no.
+     */
     
     public boolean insert(Trabajador trabajador) throws Exception {
         boolean bandera = true;
@@ -38,7 +42,11 @@ public class TrabajadorDAO {
         
         return bandera;
     }
-
+      /**
+     * Elimina el metodo mediante el numero el objeto de Alogin.
+     * @param alogin
+     * @remove
+     */
     public void delete(Trabajador trabajador) throws Exception {
         try {
             System.out.println("borrando");
@@ -47,7 +55,11 @@ public class TrabajadorDAO {
             throw new Exception("oErro Eliminar Trabajador " +e.getMessage());
         }
     }
-
+    /**
+     * Elimina el metodo mediante el id.
+     * @param alogin
+     * @remove
+     */
     public void deleteId(int id) throws Exception {
         try {
             System.out.println("borrando");
@@ -56,7 +68,12 @@ public class TrabajadorDAO {
             throw new Exception("oErro Eliminar Trabajador " +e.getMessage());
         }
     }
-    
+          /**
+     * Actualiza  el metodo mediante el objeto de Alogin
+     * @param alogin
+     * @merge
+     */
+
     public void update(Trabajador trabajador) throws Exception {
         try {
             em.merge(trabajador);
@@ -64,6 +81,11 @@ public class TrabajadorDAO {
             throw new Exception("Erro actualizar Trabajador " +e.getMessage());
         }
     }
+      /**
+     * Lee  el metodo mediante el id
+     * @param id
+     * @find
+     */
 
     public Trabajador read(int id) throws Exception {
         try {
@@ -73,7 +95,12 @@ public class TrabajadorDAO {
             throw new Exception("Erro leer Trabajador " +e.getMessage());
         }
     }
-
+    
+       /**
+     * El metodo lista todos los logines realizados
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     public List<Trabajador> findAll() throws Exception {
 
         try {
@@ -85,6 +112,12 @@ public class TrabajadorDAO {
         }
 
     }
+             /**
+     * El metodo lista todos los logines realizados mediante la cedula
+     * @param cedula
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     
     public List<Trabajador> findAllCodigo(String codigo) throws Exception {
 
@@ -98,6 +131,12 @@ public class TrabajadorDAO {
         }
 
     }
+               /**
+     * El metodo lista todos los logines realizados mediante la codigo
+     * @param codigo
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     
     public Trabajador findByID(String id) throws Exception {
         try {
@@ -109,7 +148,12 @@ public class TrabajadorDAO {
         }
 
     }
-
+             /**
+     * El metodo lista todos los logines realizados mediante id
+     * @param codigo
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     public Trabajador findByCedula(String cedula) throws Exception {
         try {
             String jpql = "SELECT P FROM Trabajador p "
@@ -123,7 +167,12 @@ public class TrabajadorDAO {
         }
 
     }
-
+             /**
+     * El metodo selecciona el maximo de un id
+     * @createQuery esta sentencia recibe el querry y la clase
+     * @return
+     */
+    
     public int maxId() throws Exception {
         try {
             String jpql = "SELECT P FROM Trabajador p "

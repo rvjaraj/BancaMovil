@@ -26,7 +26,11 @@ public class TransaccionesDAO {
 
     public TransaccionesDAO() {
     }
-
+ /**
+     * Inserta el login mediante el numero el objeto de Alogin.
+     * @param alogin
+     * @return si inserto o no.
+     */
     public boolean insert(Transaciones transaciones) throws Exception {
         boolean bandera = true;
         try {
@@ -41,7 +45,11 @@ public class TransaccionesDAO {
 
         return bandera;
     }
-
+      /**
+     * Elimina el metodo mediante el numero el objeto de Alogin.
+     * @param alogin
+     * @remove
+     */
     public void delete(Transaciones transaciones) throws Exception {
         try {
             System.out.println("borrando");
@@ -50,7 +58,11 @@ public class TransaccionesDAO {
             throw new Exception("oErro Eliminar Transaciones " + e.getMessage());
         }
     }
-
+    /**
+     * Elimina el metodo mediante el id.
+     * @param alogin
+     * @remove
+     */
     public void deleteId(int id) throws Exception {
         try {
             System.out.println("borrando");
@@ -59,6 +71,11 @@ public class TransaccionesDAO {
             throw new Exception("oErro Eliminar Transaciones " + e.getMessage());
         }
     }
+      /**
+     * Actualiza  el metodo mediante el objeto de Alogin
+     * @param alogin
+     * @merge
+     */
 
     public void update(Transaciones transaciones) throws Exception {
         try {
@@ -67,6 +84,11 @@ public class TransaccionesDAO {
             throw new Exception("Erro actualizar Transaciones " + e.getMessage());
         }
     }
+      /**
+     * Lee  el metodo mediante el id
+     * @param id
+     * @find
+     */
 
     public Transaciones read(int id) throws Exception {
         try {
@@ -76,7 +98,12 @@ public class TransaccionesDAO {
             throw new Exception("Erro leer Transaciones " + e.getMessage());
         }
     }
-
+    
+       /**
+     * El metodo lista todos los logines realizados
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     public List<Transaciones> findAll() throws Exception {
 
         try {
@@ -88,7 +115,13 @@ public class TransaccionesDAO {
         }
 
     }
-
+         /**
+     * El metodo lista todos los logines realizados mediante la cedula
+     * @param cedula
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
+    
     public List<Transaciones> findAllCodigo(String codigo) throws Exception {
 
         try {
@@ -101,7 +134,13 @@ public class TransaccionesDAO {
         }
 
     }
-
+           /**
+     * El metodo lista todos los logines realizados mediante la codigo
+     * @param codigo
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
+    
     public Transaciones findByID(String id) throws Exception {
         try {
             Query q = em.createNamedQuery("Transaciones.findById");
@@ -112,7 +151,12 @@ public class TransaccionesDAO {
         }
 
     }
-
+            /**
+     * El metodo selecciona el maximo de un id
+     * @createQuery esta sentencia recibe el querry y la clase
+     * @return
+     */
+    
     public int maxId() throws Exception {
         try {
             String jpql = "SELECT P FROM Transaciones p "
@@ -123,6 +167,12 @@ public class TransaccionesDAO {
             throw new Exception("Error MaxID", e.getCause());
         }
     }
+                /**
+     * El metodo busca mediante la cedula
+     * @param cedula
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
 
     public List<Transaciones> findAllbyCedula(String cedula) throws Exception {
         try {
