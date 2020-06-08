@@ -29,6 +29,11 @@ public class ClienteON {
     ClienteDAO clienteDAO;
     
 
+
+    @Inject
+    TransaccionesON transaccionesON;
+
+
     @Inject
     TransaccionesON transaccionesON;
 
