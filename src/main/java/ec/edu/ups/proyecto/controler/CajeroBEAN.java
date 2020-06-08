@@ -72,6 +72,7 @@ public class CajeroBEAN {
     }
 
     public String actualizarCliente() {
+        System.out.println("Deposito");
         BigDecimal bd = new BigDecimal(auxCliente.getCuentaList().get(0).getSaldo() + saldo);
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         auxCliente.getCuentaList().get(0).setSaldo(bd.doubleValue());
@@ -81,7 +82,7 @@ public class CajeroBEAN {
     }
 
     public String actualizarClienteR() {
-        System.out.println("acaca");
+        System.out.println("Retiro");
         BigDecimal bd = new BigDecimal(auxCliente.getCuentaList().get(0).getSaldo() - saldo);
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         auxCliente.getCuentaList().get(0).setSaldo(bd.doubleValue());

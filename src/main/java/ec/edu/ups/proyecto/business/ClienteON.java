@@ -57,14 +57,15 @@ public class ClienteON {
     public void actualizarClienteTrasaccion(Cliente cliente, String tipo, double cantidad){
         try {
             clienteDAO.update(cliente);
+            System.out.println("Cliente acutalizado "+cliente.getCuentaList().get(0).getSaldo());
             Transaciones transacion  = new Transaciones();
             
             transacion.setCantidad(String.valueOf(cantidad));
             transacion.setCuentaid(cliente.getCuentaList().get(0));
             transacion.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay()));
             transacion.setTipo(tipo);
-            
             transaccionesON.guardarTransaciones(transacion);
+            
         } catch (Exception ex) {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
         }

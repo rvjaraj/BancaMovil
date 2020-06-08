@@ -54,7 +54,7 @@ public class Transaciones implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @JoinColumn(name = "Cuenta_id", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne( fetch = FetchType.EAGER)
     private Cuenta cuentaid;
 
     public Transaciones() {
