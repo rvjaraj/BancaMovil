@@ -12,10 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Ricardo
- */
 
 @Stateless
 public class ClienteDAO {
@@ -25,7 +21,11 @@ public class ClienteDAO {
 
     public ClienteDAO() {
     }
-    
+     /**
+     * Inserta el login mediante el numero el objeto de cliente.
+     * @param cliente
+     * @return si inserto o no.
+     */
     
     public boolean insert(Cliente cliente) throws Exception {
         boolean bandera = true;
@@ -41,7 +41,11 @@ public class ClienteDAO {
         
         return bandera;
     }
-
+      /**
+     * Elimina el metodo mediante el numero el objeto de cliente.
+     * @param cliente
+     * @remove
+     */
     public void delete(Cliente cliente) throws Exception {
         try {
             System.out.println("borrando");
@@ -50,6 +54,11 @@ public class ClienteDAO {
             throw new Exception("oErro Eliminar Cliente " +e.getMessage());
         }
     }
+        /**
+     * Elimina el metodo mediante el id.
+     * @param id
+     * @remove
+     */
 
     public void deleteId(int id) throws Exception {
         try {
@@ -59,7 +68,12 @@ public class ClienteDAO {
             throw new Exception("oErro Eliminar Cliente " +e.getMessage());
         }
     }
-    
+          /**
+     * Actualiza  el metodo mediante el objeto de Alogin
+     * @param alogin
+     * @merge
+     */
+
     public void update(Cliente cliente) throws Exception {
         try {
             em.merge(cliente);
@@ -67,6 +81,11 @@ public class ClienteDAO {
             throw new Exception("Erro actualizar Cliente " +e.getMessage());
         }
     }
+      /**
+     * Lee  el metodo mediante el id
+     * @param id
+     * @find
+     */
 
     public Cliente read(int id) throws Exception {
         try {
@@ -76,7 +95,12 @@ public class ClienteDAO {
             throw new Exception("Erro leer Cliente " +e.getMessage());
         }
     }
-
+    
+       /**
+     * El metodo lista todos los cliente existentes
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     public List<Cliente> findAll() throws Exception {
 
         try {
@@ -88,6 +112,12 @@ public class ClienteDAO {
         }
 
     }
+             /**
+     * El metodo lista todos los clientes por su codigo
+     * @param codigo
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     
     public List<Cliente> findAllCodigo(String codigo) throws Exception {
 
@@ -101,6 +131,12 @@ public class ClienteDAO {
         }
 
     }
+               /**
+     * El metodo busca todos los clientes mediante sus id
+     * @param id
+     * @createNamedQuery crea un querry para poder encontrar 
+     * @return
+     */
     
     public Cliente findByID(String id) throws Exception {
         try {
@@ -112,7 +148,12 @@ public class ClienteDAO {
         }
 
     }
-
+             /**
+     * El metodo busca todos los clientes mediante sus cedula
+     * @param cedula
+     * @createNamedQuery crea un querry para poder listar
+     * @return
+     */
     public Cliente findByCedula(String cedula) throws Exception {
         try {
             Query q = em.createNamedQuery("Cliente.findByCedula");
@@ -123,7 +164,12 @@ public class ClienteDAO {
         }
 
     }
-
+            /**
+     * El metodo selecciona el maximo de un id
+     * @createQuery esta sentencia recibe el querry y la clase
+     * @return
+     */
+    
     public int maxId() throws Exception {
         try {
             Query q = em.createNamedQuery("Cliente.maxId");
