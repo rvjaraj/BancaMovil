@@ -29,7 +29,11 @@ public class TransaccionesON {
 
     public TransaccionesON() {
     }
-
+    
+    /**
+     * Este metodo permite guardar transacciones 
+     * @param transaciones
+     */
     public void guardarTransaciones(Transaciones transaciones) {
         try {
             trasacionesDAO.insert(transaciones);
@@ -38,7 +42,11 @@ public class TransaccionesON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+    
+    /**
+     * Este metodo permite actualizar las transaciones  
+     * @param transaciones
+     */
     public void actualizarTransaciones(Transaciones transaciones) {
         try {
             trasacionesDAO.update(transaciones);
@@ -46,7 +54,12 @@ public class TransaccionesON {
             Logger.getLogger(TransaccionesON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Este metodo permite buscar las transacciones mediante el id,
+     * 
+     * @param id
+     * @return
+     */
     public Transaciones buscarTransaciones(String id) {
         try {
             return trasacionesDAO.findByID(id);
@@ -55,7 +68,11 @@ public class TransaccionesON {
         }
         return null;
     }
-
+    /**
+     * Esta metodo buscar las tranasciones y lso guarda en una lista
+     * para poder ser consumido en la interfaz
+     * @return
+     */
     public List<Transaciones> listaTransacioneses() {
         try {
             return trasacionesDAO.findAll();
@@ -64,7 +81,12 @@ public class TransaccionesON {
         }
         return null;
     }
-    
+    /**
+     * Lista las transacciones, pero este metodo busca mediante 
+     * el parametro cedula
+     * @param cedula
+     * @return
+     */
      public List<Transaciones> listaTransacionesCedula(String cedula){
         try {
             return trasacionesDAO.findAllbyCedula(cedula);
@@ -73,7 +95,12 @@ public class TransaccionesON {
         }
         return null;
     }
-
+    /**
+     * Lista las transacciones, pero este metodo busca mediante 
+     * el parametro codigo
+     * @param codigo
+     * @return
+     */
     public List<Transaciones> listaTransacionesesCodigo(String codigo) {
         try {
             return trasacionesDAO.findAllCodigo(codigo);
@@ -82,7 +109,13 @@ public class TransaccionesON {
         }
         return null;
     }
-
+    /**
+     * Este metodo nos permite validar la cedula
+     * en caso de ser valida devuelve un true en caso de ser valida
+     * recibe como parametro la cedula
+     * @param ced
+     * @return
+     */
     public boolean validarCedula(String ced) {
         boolean verdadera = false;
         int num = 0;
