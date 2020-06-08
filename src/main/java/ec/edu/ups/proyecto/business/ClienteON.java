@@ -34,10 +34,6 @@ public class ClienteON {
     TransaccionesON transaccionesON;
 
 
-    @Inject
-    TransaccionesON transaccionesON;
-
-
     public ClienteON() {
     }
     
