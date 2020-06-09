@@ -71,7 +71,7 @@ public class UsuarioBEAN {
             listaTransacioneses = transaccionesON.listaTransacionesCedula(cedula);
         }
 
-
+    }
     public String cambiarContrasenia(){
     	System.out.println("Llega hasta cambiar contra");
     	try {

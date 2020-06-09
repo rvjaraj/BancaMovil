@@ -165,7 +165,13 @@ public class ClienteON {
         }
         return null;
     }
-
+    
+    /**
+     * Metodo que permite actualizar la contrasena, cuando se esta ya en la cuenta
+     * permite cambiar cuando se esta en la interfaz del usuario
+     * @param cliente
+     * @throws Exception
+     */
     
     public void  actualizarContrasenaCliente(Cliente cliente) throws Exception {
     	cliente.setContracenia(correoON.contrasenaAleatoria());
@@ -204,6 +210,7 @@ public class ClienteON {
             // enviar correo 
             String correo = cliente.getCorreo();
             String nuevacontr = cliente.getContracenia();
+            correoON.sendAsHtml(correo, "Actualizacion Contrasena", "<h1> Su contrasena es: </h1>" + nuevacontr);
         } catch (Exception e) {
             throw new Exception("No se puede actualizar");
         }
@@ -215,9 +222,6 @@ public class ClienteON {
             try {
 
             	String contrasena=correoON.contrasenaAleatoria();
-
-                CorreoON c = new CorreoON();
-                String contrasena = c.contrasenaAleatoria();
 
                 cliente.setContracenia(contrasena);
                 cliente.setActivo(true);
@@ -233,26 +237,14 @@ public class ClienteON {
                 listaCu.add(cu);
                 cliente.setCuentaList(listaCu);
 
-                boolean respuesta=clienteDAO.insert(cliente);
-                
-                String correo=cliente.getCorreo();
-                if (respuesta==true) {
-                	
-                	correoON.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Sus Datos son : </p>Su usuario es: "+cliente.getCedula()+" Su Contrasena: "+cliente.getContracenia()+""
-							+ " <h4> RECUERDE ESTIMADO CLIENTE, CAMBIAR LA CONTRASENA POR SU SEGURIDAD.</h4><br> <h4>Cuenca-Ecuador</h4>");
-				}else {
-					correoON.sendAsHtml(correo, "No se registro", "Datos incompletos");
-				}
-                
-
                 boolean respuesta = clienteDAO.insert(cliente);
 
                 String correo = cliente.getCorreo();
                 if (respuesta == true) {
-                    c.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Sus Datos son : </p>Su usuario es: " + cliente.getCedula() + " Su Contrasena: " + cliente.getContracenia() + ""
+                	correoON.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Sus Datos son : </p>Su usuario es: " + cliente.getCedula() + " Su Contrasena: " + cliente.getContracenia() + ""
                             + " <h4> RECUERDE ESTIMADO CLIENTE, CAMBIAR LA CONTRASENA POR SU SEGURIDAD.</h4><br> <h4>Cuenca-Ecuador</h4>");
                 } else {
-                    c.sendAsHtml(correo, "No se registro", "Datos incompletos");
+                	correoON.sendAsHtml(correo, "No se registro", "Datos incompletos");
                 }
 
 
