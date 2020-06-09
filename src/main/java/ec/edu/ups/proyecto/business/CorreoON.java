@@ -2,6 +2,7 @@ package ec.edu.ups.proyecto.business;
 
 import java.util.Properties;
 import java.util.Random;
+import javax.ejb.Stateless;
 
 import javax.ejb.Stateless;
 import javax.mail.Message;

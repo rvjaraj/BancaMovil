@@ -12,7 +12,10 @@ import ec.edu.ups.proyecto.emtitis.Alogin;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Trabajador;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -30,15 +33,17 @@ public class UsuarioBEAN {
 
     private String cedula = "";
     private Cliente cliente;
-    private List<Alogin>  historial;
+    private List<Alogin> historial;
     private List<Transaciones> listaTransacioneses;
+    private String iniio;
+    private String fin;
 
     @Inject
     private ClienteON clienteON;
-    
+
     @Inject
     private LoginON loginON;
-    
+
     @Inject
     private TransaccionesON transaccionesON;
 
@@ -50,33 +55,45 @@ public class UsuarioBEAN {
         cedula = "";
         action();
     }
+
     /**
-     * Captura el parametro enviado desde la vista y 
-     * mediante ese parametro se puede llamar 
-     * a las distintas interfaces 
+     * Captura el parametro enviado desde la vista y mediante ese parametro se
+     * puede llamar a las distintas interfaces
      */
     public void action() {
         HttpServletRequest request = (HttpServletRequest) FacesContext
                 .getCurrentInstance().getExternalContext().getRequest();
         cedula= request.getParameter("cedula");
-        if(cedula != null){
+                
+        if (cedula != null) {
             cliente = clienteON.buscarClienteCedula(cedula);
             historial = loginON.listaLogin(cedula);
             listaTransacioneses = transaccionesON.listaTransacionesCedula(cedula);
         }
-        
-    }
 
-    public String cambiarContrasena(){
+
+    public String cambiarContrasenia(){
     	System.out.println("Llega hasta cambiar contra");
     	try {
-			clienteON.actualizarContrasenaCliente(cliente);
+			clienteON.actContraCliente(cliente);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
     	return "loginc?faces-redirect=true&tipo=cliente&msj=contrasena actualizada revise su correo";
-    }
 
+    }
+    
+    public String verTodo(){
+        listaTransacioneses = transaccionesON.listaTransacionesCedula(cedula);
+        return null;
+    }
+    
+    public String listFechas() {
+        System.out.println(iniio + ">><<<" + fin);
+        listaTransacioneses =transaccionesON.listaTransacionesesFecha(iniio, fin, cedula);
+        return null;
+    }
+    
     public String getCedula() {
         return cedula;
     }
@@ -108,9 +125,21 @@ public class UsuarioBEAN {
     public void setListaTransacioneses(List<Transaciones> listaTransacioneses) {
         this.listaTransacioneses = listaTransacioneses;
     }
-    
-     
-   
 
+    public String getIniio() {
+        return iniio;
+    }
+
+    public void setIniio(String iniio) {
+        this.iniio = iniio;
+    }
+
+    public String getFin() {
+        return fin;
+    }
+
+    public void setFin(String fin) {
+        this.fin = fin;
+    }
 
 }
