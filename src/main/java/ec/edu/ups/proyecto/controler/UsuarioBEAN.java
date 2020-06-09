@@ -58,8 +58,7 @@ public class UsuarioBEAN {
     public void action() {
         HttpServletRequest request = (HttpServletRequest) FacesContext
                 .getCurrentInstance().getExternalContext().getRequest();
-        String param = request.getParameter("cedula");
-        cedula = param;
+        cedula= request.getParameter("cedula");
         if(cedula != null){
             cliente = clienteON.buscarClienteCedula(cedula);
             historial = loginON.listaLogin(cedula);
@@ -68,7 +67,15 @@ public class UsuarioBEAN {
         
     }
 
-    
+    public String cambiarContrasena(){
+    	System.out.println("Llega hasta cambiar contra");
+    	try {
+			clienteON.actualizarContrasenaCliente(cliente);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+    	return "loginc?faces-redirect=true&tipo=cliente&msj=contrasena actualizada revise su correo";
+    }
 
     public String getCedula() {
         return cedula;

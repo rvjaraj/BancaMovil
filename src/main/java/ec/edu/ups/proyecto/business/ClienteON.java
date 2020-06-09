@@ -34,7 +34,9 @@ public class ClienteON {
 	 * Permite consumir la logica de transaccionesON
 	 */
 
-
+    @Inject
+    CorreoON correoON;
+    
     @Inject
     TransaccionesON transaccionesON;
 
@@ -153,6 +155,22 @@ public class ClienteON {
         return null;
     }
     
+    public void  actualizarContrasenaCliente(Cliente cliente) throws Exception {
+    	cliente.setContracenia(correoON.contrasenaAleatoria());
+    	try {
+    		cliente.setContracenia(correoON.contrasenaAleatoria());
+    		cliente.setActivo(true);
+			clienteDAO.update(cliente);
+			
+			String correo = cliente.getCorreo();
+			String nuevapsw = cliente.getContracenia();
+			
+			correoON.sendAsHtml(correo, "Actualizacion de contrasena", "<h1>Su contrasena han sido actualizados: </h1>" + nuevapsw);
+		} catch (Exception e) {
+			throw new Exception("No se puede actualizar");
+		}
+    }
+    
     /**
      * Este metodo nos permite guardar el cliente y tambien una cuenta asociada al cliente
      * Se realiza la validadcion de la cedula en el caso de ser validas nos permite guardar
@@ -165,8 +183,7 @@ public class ClienteON {
     public boolean guardarCliente(Cliente cliente, String cuenta) throws Exception {
         if (validarCedula(cliente.getCedula())) {
             try {
-            	CorreoON c = new CorreoON();
-            	String contrasena=c.contrasenaAleatoria();
+            	String contrasena=correoON.contrasenaAleatoria();
                 cliente.setContracenia(contrasena);
                 cliente.setActivo(true);
                 cliente.setEliminado(false);
@@ -184,10 +201,11 @@ public class ClienteON {
                 
                 String correo=cliente.getCorreo();
                 if (respuesta==true) {
-					c.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Sus Datos son : </p>Su usuario es: "+cliente.getCedula()+" Su Contrasena: "+cliente.getContracenia()+""
+                	
+                	correoON.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Sus Datos son : </p>Su usuario es: "+cliente.getCedula()+" Su Contrasena: "+cliente.getContracenia()+""
 							+ " <h4> RECUERDE ESTIMADO CLIENTE, CAMBIAR LA CONTRASENA POR SU SEGURIDAD.</h4><br> <h4>Cuenca-Ecuador</h4>");
 				}else {
-					c.sendAsHtml(correo, "No se registro", "Datos incompletos");
+					correoON.sendAsHtml(correo, "No se registro", "Datos incompletos");
 				}
                 
             } catch (Exception e) {

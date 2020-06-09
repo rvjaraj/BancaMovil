@@ -3,6 +3,7 @@ package ec.edu.ups.proyecto.business;
 import java.util.Properties;
 import java.util.Random;
 
+import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -14,6 +15,7 @@ import javax.mail.internet.MimeMessage;
  *
  * @author Juan
  */
+@Stateless
 public class CorreoON {
 	private static final String senderEmail = "appdisup@gmail.com";//change with your sender email
 	  private static final String senderPassword = "12345UPS";//change with your sender password

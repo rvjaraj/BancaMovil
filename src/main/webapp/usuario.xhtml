@@ -43,6 +43,15 @@
                                         <h:inputText a:type="text" value="#{usuarioBEAN.cliente.correo}" class="form-control" readonly="true"/>
                                     </div>
                                 </div>
+                                <div class="card-footer text-muted bg-info">
+                                	<div class="input-group form-group col-md-4 mx-auto">
+                                	<h:form>
+	                                	<h:commandButton class="btn btn-outline-dark " action="#{usuarioBEAN.cambiarContrasena()}" value="Cambiar Contrasena">
+	                                		<f:ajax render="@all"></f:ajax>
+	                                	</h:commandButton>
+	                                </h:form>
+                                	</div>
+                                </div>
                             </div><br></br>
                             <div class="card border-success mb-3" >
                                 <div class="card-header">Cuenta</div>
@@ -125,13 +134,13 @@
             <div class="col-sm-9 col-md-7 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
-                        <h:panelGroup id="tabalHitorial"  style="max-width: 100%">
+                        <h:panelGroup id="tablalHitorial"  style="max-width: 100%">
                             <h5 class="card-title text-center">Historial de Login</h5>
                             <div class="form-group mx-auto" >
                                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
                                     <div class="span3" style="height: 600px !important;
                                          overflow: scroll;">
-                                        <h:dataTable class="table table-striped table-dark table-sm" id="detalleT" value="#{usuarioBEAN.historial}"  var="hisotial">
+                                        <h:dataTable class="table table-striped table-dark table-sm" id="detalleH" value="#{usuarioBEAN.historial}"  var="hisotial">
                                             <h:column> 
                                                 <f:facet name="header">ID</f:facet>
                                                 <label class="col-md-12">#{hisotial.id}</label>
