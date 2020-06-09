@@ -30,7 +30,7 @@ public class LoginBEAN {
     private Cliente cliente;
     private String contra1 = "";
     private String contra2 = "";
-    private String mesaje;
+    private String mesaje ;
     private String tipe = "";
 
     @Inject

@@ -81,6 +81,16 @@ public class TransaccionesON {
         }
         return null;
     }
+    
+    public List<Transaciones> listaTransacionesesFecha(String inico, String fin, String cedula) {
+        try {
+            return trasacionesDAO.findAllFecha(inico, fin, cedula);
+        } catch (Exception ex) {
+            Logger.getLogger(TransaccionesON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     /**
      * Lista las transacciones, pero este metodo busca mediante 
      * el parametro cedula
