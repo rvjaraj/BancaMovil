@@ -97,14 +97,6 @@ public class ClienteON {
             transacion.setCantidad(String.valueOf(cantidad));
             
             transacion.setCuentaid(cliente.getCuentaList().get(0));
-            //dat
-            //Calendar c = new GregorianCalendar();
-            //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            
-            //String a = "" + c.get(Calendar.YEAR)+"-"+ c.get(Calendar.MONTH )+"-"+ c.get(Calendar.DAY_OF_MONTH);
-            //Date ini = format.parse(a);
-            
-            //transacion.setFecha(ini);
             transacion.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDate()));
             transacion.setTipo(tipo);
             System.out.println("Cliente acutalizado " + cliente.getCuentaList().get(0).getSaldo());
