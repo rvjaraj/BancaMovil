@@ -37,6 +37,8 @@ public class LoginON {
     @Inject
     ClienteDAO clienteDAO;
     
+    @Inject
+    CorreoON correoON;
     /**
      * Se realiza las validaciones como trabajador, mediante la cedula y la contrasena
      * 
@@ -182,12 +184,12 @@ public class LoginON {
      */
     public void enviarCorreoIngreso( String correo, boolean acceso, String ip) {
            	try {
-           		CorreoON c = new CorreoON();
+           		
            		if (acceso==true) {
            			
-    				c.sendAsHtml(correo, "Inicio Sesion en SimonBank®", "Usted ha ingresado a su cuenta desde La direccion ip : <p>IP : </p>"+ip);
+           			correoON.sendAsHtml(correo, "Inicio Sesion en SimonBank®", "Usted ha ingresado a su cuenta desde La direccion ip : <p>IP : </p>"+ip);
 				} else {
-					c.sendAsHtml(correo, "Registro Sesion Fallido en SimonBank®", "Desde La direccion ip : <p>IP : </p>"+ip);
+					correoON.sendAsHtml(correo, "Registro Sesion Fallido en SimonBank®", "Desde La direccion ip : <p>IP : </p>"+ip);
 
 				}
            		
@@ -208,9 +210,9 @@ public class LoginON {
      * @param correo
      */
     public void enviarCorreoUpdate(String correo){
-    			CorreoON c = new CorreoON();
+    			
     			try {
-					c.sendAsHtml(correo, "Constrasena Actualizada", "<p>Se actualizo su contrasena </p>");
+    				correoON.sendAsHtml(correo, "Constrasena Actualizada", "<p>Se actualizo su contrasena </p>");
 				} catch (MessagingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

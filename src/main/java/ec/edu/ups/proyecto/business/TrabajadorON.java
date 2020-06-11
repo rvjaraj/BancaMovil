@@ -99,7 +99,7 @@ public class TrabajadorON {
                 String correo=trabajador.getCorreo();
                 if (respuesta==true) {
 					c.sendAsHtml(correo, "Bienvenido a SimonBank®", "<h2>Estimado cliente usted puede ingresar con: </h2><p>Sus Datos son : </p>Su usuario es: "+trabajador.getCedula()+" Su Contrasena: "+trabajador.getContracenia()+""
-							+ " <h4> RECUERDE ESTIMADO CLIENTE, CAMBIAR LA CONTRASENA POR SU SEGURIDAD.</h4><br> <h4>Cuenca-Ecuador</h4>");
+							+ " <h4> RECUERDE ESTIMADO CLIENTE, CAMBIAR LA CONTRASENA POR SEGURIDAD.</h4><br> <h4>Cuenca-Ecuador</h4>");
 				}else {
 					c.sendAsHtml(correo, "No se registro", "Datos incompletos");
 				}
