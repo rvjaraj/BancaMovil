@@ -34,3 +34,7 @@ function comprueba(valor) {
         }
     }
 }
+
+$("#btnLogin").click(function(){
+			$('#desaparece').hide(5000);
+		 });

@@ -10,8 +10,11 @@ import ec.edu.ups.proyecto.dao.ResumenCuentaDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Cuenta;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +41,7 @@ public class ClienteON {
     /**
      * Permite consumir la logica de transaccionesON
      */
-
+    @Inject
     TransaccionesON transaccionesON;
 
     public ClienteON() {
@@ -92,13 +95,21 @@ public class ClienteON {
             Transaciones transacion = new Transaciones();
 
             transacion.setCantidad(String.valueOf(cantidad));
+            
             transacion.setCuentaid(cliente.getCuentaList().get(0));
             //dat
-            transacion.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay()));
+            Calendar c = new GregorianCalendar();
+            String a = "" + c.get(Calendar.YEAR)+"-"+ c.get(Calendar.MONTH)+"-"+ c.get(Calendar.DATE);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            Date ini = format.parse(a);
+            transacion.setFecha(ini);
+            //transacion.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDay()));
             transacion.setTipo(tipo);
+            System.out.println("Cliente acutalizado " + cliente.getCuentaList().get(0).getSaldo());
             transaccionesON.guardarTransaciones(transacion);
 
         } catch (Exception ex) {
+            System.out.println("Error: ex " + ex.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

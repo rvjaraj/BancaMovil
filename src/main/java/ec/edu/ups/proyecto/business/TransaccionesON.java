@@ -36,6 +36,7 @@ public class TransaccionesON {
      */
     public void guardarTransaciones(Transaciones transaciones) {
         try {
+            System.out.println(transaciones.getCantidad() + " catidad aca");
             trasacionesDAO.insert(transaciones);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());

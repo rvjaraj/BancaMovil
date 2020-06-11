@@ -90,7 +90,9 @@ public class CajeroBEAN {
         BigDecimal bd = new BigDecimal(auxCliente.getCuentaList().get(0).getSaldo() + saldo);
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         auxCliente.getCuentaList().get(0).setSaldo(bd.doubleValue());
+        
         clienteON.actualizarClienteTrasaccion(auxCliente, "Deposito", new BigDecimal(saldo).doubleValue());
+        System.out.println(saldo +"esto quye paso");
         init();
         return null;
     }
