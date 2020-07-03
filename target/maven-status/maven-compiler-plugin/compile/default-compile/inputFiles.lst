@@ -12,6 +12,7 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transaciones.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\TrabajadorON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\LoginON.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\servis\Transferencia.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\TrabajadorBEAN.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\ClienteBEAN.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\TransaccionesDAO.java
@@ -26,4 +27,5 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Credito.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\TransaccionesON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\ResumenCuentaDAO.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\servis\ServiceTransaciones.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\ClienteDAO.java
