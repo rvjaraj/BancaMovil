@@ -196,6 +196,114 @@
             </div>
 
         </ui:define>
+        
+        <ui:define name="solicitud">
+        
+        	<div class="col-sm-9 col-md-7 mx-auto">
+                <div class="card card-signin my-5">
+                
+                    <div class="card-body">
+                    	<h:panelGroup id="tablaSolicitud"  style="max-width: 100%">
+                    	<h:form>
+                    		<h4 class="card-title text-center">Solicitud de Credito</h4>
+
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card">
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" readonly="true" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Proposito</i></span>
+									</div>
+									<h:inputTextarea value="#" class="form-control" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Cantidad</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">SaldoCuenta</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" readonly="true" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Tiempo Empleo</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Tasa de Pagos</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" readonly="true" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Garante</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control"/>
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Avaluo Vivienda</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Trabajador Extrangero</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Tipo vivienda</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" />
+									</div>
+									
+									<div class="input-group form-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user">Empleo</i></span>
+									</div>
+									<h:inputText a:type="text" value="" class="form-control" />
+									</div>
+									
+									<div class="card-footer text-muted bg-info">
+                                    <div class="input-group form-group col-md-4 mx-auto">
+                                        <h:commandButton  class="btn btn-outline-dark " action="#" value="Solicitar Credito">
+                                        </h:commandButton>
+                                    </div>
+                                    
+                                </div>
+								</div>
+							</div>
+						</div>
+					</h:form>
+					</h:panelGroup>
+          			</div>
+                </div>
+            </div>
+            
+        </ui:define>
 
     </ui:composition>
 </html>
