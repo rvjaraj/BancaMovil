@@ -26,15 +26,9 @@ public class ServicesON {
 
     @Inject
     CuentaDAO cuentaDAO;
-    
-    @Inject
-    ClienteON clienteON;
-    
-    @Inject
-    ClienteDAO clienteDAO;
 
     @Inject
-    TransaccionesON transaccionesON;
+    ClienteON clienteON;
 
     public Mensajes DepositoSRV(String numeroCuenta, Double cantidad) {
         try {
@@ -65,7 +59,7 @@ public class ServicesON {
         try {
             Cuenta cuentAux = cuentaDAO.findByNuemor(numeroCuenta);
             if (cuentAux != null) {
-                 Cliente clienteAux = cuentAux.getCliente();
+                Cliente clienteAux = cuentAux.getCliente();
                 BigDecimal bd = new BigDecimal(clienteAux.getCuentaList().get(0).getSaldo() - cantidad);
                 bd = bd.setScale(2, RoundingMode.HALF_UP);
                 clienteAux.getCuentaList().get(0).setSaldo(bd.doubleValue());
@@ -92,27 +86,22 @@ public class ServicesON {
             if (cuentOri != null) {
                 Cuenta cuentDes = cuentaDAO.findByNuemor(numeroCuentaDestino);
                 if (cuentDes != null) {
-                    Cliente clienteAuxDES = cuentOri.getCliente();
-                    BigDecimal bd = new BigDecimal(clienteAuxDES.getCuentaList().get(0).getSaldo() - cantidad);
+                    //Act cliente destinatario suma su dinero
+                    Cliente clienteAuxDes = cuentDes.getCliente();
+                    BigDecimal bd = new BigDecimal(clienteAuxDes.getCuentaList().get(0).getSaldo() + cantidad);
                     bd = bd.setScale(2, RoundingMode.HALF_UP);
-                    clienteAuxDES.getCuentaList().get(0).setSaldo(bd.doubleValue());
-                    System.out.println("Cliente Oringe acutalizado " + clienteAuxDES.getCuentaList().get(0).getSaldo());
-
-                    Cliente clienteAuxDET = cuentDes.getCliente();
-                    bd = new BigDecimal(clienteAuxDET.getCuentaList().get(0).getSaldo() + cantidad);
+                    clienteAuxDes.getCuentaList().get(0).setSaldo(bd.doubleValue());
+                    clienteON.actualizarCliente(clienteAuxDes);
+                    
+                    //Act cliente que envia resta su dinero
+                    Cliente clienteAuxOri = cuentOri.getCliente();
+                    bd = new BigDecimal(clienteAuxOri.getCuentaList().get(0).getSaldo() + cantidad);
                     bd = bd.setScale(2, RoundingMode.HALF_UP);
-                    clienteAuxDET.getCuentaList().get(0).setSaldo(bd.doubleValue());
-                    System.out.println("Cliente Oringe acutalizado " + clienteAuxDES.getCuentaList().get(0).getSaldo());
-
-                    Transaciones transacion = new Transaciones();
-
-                    transacion.setCantidad(String.valueOf(cantidad));
-
-                    transacion.setCuentaid(clienteAuxDES.getCuentaList().get(0));
-                    transacion.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDate()));
-                    transacion.setTipo("Retiro SRV");
-                    System.out.println("Cliente acutalizado " + clienteAuxDES.getCuentaList().get(0).getSaldo());
-                    transaccionesON.guardarTransaciones(transacion);
+                    clienteAuxOri.getCuentaList().get(0).setSaldo(bd.doubleValue());
+                    clienteON.actualizarCliente(clienteAuxOri);
+                    
+                    //Guardamos la trasacion
+                    
                 } else {
                     //Codigo : 5
                     //Nombre: BM_E005
