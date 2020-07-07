@@ -1,6 +1,6 @@
 package ec.edu.ups.proyecto.emtitis;
 
-public class Errores {
+public class Mensajes {
 
 	private int codigo;
 	private String nombre;
