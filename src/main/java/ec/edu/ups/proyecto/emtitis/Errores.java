@@ -5,6 +5,14 @@ public class Errores {
 	private int codigo;
 	private String nombre;
 	private String descripcion;
+
+    public Errores(int codigo, String nombre, String descripcion) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+        
+        
 	
 	public int getCodigo() {
 		return codigo;
