@@ -9,7 +9,7 @@ import ec.edu.ups.proyecto.dao.ClienteDAO;
 import ec.edu.ups.proyecto.dao.CuentaDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Cuenta;
-import ec.edu.ups.proyecto.emtitis.Errores;
+import ec.edu.ups.proyecto.emtitis.Mensajes;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -36,7 +36,7 @@ public class ServicesON {
     @Inject
     TransaccionesON transaccionesON;
 
-    public Errores DepositoSRV(String numeroCuenta, Double cantidad) {
+    public Mensajes DepositoSRV(String numeroCuenta, Double cantidad) {
         try {
             Cuenta cuentAux = cuentaDAO.findByNuemor(numeroCuenta);
             if (cuentAux != null) {
@@ -48,20 +48,20 @@ public class ServicesON {
                 //Codigo : 2
                 //Nombre: BM_E002
                 //Descripcion: Deposito satisfactoria
-                return new Errores(2, "BM_E002", "Deposito satisfactoria");
+                return new Mensajes(2, "BM_E002", "Deposito satisfactoria");
             } else {
                 //Codigo : 1
                 //Nombre: BM_E001
                 //Descripcion: No se encuentra registrado el numero de cuenta ingresado
-                return new Errores(1, "BM_E001", "No se encuentra registrado el numero de cuenta ingresado");
+                return new Mensajes(1, "BM_E001", "No se encuentra registrado el numero de cuenta ingresado");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage() + " >>>>");
-            return new Errores(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
+            return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
     }
 
-    public Errores RetiroSRV(String numeroCuenta, Double cantidad) {
+    public Mensajes RetiroSRV(String numeroCuenta, Double cantidad) {
         try {
             Cuenta cuentAux = cuentaDAO.findByNuemor(numeroCuenta);
             if (cuentAux != null) {
@@ -73,20 +73,20 @@ public class ServicesON {
                 //Codigo : 3
                 //Nombre: BM_E002
                 //Descripcion: Transferencias satisfactoria
-                return new Errores(3, "BM_E003", "Retiro satisfactoria");
+                return new Mensajes(3, "BM_E003", "Retiro satisfactoria");
             } else {
                 //Codigo : 1
                 //Nombre: BM_E001
                 //Descripcion: No se encuentra registrado el numero de cuenta ingresado
-                return new Errores(1, "BM_E001", "No se encuentra registrado el numero de cuenta ingresado");
+                return new Mensajes(1, "BM_E001", "No se encuentra registrado el numero de cuenta ingresado");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage() + " >>>>");
-            return new Errores(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
+            return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
     }
 
-    public Errores TransaccionInternaSRV(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto) {
+    public Mensajes TransaccionInternaSRV(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto) {
         try {
             Cuenta cuentOri = cuentaDAO.findByNuemor(numeroCuentaOrigen);
             if (cuentOri != null) {
@@ -117,21 +117,21 @@ public class ServicesON {
                     //Codigo : 5
                     //Nombre: BM_E005
                     //Descripcion: No se encuentra registrado el numero de cuenta ingresado
-                    return new Errores(4, "BM_E005", "No se encuentra registrado el numero de cuenta destino");
+                    return new Mensajes(4, "BM_E005", "No se encuentra registrado el numero de cuenta destino");
                 }
                 //Codigo : 3
                 //Nombre: BM_E002
                 //Descripcion: Transferencias satisfactoria
-                return new Errores(3, "BM_E003", "Retiro satisfactoria");
+                return new Mensajes(3, "BM_E003", "Retiro satisfactoria");
             } else {
                 //Codigo : 4
                 //Nombre: BM_E004
                 //Descripcion: No se encuentra registrado el numero de cuenta ingresado
-                return new Errores(4, "BM_E004", "No se encuentra registrado el numero de cuenta origen");
+                return new Mensajes(4, "BM_E004", "No se encuentra registrado el numero de cuenta origen");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage() + " >>>>");
-            return new Errores(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
+            return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
     }
 }

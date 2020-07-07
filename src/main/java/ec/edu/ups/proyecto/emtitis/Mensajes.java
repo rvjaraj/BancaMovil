@@ -6,7 +6,7 @@ public class Mensajes {
 	private String nombre;
 	private String descripcion;
 
-    public Errores(int codigo, String nombre, String descripcion) {
+    public Mensajes(int codigo, String nombre, String descripcion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.descripcion = descripcion;
