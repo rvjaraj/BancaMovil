@@ -7,10 +7,12 @@ package ec.edu.ups.proyecto.business;
 
 import ec.edu.ups.proyecto.dao.ClienteDAO;
 import ec.edu.ups.proyecto.dao.CuentaDAO;
+import ec.edu.ups.proyecto.dao.TransferenciasDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Cuenta;
 import ec.edu.ups.proyecto.emtitis.Mensajes;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
+import ec.edu.ups.proyecto.emtitis.Transferencias;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
@@ -29,6 +31,11 @@ public class ServicesON {
 
     @Inject
     ClienteON clienteON;
+    
+    @Inject 
+    TransferenciasDAO transferenciasDAO;
+    
+    
 
     public Mensajes DepositoSRV(String numeroCuenta, Double cantidad) {
         try {
@@ -80,7 +87,7 @@ public class ServicesON {
         }
     }
 
-    public Mensajes TransaccionInternaSRV(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto) {
+    public Mensajes TransferenciasInternaSRV(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto) {
         try {
             Cuenta cuentOri = cuentaDAO.findByNuemor(numeroCuentaOrigen);
             if (cuentOri != null) {
@@ -95,23 +102,30 @@ public class ServicesON {
                     
                     //Act cliente que envia resta su dinero
                     Cliente clienteAuxOri = cuentOri.getCliente();
-                    bd = new BigDecimal(clienteAuxOri.getCuentaList().get(0).getSaldo() + cantidad);
+                    bd = new BigDecimal(clienteAuxOri.getCuentaList().get(0).getSaldo() - cantidad);
                     bd = bd.setScale(2, RoundingMode.HALF_UP);
                     clienteAuxOri.getCuentaList().get(0).setSaldo(bd.doubleValue());
                     clienteON.actualizarCliente(clienteAuxOri);
                     
-                    //Guardamos la trasacion
+                    //Guardamos la transferencia
+                    Transferencias transferencia = new Transferencias();
+                    transferencia.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDate()));
+                    transferencia.setCantidad(cantidad);
+                    transferencia.setConcepto(concepto);
+                    transferencia.setOrdenante(cuentOri);
+                    transferencia.setBeneficiario(cuentDes);
                     
+                    transferenciasDAO.insert(transferencia);
+                    //Codigo : 6
+                    //Nombre: BM_E006
+                    //Descripcion: Transferencia exitosa
+                    return new Mensajes(6, "BM_E006", "Transferencia exitosa");
                 } else {
                     //Codigo : 5
                     //Nombre: BM_E005
                     //Descripcion: No se encuentra registrado el numero de cuenta ingresado
                     return new Mensajes(4, "BM_E005", "No se encuentra registrado el numero de cuenta destino");
                 }
-                //Codigo : 3
-                //Nombre: BM_E002
-                //Descripcion: Transferencias satisfactoria
-                return new Mensajes(3, "BM_E003", "Retiro satisfactoria");
             } else {
                 //Codigo : 4
                 //Nombre: BM_E004

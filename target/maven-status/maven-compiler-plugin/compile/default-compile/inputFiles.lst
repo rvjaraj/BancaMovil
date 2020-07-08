@@ -1,6 +1,7 @@
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\AloginON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Alogin.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Trabajador.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\TransferenciasDAO.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\services\BancaWebServicesSOAP.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\AloginDAO.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\UsuarioBEAN.java
@@ -11,12 +12,10 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transferencias.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\ServicesON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\view\Vista.java
-C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Errores.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transaciones.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\TrabajadorON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\LoginON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\services\RestApplication.java
-C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\servis\Transferencia.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\TrabajadorBEAN.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\ClienteBEAN.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\TransaccionesDAO.java
@@ -35,3 +34,4 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\servis\ServiceTransaciones.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\ClienteDAO.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\CuentaDAO.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Mensajes.java

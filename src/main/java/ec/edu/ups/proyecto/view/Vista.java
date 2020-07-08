@@ -39,6 +39,9 @@ public class Vista extends HttpServlet {
             Mensajes e = servicesON.DepositoSRV("CUHA06S3", 10.10);
             Mensajes ee = servicesON.RetiroSRV("CUHA06S3", 20.10);
             response.getWriter().println("<h1>Hjuan: " + e.getNombre() + " <> "  + ee.getNombre() +"</h1>");
+            
+            Mensajes eee = servicesON.TransferenciasInternaSRV("CUHA06S3", "CUHA16S10", 100.10, "Transferenacis internas");
+            response.getWriter().println("<h1>Trans: " + eee.getNombre() +"</h1>");
         } catch (Exception e) {
             response.getWriter().println(e.getMessage() +e.getLocalizedMessage());
             System.out.println(e.getMessage());
