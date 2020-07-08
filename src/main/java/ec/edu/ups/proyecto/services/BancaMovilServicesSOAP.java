@@ -23,18 +23,18 @@ public class BancaMovilServicesSOAP {
     
     
     @WebMethod
-    public String Deposito(String numeroCuenta, Double cantidad){
-        return servicesON.DepositoSRV(numeroCuenta, cantidad).getNombre();
+    public Mensajes Deposito(String numeroCuenta, Double cantidad){
+        return servicesON.DepositoSRV(numeroCuenta, cantidad);
     }
     
     
     @WebMethod
-    public String Retiro(String numeroCuenta, Double cantidad){
-        return servicesON.RetiroSRV(numeroCuenta, cantidad).getNombre();
+    public Mensajes Retiro(String numeroCuenta, Double cantidad){
+        return servicesON.RetiroSRV(numeroCuenta, cantidad);
     }
     
     @WebMethod
-    public String Transferencias(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto){
-        return servicesON.TransferenciasInternaSRV(numeroCuentaOrigen, numeroCuentaDestino, cantidad, concepto).getNombre();
+    public Mensajes Transferencias(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto){
+        return servicesON.TransferenciasInternaSRV(numeroCuentaOrigen, numeroCuentaDestino, cantidad, concepto);
     }
 }
