@@ -35,8 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Transferencias.findById", query = "SELECT t FROM Transferencias t WHERE t.id = :id"),
     @NamedQuery(name = "Transferencias.findByFecha", query = "SELECT t FROM Transferencias t WHERE t.fecha = :fecha"),
     @NamedQuery(name = "Transferencias.findByCantidad", query = "SELECT t FROM Transferencias t WHERE t.cantidad = :cantidad"),
-    @NamedQuery(name = "Transferencias.findByConcepto", query = "SELECT t FROM Transferencias t WHERE t.concepto = :concepto"),
-    @NamedQuery(name = "Transferencias.findByTransferenciascol", query = "SELECT t FROM Transferencias t WHERE t.transferenciascol = :transferenciascol")})
+    @NamedQuery(name = "Transferencias.findByConcepto", query = "SELECT t FROM Transferencias t WHERE t.concepto = :concepto")})
 public class Transferencias implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -55,9 +54,6 @@ public class Transferencias implements Serializable {
     @Basic(optional = false)
     @Column(name = "concepto")
     private String concepto;
-    @Basic(optional = false)
-    @Column(name = "transferenciascol")
-    private String transferenciascol;
     @JoinColumn(name = "Ordenante", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Cuenta ordenante;
@@ -72,12 +68,11 @@ public class Transferencias implements Serializable {
         this.id = id;
     }
 
-    public Transferencias(Integer id, Date fecha, double cantidad, String concepto, String transferenciascol) {
+    public Transferencias(Integer id, Date fecha, double cantidad, String concepto) {
         this.id = id;
         this.fecha = fecha;
         this.cantidad = cantidad;
         this.concepto = concepto;
-        this.transferenciascol = transferenciascol;
     }
 
     public Integer getId() {
@@ -110,14 +105,6 @@ public class Transferencias implements Serializable {
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
-    }
-
-    public String getTransferenciascol() {
-        return transferenciascol;
-    }
-
-    public void setTransferenciascol(String transferenciascol) {
-        this.transferenciascol = transferenciascol;
     }
 
     public Cuenta getOrdenante() {

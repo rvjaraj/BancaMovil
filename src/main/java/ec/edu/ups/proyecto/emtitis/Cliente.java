@@ -221,7 +221,7 @@ public class Cliente implements Serializable {
     public void setPregutnasList(List<Preguntas> pregutnasList) {
         this.pregutnasList = pregutnasList;
     }
-    
+
     
 
     @Override
@@ -248,5 +248,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return "ec.edu.ups.proyecto.emtitis.Cliente[ id=" + id + " ]";
     }
-
-    }
+    
+}

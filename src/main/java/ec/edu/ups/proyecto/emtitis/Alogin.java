@@ -142,9 +142,9 @@ public class Alogin implements Serializable {
     public String toString() {
         return "ec.edu.ups.proyecto.emtitis.Alogin[ id=" + id + " ]";
     }
-
+    
     public void setIp(InetAddress IP) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+}
     
 }
