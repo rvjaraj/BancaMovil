@@ -49,6 +49,13 @@ public class TransferenciaSRV {
 	public void setConcepto(String concepto) {
 		this.concepto = concepto;
 	}
+
+    @Override
+    public String toString() {
+        return "TransferenciaSRV{" + "numeroCuentaOrigen=" + numeroCuentaOrigen + ", numeroCuentaDestino=" + numeroCuentaDestino + ", cantidad=" + cantidad + ", concepto=" + concepto + '}';
+    }
+
+   
 	
 	
 	

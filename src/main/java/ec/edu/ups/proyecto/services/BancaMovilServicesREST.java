@@ -6,13 +6,19 @@
 package ec.edu.ups.proyecto.services;
 
 import ec.edu.ups.proyecto.business.ServicesON;
+import ec.edu.ups.proyecto.emtitis.DepositoSRV;
 import ec.edu.ups.proyecto.emtitis.Mensajes;
+import ec.edu.ups.proyecto.emtitis.RetiroSRV;
+import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -24,33 +30,29 @@ public class BancaMovilServicesREST {
     @Inject
     ServicesON servicesON;
 
-    @WebMethod
-    @GET
     @Path("/deposito")
-    @Produces("application/json")
-    public Mensajes Deposito(@QueryParam("numerocuenta") String numeroCuenta,@QueryParam("cantidad")  Double cantidad) {
-        return servicesON.DepositoSRV(numeroCuenta, cantidad);
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Mensajes Deposito(DepositoSRV depositoSRV) {
+        return servicesON.DepositoSRV(depositoSRV);
     }
 
-    @GET
     @Path("/retiro")
-    @Produces("application/json")
-    public Mensajes Retiro(@QueryParam("numerocuenta") String numeroCuenta,@QueryParam("cantidad")  Double cantidad) {
-        return servicesON.RetiroSRV(numeroCuenta, cantidad);
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Mensajes Retiro(RetiroSRV retiroSRV) {
+        return servicesON.RetiroSRV(retiroSRV);
     }
 
-    @GET
-    @Path("/transferenciainterna")
-    @Produces("application/json")
-    public Mensajes Transferencias(@QueryParam("numeroCuentaOrigen") String numeroCuentaOrigen,@QueryParam("numeroCuentaDestino") String numeroCuentaDestino, 
-            @QueryParam("cantidad") Double cantidad, @QueryParam("concepto") String concepto) {
-        return servicesON.TransferenciasInternaSRV(numeroCuentaOrigen, numeroCuentaDestino, cantidad, concepto);
+    @Path("/transferencia")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Mensajes Transferencias(TransferenciaSRV transferenciaSRV) {
+        transferenciaSRV.toString();
+        return servicesON.TransferenciasInternaSRV(transferenciaSRV);
     }
-    
-    
-    @GET
-    @Produces("application/json")
-    public String Hola() { 
-        return "HOLA";
-    }
+
 }
