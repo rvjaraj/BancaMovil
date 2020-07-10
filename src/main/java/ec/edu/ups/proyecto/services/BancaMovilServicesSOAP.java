@@ -6,7 +6,10 @@
 package ec.edu.ups.proyecto.services;
 
 import ec.edu.ups.proyecto.business.ServicesON;
+import ec.edu.ups.proyecto.emtitis.DepositoSRV;
 import ec.edu.ups.proyecto.emtitis.Mensajes;
+import ec.edu.ups.proyecto.emtitis.RetiroSRV;
+import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
 import javax.inject.Inject;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -23,18 +26,18 @@ public class BancaMovilServicesSOAP {
     
     
     @WebMethod
-    public Mensajes Deposito(String numeroCuenta, Double cantidad){
-        return servicesON.DepositoSRV(numeroCuenta, cantidad);
+    public Mensajes Deposito(DepositoSRV depositoSRV){
+        return servicesON.DepositoSRV(depositoSRV);
     }
     
     
     @WebMethod
-    public Mensajes Retiro(String numeroCuenta, Double cantidad){
-        return servicesON.RetiroSRV(numeroCuenta, cantidad);
+    public Mensajes Retiro(RetiroSRV retiroSRV){
+        return servicesON.RetiroSRV(retiroSRV);
     }
     
     @WebMethod
-    public Mensajes Transferencias(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto){
-        return servicesON.TransferenciasInternaSRV(numeroCuentaOrigen, numeroCuentaDestino, cantidad, concepto);
+    public Mensajes Transferencias(TransferenciaSRV transferenciaSRV){
+        return servicesON.TransferenciasInternaSRV(transferenciaSRV);
     }
 }

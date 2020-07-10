@@ -10,8 +10,11 @@ import ec.edu.ups.proyecto.dao.CuentaDAO;
 import ec.edu.ups.proyecto.dao.TransferenciasDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Cuenta;
+import ec.edu.ups.proyecto.emtitis.DepositoSRV;
 import ec.edu.ups.proyecto.emtitis.Mensajes;
+import ec.edu.ups.proyecto.emtitis.RetiroSRV;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
+import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
 import ec.edu.ups.proyecto.emtitis.Transferencias;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -37,15 +40,15 @@ public class ServicesON {
     
     
 
-    public Mensajes DepositoSRV(String numeroCuenta, Double cantidad) {
+    public Mensajes DepositoSRV(DepositoSRV deposito) {
         try {
-            Cuenta cuentAux = cuentaDAO.findByNuemor(numeroCuenta);
+            Cuenta cuentAux = cuentaDAO.findByNuemor(deposito.getNumeroCuenta());
             if (cuentAux != null) {
                 Cliente clienteAux = cuentAux.getCliente();
-                BigDecimal bd = new BigDecimal(clienteAux.getCuentaList().get(0).getSaldo() + cantidad);
+                BigDecimal bd = new BigDecimal(clienteAux.getCuentaList().get(0).getSaldo() + deposito.getCantidad());
                 bd = bd.setScale(2, RoundingMode.HALF_UP);
                 clienteAux.getCuentaList().get(0).setSaldo(bd.doubleValue());
-                clienteON.actualizarClienteTrasaccion(clienteAux, "Deposito SRV", new BigDecimal(cantidad).doubleValue());
+                clienteON.actualizarClienteTrasaccion(clienteAux, "Deposito SRV", new BigDecimal(deposito.getCantidad()).doubleValue());
                 //Codigo : 2
                 //Nombre: BM_E002
                 //Descripcion: Deposito satisfactoria
@@ -62,15 +65,15 @@ public class ServicesON {
         }
     }
 
-    public Mensajes RetiroSRV(String numeroCuenta, Double cantidad) {
+    public Mensajes RetiroSRV(RetiroSRV retiro) {
         try {
-            Cuenta cuentAux = cuentaDAO.findByNuemor(numeroCuenta);
+            Cuenta cuentAux = cuentaDAO.findByNuemor(retiro.getNumeroCuenta());
             if (cuentAux != null) {
                 Cliente clienteAux = cuentAux.getCliente();
-                BigDecimal bd = new BigDecimal(clienteAux.getCuentaList().get(0).getSaldo() - cantidad);
+                BigDecimal bd = new BigDecimal(clienteAux.getCuentaList().get(0).getSaldo() - retiro.getCantidad());
                 bd = bd.setScale(2, RoundingMode.HALF_UP);
                 clienteAux.getCuentaList().get(0).setSaldo(bd.doubleValue());
-                clienteON.actualizarClienteTrasaccion(clienteAux, "Retiro SRV", new BigDecimal(cantidad).doubleValue());
+                clienteON.actualizarClienteTrasaccion(clienteAux, "Retiro SRV", new BigDecimal(retiro.getCantidad()).doubleValue());
                 //Codigo : 3
                 //Nombre: BM_E002
                 //Descripcion: Transferencias satisfactoria
@@ -87,22 +90,22 @@ public class ServicesON {
         }
     }
 
-    public Mensajes TransferenciasInternaSRV(String numeroCuentaOrigen, String numeroCuentaDestino, Double cantidad, String concepto) {
+    public Mensajes TransferenciasInternaSRV(TransferenciaSRV transferenciaSrv) {
         try {
-            Cuenta cuentOri = cuentaDAO.findByNuemor(numeroCuentaOrigen);
+            Cuenta cuentOri = cuentaDAO.findByNuemor(transferenciaSrv.getNumeroCuentaOrigen());
             if (cuentOri != null) {
-                Cuenta cuentDes = cuentaDAO.findByNuemor(numeroCuentaDestino);
+                Cuenta cuentDes = cuentaDAO.findByNuemor(transferenciaSrv.getNumeroCuentaDestino());
                 if (cuentDes != null) {
                     //Act cliente destinatario suma su dinero
                     Cliente clienteAuxDes = cuentDes.getCliente();
-                    BigDecimal bd = new BigDecimal(clienteAuxDes.getCuentaList().get(0).getSaldo() + cantidad);
+                    BigDecimal bd = new BigDecimal(clienteAuxDes.getCuentaList().get(0).getSaldo() + transferenciaSrv.getCantidad());
                     bd = bd.setScale(2, RoundingMode.HALF_UP);
                     clienteAuxDes.getCuentaList().get(0).setSaldo(bd.doubleValue());
                     clienteON.actualizarCliente(clienteAuxDes);
                     
                     //Act cliente que envia resta su dinero
                     Cliente clienteAuxOri = cuentOri.getCliente();
-                    bd = new BigDecimal(clienteAuxOri.getCuentaList().get(0).getSaldo() - cantidad);
+                    bd = new BigDecimal(clienteAuxOri.getCuentaList().get(0).getSaldo() - transferenciaSrv.getCantidad());
                     bd = bd.setScale(2, RoundingMode.HALF_UP);
                     clienteAuxOri.getCuentaList().get(0).setSaldo(bd.doubleValue());
                     clienteON.actualizarCliente(clienteAuxOri);
@@ -110,8 +113,8 @@ public class ServicesON {
                     //Guardamos la transferencia
                     Transferencias transferencia = new Transferencias();
                     transferencia.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDate()));
-                    transferencia.setCantidad(cantidad);
-                    transferencia.setConcepto(concepto);
+                    transferencia.setCantidad(transferenciaSrv.getCantidad());
+                    transferencia.setConcepto(transferenciaSrv.getConcepto());
                     transferencia.setOrdenante(cuentOri);
                     transferencia.setBeneficiario(cuentDes);
                     

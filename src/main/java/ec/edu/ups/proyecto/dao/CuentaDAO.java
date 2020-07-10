@@ -156,7 +156,7 @@ public class CuentaDAO {
             q.setParameter("numero", numero);
             return (Cuenta) q.getSingleResult();
         } catch (Exception e) {
-            throw new Exception("Erro buscar por  ID " +e.getMessage());
+            throw new Exception("Erro buscar por  numero " + e.getMessage());
         }
 
     }
