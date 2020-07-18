@@ -38,11 +38,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Solicitud.findBySaldocuenta", query = "SELECT s FROM Solicitud s WHERE s.saldocuenta = :saldocuenta"),
     @NamedQuery(name = "Solicitud.findByTiempoempleo", query = "SELECT s FROM Solicitud s WHERE s.tiempoempleo = :tiempoempleo"),
     @NamedQuery(name = "Solicitud.findByTasadepagos", query = "SELECT s FROM Solicitud s WHERE s.tasadepagos = :tasadepagos"),
-    @NamedQuery(name = "Solicitud.findByEstadocivil", query = "SELECT s FROM Solicitud s WHERE s.estadocivil = :estadocivil"),
     @NamedQuery(name = "Solicitud.findByGarante", query = "SELECT s FROM Solicitud s WHERE s.garante = :garante"),
     @NamedQuery(name = "Solicitud.findByAvaluovivienda", query = "SELECT s FROM Solicitud s WHERE s.avaluovivienda = :avaluovivienda"),
     @NamedQuery(name = "Solicitud.findByTrebajadorextrangero", query = "SELECT s FROM Solicitud s WHERE s.trebajadorextrangero = :trebajadorextrangero"),
-    @NamedQuery(name = "Solicitud.findByEdad", query = "SELECT s FROM Solicitud s WHERE s.edad = :edad"),
     @NamedQuery(name = "Solicitud.findByTipovivienda", query = "SELECT s FROM Solicitud s WHERE s.tipovivienda = :tipovivienda"),
     @NamedQuery(name = "Solicitud.findByNumerocreditos", query = "SELECT s FROM Solicitud s WHERE s.numerocreditos = :numerocreditos"),
     @NamedQuery(name = "Solicitud.findByEmpleo", query = "SELECT s FROM Solicitud s WHERE s.empleo = :empleo"),
@@ -75,16 +73,12 @@ public class Solicitud implements Serializable {
     private Double tiempoempleo;
     @Column(name = "tasadepagos")
     private Double tasadepagos;
-    @Column(name = "estadocivil")
-    private String estadocivil;
     @Column(name = "garante")
     private String garante;
     @Column(name = "avaluovivienda")
     private Double avaluovivienda;
     @Column(name = "trebajadorextrangero")
     private Short trebajadorextrangero;
-    @Column(name = "edad")
-    private Integer edad;
     @Column(name = "tipovivienda")
     private String tipovivienda;
     @Column(name = "numerocreditos")
@@ -179,14 +173,6 @@ public class Solicitud implements Serializable {
         this.tasadepagos = tasadepagos;
     }
 
-    public String getEstadocivil() {
-        return estadocivil;
-    }
-
-    public void setEstadocivil(String estadocivil) {
-        this.estadocivil = estadocivil;
-    }
-
     public String getGarante() {
         return garante;
     }
@@ -209,14 +195,6 @@ public class Solicitud implements Serializable {
 
     public void setTrebajadorextrangero(Short trebajadorextrangero) {
         this.trebajadorextrangero = trebajadorextrangero;
-    }
-
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public void setEdad(Integer edad) {
-        this.edad = edad;
     }
 
     public String getTipovivienda() {

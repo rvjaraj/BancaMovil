@@ -6,8 +6,7 @@
 package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -21,6 +20,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -41,6 +42,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByApellido", query = "SELECT c FROM Cliente c WHERE c.apellido = :apellido"),
     @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion"),
+    @NamedQuery(name = "Cliente.findByFechNac", query = "SELECT c FROM Cliente c WHERE c.fechNac = :fechNac"),
+    @NamedQuery(name = "Cliente.findByEstadocivil", query = "SELECT c FROM Cliente c WHERE c.estadocivil = :estadocivil"),
     @NamedQuery(name = "Cliente.findByCorreo", query = "SELECT c FROM Cliente c WHERE c.correo = :correo"),
     @NamedQuery(name = "Cliente.findByContracenia", query = "SELECT c FROM Cliente c WHERE c.contracenia = :contracenia"),
     @NamedQuery(name = "Cliente.findByEliminado", query = "SELECT c FROM Cliente c WHERE c.eliminado = :eliminado"),
@@ -69,6 +72,13 @@ public class Cliente implements Serializable {
     @Column(name = "direccion")
     private String direccion;
     @Basic(optional = false)
+    @Column(name = "fechNac")
+    @Temporal(TemporalType.DATE)
+    private Date fechNac;
+    @Basic(optional = false)
+    @Column(name = "estadocivil")
+    private boolean estadocivil;
+    @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
     @Basic(optional = false)
@@ -96,13 +106,15 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public Cliente(Integer id, String cedula, String nombres, String apellido, String telefono, String direccion, String correo, String contracenia) {
+    public Cliente(Integer id, String cedula, String nombres, String apellido, String telefono, String direccion, Date fechNac, boolean estadocivil, String correo, String contracenia) {
         this.id = id;
         this.cedula = cedula;
         this.nombres = nombres;
         this.apellido = apellido;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.fechNac = fechNac;
+        this.estadocivil = estadocivil;
         this.correo = correo;
         this.contracenia = contracenia;
     }
@@ -153,6 +165,22 @@ public class Cliente implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public Date getFechNac() {
+        return fechNac;
+    }
+
+    public void setFechNac(Date fechNac) {
+        this.fechNac = fechNac;
+    }
+
+    public boolean getEstadocivil() {
+        return estadocivil;
+    }
+
+    public void setEstadocivil(boolean estadocivil) {
+        this.estadocivil = estadocivil;
     }
 
     public String getCorreo() {
