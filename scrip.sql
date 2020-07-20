@@ -157,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `sistemabancario`.`Solicitud` (
   `trebajadorextrangero` TINYINT NOT NULL,
   `tipocliente` VARCHAR(45) NOT NULL,
   `estado` VARCHAR(45) NOT NULL,
+  `documento` LONGBLOB NULL,
   `elimado` TINYINT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_Solicitud_Cliente1_idx` (`cliente` ASC),

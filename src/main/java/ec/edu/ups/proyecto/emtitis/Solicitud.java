@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -110,6 +111,9 @@ public class Solicitud implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
+    @Lob
+    @Column(name = "documento")
+    private byte[] documento;
     @Column(name = "elimado")
     private Short elimado;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
@@ -295,6 +299,14 @@ public class Solicitud implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public byte[] getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(byte[] documento) {
+        this.documento = documento;
     }
 
     public Short getElimado() {
