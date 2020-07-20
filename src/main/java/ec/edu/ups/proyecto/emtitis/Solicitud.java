@@ -7,10 +7,8 @@ package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,12 +36,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Solicitud.findBySaldocuenta", query = "SELECT s FROM Solicitud s WHERE s.saldocuenta = :saldocuenta"),
     @NamedQuery(name = "Solicitud.findByTiempoempleo", query = "SELECT s FROM Solicitud s WHERE s.tiempoempleo = :tiempoempleo"),
     @NamedQuery(name = "Solicitud.findByTasadepagos", query = "SELECT s FROM Solicitud s WHERE s.tasadepagos = :tasadepagos"),
+    @NamedQuery(name = "Solicitud.findByEstadocivil", query = "SELECT s FROM Solicitud s WHERE s.estadocivil = :estadocivil"),
     @NamedQuery(name = "Solicitud.findByGarante", query = "SELECT s FROM Solicitud s WHERE s.garante = :garante"),
     @NamedQuery(name = "Solicitud.findByAvaluovivienda", query = "SELECT s FROM Solicitud s WHERE s.avaluovivienda = :avaluovivienda"),
-    @NamedQuery(name = "Solicitud.findByTrebajadorextrangero", query = "SELECT s FROM Solicitud s WHERE s.trebajadorextrangero = :trebajadorextrangero"),
+    @NamedQuery(name = "Solicitud.findByActivos", query = "SELECT s FROM Solicitud s WHERE s.activos = :activos"),
+    @NamedQuery(name = "Solicitud.findByEdad", query = "SELECT s FROM Solicitud s WHERE s.edad = :edad"),
     @NamedQuery(name = "Solicitud.findByTipovivienda", query = "SELECT s FROM Solicitud s WHERE s.tipovivienda = :tipovivienda"),
     @NamedQuery(name = "Solicitud.findByNumerocreditos", query = "SELECT s FROM Solicitud s WHERE s.numerocreditos = :numerocreditos"),
     @NamedQuery(name = "Solicitud.findByEmpleo", query = "SELECT s FROM Solicitud s WHERE s.empleo = :empleo"),
+    @NamedQuery(name = "Solicitud.findByTrebajadorextrangero", query = "SELECT s FROM Solicitud s WHERE s.trebajadorextrangero = :trebajadorextrangero"),
     @NamedQuery(name = "Solicitud.findByTipocliente", query = "SELECT s FROM Solicitud s WHERE s.tipocliente = :tipocliente"),
     @NamedQuery(name = "Solicitud.findByEstado", query = "SELECT s FROM Solicitud s WHERE s.estado = :estado"),
     @NamedQuery(name = "Solicitud.findByElimado", query = "SELECT s FROM Solicitud s WHERE s.elimado = :elimado")})
@@ -58,6 +59,7 @@ public class Solicitud implements Serializable {
     @Basic(optional = false)
     @Column(name = "plazo")
     private int plazo;
+    @Basic(optional = false)
     @Column(name = "historial")
     private String historial;
     @Basic(optional = false)
@@ -66,33 +68,52 @@ public class Solicitud implements Serializable {
     @Basic(optional = false)
     @Column(name = "cantidad")
     private double cantidad;
+    @Basic(optional = false)
     @Column(name = "saldocuenta")
     private String saldocuenta;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
     @Column(name = "tiempoempleo")
-    private Double tiempoempleo;
+    private double tiempoempleo;
+    @Basic(optional = false)
     @Column(name = "tasadepagos")
-    private Double tasadepagos;
+    private double tasadepagos;
+    @Basic(optional = false)
+    @Column(name = "estadocivil")
+    private String estadocivil;
+    @Basic(optional = false)
     @Column(name = "garante")
     private String garante;
+    @Basic(optional = false)
     @Column(name = "avaluovivienda")
-    private Double avaluovivienda;
-    @Column(name = "trebajadorextrangero")
-    private Short trebajadorextrangero;
+    private double avaluovivienda;
+    @Basic(optional = false)
+    @Column(name = "activos")
+    private String activos;
+    @Basic(optional = false)
+    @Column(name = "edad")
+    private int edad;
+    @Basic(optional = false)
     @Column(name = "tipovivienda")
     private String tipovivienda;
+    @Basic(optional = false)
     @Column(name = "numerocreditos")
-    private Integer numerocreditos;
+    private int numerocreditos;
+    @Basic(optional = false)
     @Column(name = "empleo")
     private String empleo;
+    @Basic(optional = false)
+    @Column(name = "trebajadorextrangero")
+    private short trebajadorextrangero;
+    @Basic(optional = false)
     @Column(name = "tipocliente")
     private String tipocliente;
+    @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
     @Column(name = "elimado")
     private Short elimado;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private Cliente cliente;
 
     public Solicitud() {
@@ -102,11 +123,26 @@ public class Solicitud implements Serializable {
         this.id = id;
     }
 
-    public Solicitud(Integer id, int plazo, String proposito, double cantidad) {
+    public Solicitud(Integer id, int plazo, String historial, String proposito, double cantidad, String saldocuenta, double tiempoempleo, double tasadepagos, String estadocivil, String garante, double avaluovivienda, String activos, int edad, String tipovivienda, int numerocreditos, String empleo, short trebajadorextrangero, String tipocliente, String estado) {
         this.id = id;
         this.plazo = plazo;
+        this.historial = historial;
         this.proposito = proposito;
         this.cantidad = cantidad;
+        this.saldocuenta = saldocuenta;
+        this.tiempoempleo = tiempoempleo;
+        this.tasadepagos = tasadepagos;
+        this.estadocivil = estadocivil;
+        this.garante = garante;
+        this.avaluovivienda = avaluovivienda;
+        this.activos = activos;
+        this.edad = edad;
+        this.tipovivienda = tipovivienda;
+        this.numerocreditos = numerocreditos;
+        this.empleo = empleo;
+        this.trebajadorextrangero = trebajadorextrangero;
+        this.tipocliente = tipocliente;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -157,20 +193,28 @@ public class Solicitud implements Serializable {
         this.saldocuenta = saldocuenta;
     }
 
-    public Double getTiempoempleo() {
+    public double getTiempoempleo() {
         return tiempoempleo;
     }
 
-    public void setTiempoempleo(Double tiempoempleo) {
+    public void setTiempoempleo(double tiempoempleo) {
         this.tiempoempleo = tiempoempleo;
     }
 
-    public Double getTasadepagos() {
+    public double getTasadepagos() {
         return tasadepagos;
     }
 
-    public void setTasadepagos(Double tasadepagos) {
+    public void setTasadepagos(double tasadepagos) {
         this.tasadepagos = tasadepagos;
+    }
+
+    public String getEstadocivil() {
+        return estadocivil;
+    }
+
+    public void setEstadocivil(String estadocivil) {
+        this.estadocivil = estadocivil;
     }
 
     public String getGarante() {
@@ -181,20 +225,28 @@ public class Solicitud implements Serializable {
         this.garante = garante;
     }
 
-    public Double getAvaluovivienda() {
+    public double getAvaluovivienda() {
         return avaluovivienda;
     }
 
-    public void setAvaluovivienda(Double avaluovivienda) {
+    public void setAvaluovivienda(double avaluovivienda) {
         this.avaluovivienda = avaluovivienda;
     }
 
-    public Short getTrebajadorextrangero() {
-        return trebajadorextrangero;
+    public String getActivos() {
+        return activos;
     }
 
-    public void setTrebajadorextrangero(Short trebajadorextrangero) {
-        this.trebajadorextrangero = trebajadorextrangero;
+    public void setActivos(String activos) {
+        this.activos = activos;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public String getTipovivienda() {
@@ -205,11 +257,11 @@ public class Solicitud implements Serializable {
         this.tipovivienda = tipovivienda;
     }
 
-    public Integer getNumerocreditos() {
+    public int getNumerocreditos() {
         return numerocreditos;
     }
 
-    public void setNumerocreditos(Integer numerocreditos) {
+    public void setNumerocreditos(int numerocreditos) {
         this.numerocreditos = numerocreditos;
     }
 
@@ -219,6 +271,14 @@ public class Solicitud implements Serializable {
 
     public void setEmpleo(String empleo) {
         this.empleo = empleo;
+    }
+
+    public short getTrebajadorextrangero() {
+        return trebajadorextrangero;
+    }
+
+    public void setTrebajadorextrangero(short trebajadorextrangero) {
+        this.trebajadorextrangero = trebajadorextrangero;
     }
 
     public String getTipocliente() {
