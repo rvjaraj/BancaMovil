@@ -14,33 +14,61 @@
             <div class="row">
                 <div class="col-md-3" style="margin-left: -15%;">
 
-                    <div class="card card-body" style="margin-left: -20%;">
+                    <div class="card card-body" style="margin-left: -40%;">
 
                         <h:form id="crearClientes"><br></br>
                             <h5 class="card-title bg-white">CREACION DE USUARIOS</h5>
-                            <div class="form-group">
-                                <label class="text-center" for="cedula">Cedula</label>
-                                <h:inputText class="form-control" id="cedula"  value="#{clienteBEAN.newCliente.cedula}"/>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Cedula</i></span>
+                                </div>
+                                <h:inputText a:type="text" value="#{clienteBEAN.newCliente.cedula}" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label class="text-center" for="nombres">Nombres</label>
-                                <h:inputText class="form-control" id="nombres"  value="#{clienteBEAN.newCliente.nombres}"/>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Nombres</i></span>
+                                </div>
+                                <h:inputText a:type="text" value="#{clienteBEAN.newCliente.nombres}" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label class="text-center" for="apellidos">Apellidos</label>
-                                <h:inputText class="form-control" id="apellidos" value="#{clienteBEAN.newCliente.apellido}"/>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Apellidos</i></span>
+                                </div>
+                                <h:inputText a:type="text" value="#{clienteBEAN.newCliente.apellido}" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label class="text-center" for="telefono">Telefono</label>
-                                <h:inputText class="form-control" id="telefono" value="#{clienteBEAN.newCliente.telefono}"/>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Telefono</i></span>
+                                </div>
+                                <h:inputText a:type="tel" value="#{clienteBEAN.newCliente.telefono}" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label class="text-center" for="direccion">Direccion</label>
-                                <h:inputText class="form-control"  id="direccion"  value="#{clienteBEAN.newCliente.direccion}" />
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Fecha Nacimiento</i></span>
+                                </div>
+                                <h:inputText a:type="date" value="#{clienteBEAN.newCliente.fechNac}" class="form-control" >
+                                    <f:convertDateTime pattern="yyyy-MM-dd"/>  
+                                </h:inputText>
                             </div>
-                            <div class="form-group">
-                                <label class="text-center" for="correo">Correo</label>
-                                <h:inputText class="form-control" id="correo"  value="#{clienteBEAN.newCliente.correo}"/>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Estado Civil</i></span>
+                                </div>
+                                <h:selectOneMenu id="disabledSelect" class="form-control" value="#{clienteBEAN.newCliente.estadocivil}">
+                                    <f:selectItems value="#{clienteBEAN.estadocivilist}" />
+                                </h:selectOneMenu>
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Direccion</i></span>
+                                </div>
+                                <h:inputText a:type="text" value="#{clienteBEAN.newCliente.direccion}" class="form-control" />
+                            </div>
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user">Correo</i></span>
+                                </div>
+                                <h:inputText a:type="mail" value="#{clienteBEAN.newCliente.correo}" class="form-control" />
                             </div>
                             <div class="card">
                                 <div class="card-header bg-primary">
