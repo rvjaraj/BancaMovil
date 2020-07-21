@@ -212,15 +212,15 @@
                                 <div class="col mx-auto">
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Cedula Cliente</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.cliente.cedula} " class="form-control" readonly="true" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Numero de Meses</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="number" value="" class="form-control" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
@@ -321,7 +321,7 @@
                     </div>
                     <div class="card-footer text-muted bg-transparent col-9 col-md-9 mx-auto">
                         <div class="input-group form-group col-md-3 mx-auto">
-                            <h:commandButton  class="btn btn-outline-success " action="#{usuarioBEAN.cambiarContrasenia()}" value="INICIAR SOLICITUD">
+                            <h:commandButton  class="btn btn-outline-success " action="#{solicitudBEAN.cambiarContrasenia()}" value="INICIAR SOLICITUD">
                                 <f:ajax render="@all"></f:ajax>
                             </h:commandButton>
                         </div>
