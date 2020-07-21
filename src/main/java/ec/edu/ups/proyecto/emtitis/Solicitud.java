@@ -76,7 +76,7 @@ public class Solicitud implements Serializable {
     private String saldocuenta;
     @Basic(optional = false)
     @Column(name = "tiempoempleo")
-    private double tiempoempleo;
+    private String tiempoempleo;
     @Basic(optional = false)
     @Column(name = "tasadepagos")
     private double tasadepagos;
@@ -106,7 +106,7 @@ public class Solicitud implements Serializable {
     private String empleo;
     @Basic(optional = false)
     @Column(name = "trebajadorextrangero")
-    private short trebajadorextrangero;
+    private String trebajadorextrangero;
     @Basic(optional = false)
     @Column(name = "tipocliente")
     private String tipocliente;
@@ -117,9 +117,9 @@ public class Solicitud implements Serializable {
     @Column(name = "documento")
     private byte[] documento;
     @Column(name = "elimado")
-    private Short elimado;
+    private boolean elimado;
     @JoinColumn(name = "cliente", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cliente cliente;
 
     public Solicitud() {
@@ -129,7 +129,7 @@ public class Solicitud implements Serializable {
         this.id = id;
     }
 
-    public Solicitud(Integer id, int plazo, String historial, String proposito, double cantidad, String saldocuenta, double tiempoempleo, double tasadepagos, String estadocivil, String garante, double avaluovivienda, String activos, int edad, String tipovivienda, int numerocreditos, String empleo, short trebajadorextrangero, String tipocliente, String estado) {
+    public Solicitud(Integer id, int plazo, String historial, String proposito, double cantidad, String saldocuenta, String tiempoempleo, double tasadepagos, String estadocivil, String garante, double avaluovivienda, String activos, int edad, String tipovivienda, int numerocreditos, String empleo, String trebajadorextrangero, String tipocliente, String estado) {
         this.id = id;
         this.plazo = plazo;
         this.historial = historial;
@@ -199,11 +199,11 @@ public class Solicitud implements Serializable {
         this.saldocuenta = saldocuenta;
     }
 
-    public double getTiempoempleo() {
+    public String getTiempoempleo() {
         return tiempoempleo;
     }
 
-    public void setTiempoempleo(double tiempoempleo) {
+    public void setTiempoempleo(String tiempoempleo) {
         this.tiempoempleo = tiempoempleo;
     }
 
@@ -279,11 +279,11 @@ public class Solicitud implements Serializable {
         this.empleo = empleo;
     }
 
-    public short getTrebajadorextrangero() {
+    public String getTrebajadorextrangero() {
         return trebajadorextrangero;
     }
 
-    public void setTrebajadorextrangero(short trebajadorextrangero) {
+    public void setTrebajadorextrangero(String trebajadorextrangero) {
         this.trebajadorextrangero = trebajadorextrangero;
     }
 
@@ -311,11 +311,11 @@ public class Solicitud implements Serializable {
         this.documento = documento;
     }
 
-    public Short getElimado() {
+    public boolean getElimado() {
         return elimado;
     }
 
-    public void setElimado(Short elimado) {
+    public void setElimado(boolean elimado) {
         this.elimado = elimado;
     }
 
@@ -349,7 +349,9 @@ public class Solicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.ups.proyecto.emtitis.Solicitud[ id=" + id + " ]";
+        return "Solicitud{" + "id=" + id + ", plazo=" + plazo + ", historial=" + historial + ", proposito=" + proposito + ", cantidad=" + cantidad + ", saldocuenta=" + saldocuenta + ", tiempoempleo=" + tiempoempleo + ", tasadepagos=" + tasadepagos + ", estadocivil=" + estadocivil + ", garante=" + garante + ", avaluovivienda=" + avaluovivienda + ", activos=" + activos + ", edad=" + edad + ", tipovivienda=" + tipovivienda + ", numerocreditos=" + numerocreditos + ", empleo=" + empleo + ", trebajadorextrangero=" + trebajadorextrangero + ", tipocliente=" + tipocliente + ", estado=" + estado + ", documento=" + documento + ", elimado=" + elimado + ", cliente=" + cliente + '}';
     }
+
+    
     
 }

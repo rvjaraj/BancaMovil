@@ -205,7 +205,7 @@
                 <div class="card-header">
                     <h4 class="card-title text-center">Solicitud de Credito</h4>
                 </div>
-                <h:form>
+                <h:form id="solicitud">
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
@@ -214,106 +214,125 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user">Cedula Cliente</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="#{solicitudBEAN.cliente.cedula} " class="form-control" readonly="true" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.solicitud.cliente.cedula} " class="form-control" readonly="true" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Numero de Meses</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Estado Civil</i></span>
                                         </div>
-                                        <h:inputText a:type="number" value="" class="form-control" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.solicitud.estadocivil} " class="form-control" readonly="true" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Edad</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.solicitud.edad} " class="form-control" readonly="true" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Historial Crediticio</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.solicitud.historial}" class="form-control" readonly="true" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Numero de Creditos</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.solicitud.numerocreditos}" class="form-control" readonly="true"/>
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Saldo en cuenta</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.solicitud.saldocuenta}" class="form-control" readonly="true"  />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Tasa de Pago (%)</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="text" value="#{solicitudBEAN.solicitud.tasadepagos}" class="form-control" readonly="true"/>
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Seleccione proposito </i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:selectOneMenu   value="#{solicitudBEAN.solicitud.proposito}"  class="form-control" >
+                                            <f:selectItems value="#{solicitudBEAN.listaProposito}" />
+                                        </h:selectOneMenu>
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Estado Trabajo</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:selectOneMenu a:type="text" value="#{solicitudBEAN.solicitud.empleo}" class="form-control" >
+                                            <f:selectItems value="#{solicitudBEAN.listaEmpleo}" />
+                                        </h:selectOneMenu>
                                     </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Tiempo Empleo</i></span>
+                                        </div>
+                                        <h:selectOneMenu a:type="text" value="#{solicitudBEAN.solicitud.tiempoempleo}" class="form-control" >
+                                            <f:selectItems value="#{solicitudBEAN.listaTiempoEmpleo}" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    
 
                                 </div>
                                 <div class="col">
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Cantidad</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText value="#{solicitudBEAN.solicitud.cantidad}" class="form-control" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Número de Meses</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="number"  value="#{solicitudBEAN.solicitud.plazo}" class="form-control" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Cedula Garante</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="number"  value="#{solicitudBEAN.solicitud.garante}" class="form-control" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Avaluo Vivienda</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="number"  value="#{solicitudBEAN.solicitud.avaluovivienda}" class="form-control" />
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Activos</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:selectOneMenu a:type="text" value="#{solicitudBEAN.solicitud.activos}" class="form-control" >
+                                            <f:selectItems value="#{solicitudBEAN.listaActivos}" />
+                                        </h:selectOneMenu>
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Tipo Vivienda</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:selectOneMenu a:type="text" value="#{solicitudBEAN.solicitud.tipovivienda}" class="form-control" >
+                                            <f:selectItems value="#{solicitudBEAN.listaVivienda}" />
+                                        </h:selectOneMenu>
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">trabaja en el extranjero</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:selectOneMenu a:type="text" value="#{solicitudBEAN.solicitud.trebajadorextrangero}" class="form-control" >
+                                            <f:selectItems value="#{solicitudBEAN.listaExtrangero}" />
+                                        </h:selectOneMenu>
                                     </div>
                                     <div class="input-group form-group ">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                            <span class="input-group-text"><i class="fas fa-user">Documentacion</i></span>
                                         </div>
-                                        <h:inputText a:type="text" value="" class="form-control" />
+                                        <h:inputText a:type="file" value="#{solicitudBEAN.solicitud.documento}"  class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -321,8 +340,8 @@
                     </div>
                     <div class="card-footer text-muted bg-transparent col-9 col-md-9 mx-auto">
                         <div class="input-group form-group col-md-3 mx-auto">
-                            <h:commandButton  class="btn btn-outline-success " action="#{solicitudBEAN.cambiarContrasenia()}" value="INICIAR SOLICITUD">
-                                <f:ajax render="@all"></f:ajax>
+                            <h:commandButton  class="btn btn-outline-success " action="#{solicitudBEAN.guardarSolicitud()}" value="INICIAR SOLICITUD">
+                                <f:ajax render="@all" execute="solicitud"></f:ajax>
                             </h:commandButton>
                         </div>
 

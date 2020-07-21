@@ -77,7 +77,7 @@ public class Cliente implements Serializable {
     private Date fechNac;
     @Basic(optional = false)
     @Column(name = "estadocivil")
-    private boolean estadocivil;
+    private String estadocivil;
     @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
@@ -106,7 +106,7 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public Cliente(Integer id, String cedula, String nombres, String apellido, String telefono, String direccion, Date fechNac, boolean estadocivil, String correo, String contracenia) {
+    public Cliente(Integer id, String cedula, String nombres, String apellido, String telefono, String direccion, Date fechNac, String estadocivil, String correo, String contracenia) {
         this.id = id;
         this.cedula = cedula;
         this.nombres = nombres;
@@ -175,11 +175,11 @@ public class Cliente implements Serializable {
         this.fechNac = fechNac;
     }
 
-    public boolean getEstadocivil() {
+    public String getEstadocivil() {
         return estadocivil;
     }
 
-    public void setEstadocivil(boolean estadocivil) {
+    public void setEstadocivil(String estadocivil) {
         this.estadocivil = estadocivil;
     }
 

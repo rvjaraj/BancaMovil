@@ -11,14 +11,17 @@ ec\edu\ups\proyecto\services\BancaMovilServicesREST.class
 ec\edu\ups\proyecto\dao\TransaccionesDAO.class
 ec\edu\ups\proyecto\emtitis\DepositoSRV.class
 ec\edu\ups\proyecto\dao\ClienteDAO.class
+ec\edu\ups\proyecto\business\SolicitudON.class
 ec\edu\ups\proyecto\services\BancaWebServicesREST.class
 ec\edu\ups\proyecto\dao\CuentaDAO.class
 ec\edu\ups\proyecto\controler\TrabajadorBEAN.class
 ec\edu\ups\proyecto\controler\CajeroBEAN.class
+ec\edu\ups\proyecto\controler\SolicitudBEAN.class
 ec\edu\ups\proyecto\emtitis\Cuenta.class
 ec\edu\ups\proyecto\business\CorreoON$1.class
 ec\edu\ups\proyecto\emtitis\Mensajes.class
 ec\edu\ups\proyecto\business\ClienteON.class
+ec\edu\ups\proyecto\dao\SolicitudDAO.class
 ec\edu\ups\proyecto\business\LoginON.class
 ec\edu\ups\proyecto\emtitis\Alogin.class
 ec\edu\ups\proyecto\services\RestApplication.class
