@@ -50,7 +50,7 @@
                                             <f:ajax render="@all"></f:ajax>
                                         </h:commandButton>
                                     </div>
-                                    
+
                                 </div>
                             </div><br></br>
                             <div class="card border-success mb-3" >
@@ -68,18 +68,20 @@
                                         </div>
                                         <h:inputText a:type="text" value="#{usuarioBEAN.cliente.cuentaList.get(0).saldo}" class="form-control" readonly="true"/>
                                     </div>
-                                    <div class="input-group form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Ultima Transacciones</i></span>
+                                    <h:panelGroup rendered="#{not empty usuarioBEAN.listaTransacioneses}">
+                                        <div class="input-group form-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user">Ultima Transacciones</i></span>
+                                            </div>
+                                            <h:inputText a:type="text" value="#{usuarioBEAN.listaTransacioneses.get(0).fecha}" class="form-control" readonly="true"/>
                                         </div>
-                                        <h:inputText a:type="text" value="#{usuarioBEAN.listaTransacioneses.get(0).fecha}" class="form-control" readonly="true"/>
-                                    </div>
-                                    <div class="input-group form-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fas fa-user">Tipo</i></span>
+                                        <div class="input-group form-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-user">Tipo</i></span>
+                                            </div>
+                                            <h:inputText a:type="text" value="#{usuarioBEAN.listaTransacioneses.get(0).tipo}" class="form-control" readonly="true"/>
                                         </div>
-                                        <h:inputText a:type="text" value="#{usuarioBEAN.listaTransacioneses.get(0).tipo}" class="form-control" readonly="true"/>
-                                    </div>
+                                    </h:panelGroup>
                                 </div>
 
                             </div>
@@ -196,113 +198,137 @@
             </div>
 
         </ui:define>
-        
-        <ui:define name="solicitud">
-        
-        	<div class="col-sm-9 col-md-7 mx-auto">
-                <div class="card card-signin my-5">
-                
-                    <div class="card-body">
-                    	<h:panelGroup id="tablaSolicitud"  style="max-width: 100%">
-                    	<h:form>
-                    		<h4 class="card-title text-center">Solicitud de Credito</h4>
 
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="card">
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" readonly="true" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Proposito</i></span>
-									</div>
-									<h:inputTextarea value="#" class="form-control" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Cantidad</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">SaldoCuenta</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" readonly="true" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Tiempo Empleo</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Tasa de Pagos</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" readonly="true" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Garante</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control"/>
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Avaluo Vivienda</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Trabajador Extrangero</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Tipo vivienda</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" />
-									</div>
-									
-									<div class="input-group form-group">
-									<div class="input-group-prepend">
-									<span class="input-group-text"><i class="fas fa-user">Empleo</i></span>
-									</div>
-									<h:inputText a:type="text" value="" class="form-control" />
-									</div>
-									
-									<div class="card-footer text-muted bg-info">
-                                    <div class="input-group form-group col-md-4 mx-auto">
-                                        <h:commandButton  class="btn btn-outline-dark " action="#" value="Solicitar Credito">
-                                        </h:commandButton>
-                                    </div>
-                                    
-                                </div>
-								</div>
-							</div>
-						</div>
-					</h:form>
-					</h:panelGroup>
-          			</div>
+        <ui:define name="solicitud">
+            <br></br>
+            <div class="card col-9 col-md-9 mx-auto">
+                <div class="card-header">
+                    <h4 class="card-title text-center">Solicitud de Credito</h4>
                 </div>
+                <h:form>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col mx-auto">
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="col">
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                    <div class="input-group form-group ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-user">Plazo</i></span>
+                                        </div>
+                                        <h:inputText a:type="text" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted bg-transparent col-9 col-md-9 mx-auto">
+                        <div class="input-group form-group col-md-3 mx-auto">
+                            <h:commandButton  class="btn btn-outline-success " action="#{usuarioBEAN.cambiarContrasenia()}" value="INICIAR SOLICITUD">
+                                <f:ajax render="@all"></f:ajax>
+                            </h:commandButton>
+                        </div>
+
+                    </div><br></br>
+                </h:form>
             </div>
-            
         </ui:define>
 
     </ui:composition>
