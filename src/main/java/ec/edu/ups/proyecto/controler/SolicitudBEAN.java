@@ -71,7 +71,7 @@ public class SolicitudBEAN {
 
     public String guardarSolicitud() {
         System.out.println(solicitud.toString());
-        solicitudON.guardarTransaciones(solicitud);
+        solicitudON.guardarSolicuitud(solicitud);
         return null;
     }
 

@@ -13,12 +13,15 @@ import ec.edu.ups.proyecto.emtitis.Cuenta;
 import ec.edu.ups.proyecto.emtitis.DepositoSRV;
 import ec.edu.ups.proyecto.emtitis.Mensajes;
 import ec.edu.ups.proyecto.emtitis.RetiroSRV;
+import ec.edu.ups.proyecto.emtitis.Solicitud;
+import ec.edu.ups.proyecto.emtitis.SolicitudSRV;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
 import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
 import ec.edu.ups.proyecto.emtitis.Transferencias;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -37,6 +40,9 @@ public class ServicesON {
     
     @Inject 
     TransferenciasDAO transferenciasDAO;
+    
+   @Inject
+   SolicitudON solicitudON;
     
     
 
@@ -139,5 +145,15 @@ public class ServicesON {
             System.out.println(e.getMessage() + " >>>>");
             return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
+    }
+    
+    public List<SolicitudSRV> enviarDataSet(){
+        List<Solicitud> listaSolicitudes = solicitudON.listarSalicitudes();
+        List<SolicitudSRV> lista = null;
+        for (Object solicitud : listaSolicitudes) {
+            Solicitud s = new Solicitud();
+            
+        }
+        return lista;
     }
 }

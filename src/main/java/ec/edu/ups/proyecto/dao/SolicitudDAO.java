@@ -84,6 +84,15 @@ public class SolicitudDAO {
 
     }
     
+     public List<Solicitud>  findByCliente(String cedula ) throws Exception {
+        try {
+            Query q = em.createNamedQuery("Solicitud.findByCliente");
+            q.setParameter("cedula", cedula);
+            return  q.getResultList();
+        } catch (Exception e) {
+            throw new Exception("Erro buscar por  cedula clieente " +e.getMessage());
+        }
+    }
 
     public Solicitud findByID(String id) throws Exception {
         try {
