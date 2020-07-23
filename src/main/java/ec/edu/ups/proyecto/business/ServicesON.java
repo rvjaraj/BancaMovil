@@ -5,7 +5,6 @@
  */
 package ec.edu.ups.proyecto.business;
 
-import ec.edu.ups.proyecto.dao.ClienteDAO;
 import ec.edu.ups.proyecto.dao.CuentaDAO;
 import ec.edu.ups.proyecto.dao.TransferenciasDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
@@ -13,17 +12,23 @@ import ec.edu.ups.proyecto.emtitis.Cuenta;
 import ec.edu.ups.proyecto.emtitis.DepositoSRV;
 import ec.edu.ups.proyecto.emtitis.Mensajes;
 import ec.edu.ups.proyecto.emtitis.RetiroSRV;
-import ec.edu.ups.proyecto.emtitis.Solicitud;
 import ec.edu.ups.proyecto.emtitis.SolicitudSRV;
-import ec.edu.ups.proyecto.emtitis.Transaciones;
 import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
 import ec.edu.ups.proyecto.emtitis.Transferencias;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import com.opencsv.CSVWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,14 +42,12 @@ public class ServicesON {
 
     @Inject
     ClienteON clienteON;
-    
-    @Inject 
+
+    @Inject
     TransferenciasDAO transferenciasDAO;
-    
-   @Inject
-   SolicitudON solicitudON;
-    
-    
+
+    @Inject
+    SolicitudON solicitudON;
 
     public Mensajes DepositoSRV(DepositoSRV deposito) {
         try {
@@ -108,14 +111,14 @@ public class ServicesON {
                     bd = bd.setScale(2, RoundingMode.HALF_UP);
                     clienteAuxDes.getCuentaList().get(0).setSaldo(bd.doubleValue());
                     clienteON.actualizarCliente(clienteAuxDes);
-                    
+
                     //Act cliente que envia resta su dinero
                     Cliente clienteAuxOri = cuentOri.getCliente();
                     bd = new BigDecimal(clienteAuxOri.getCuentaList().get(0).getSaldo() - transferenciaSrv.getCantidad());
                     bd = bd.setScale(2, RoundingMode.HALF_UP);
                     clienteAuxOri.getCuentaList().get(0).setSaldo(bd.doubleValue());
                     clienteON.actualizarCliente(clienteAuxOri);
-                    
+
                     //Guardamos la transferencia
                     Transferencias transferencia = new Transferencias();
                     transferencia.setFecha(new Date(new Date().getYear(), new Date().getMonth(), new Date().getDate()));
@@ -123,7 +126,7 @@ public class ServicesON {
                     transferencia.setConcepto(transferenciaSrv.getConcepto());
                     transferencia.setOrdenante(cuentOri);
                     transferencia.setBeneficiario(cuentDes);
-                    
+
                     transferenciasDAO.insert(transferencia);
                     //Codigo : 6
                     //Nombre: BM_E006
@@ -146,8 +149,42 @@ public class ServicesON {
             return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
     }
-    
-    public List<SolicitudSRV> enviarDataSet(){
-        return solicitudON.enviarDataSet();
+
+    public List<SolicitudSRV> enviarDataSet() {
+        List<SolicitudSRV> lista = solicitudON.enviarDataSet();
+        try {
+            agregarCSV(lista);
+        } catch (IOException ex) {
+            Logger.getLogger(ServicesON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
+    public void agregarCSV(List<SolicitudSRV> lista) throws IOException {
+        String archCSV = "C:\\Users\\Vinicio\\Documents\\proyectoanalisisdatos\\apiAnalisis\\Datasets\\DatasetBanco\\mio.csv";
+        CSVWriter writer = new CSVWriter(new FileWriter(archCSV));
+        writer.writeAll(convertir(lista));
+        writer.close();
+    }
+
+    private static List<String[]> convertir(List<SolicitudSRV> emps) {
+        List<String[]> records = new ArrayList<String[]>();
+        records.add(new String[]{"DNI", "PLAZOMESESCREDITO", "HISTORIALCREDITO", "PROPOSITOCREDITO",
+            "MONTOCREDITO", "SALDOCUENTAAHORROS", "TIEMPOEMPLEO", "TASAPAGO",
+            "ESTADOCIVILYSEXO", "GARANTE", "AVALUOVIVIENDA", "ACTIVOS",
+            "EDAD", "VIVIENDA", "CANTIDADCREDITOSEXISTENTES", "EMPLEO",
+            "TRABAJADOREXTRANJERO", "TIPOCLIENTE"
+        });
+//						
+        Iterator<SolicitudSRV> it = emps.iterator();
+        while (it.hasNext()) {
+            SolicitudSRV emp = it.next();
+            records.add(new String[]{emp.getDni(), emp.getPlazomesescredito(), emp.getHistorialcredito(), emp.getPropositocredito(),
+                emp.getMontocredito(), emp.getSaldocuentaahorros(), emp.getTiempoempleo(), emp.getTasapago(),
+                emp.getEstadocivilysexo(), emp.getGarante(), emp.getAvaluovivienda(), emp.getActivos(), emp.getEdad(),
+                emp.getVivienda(), emp.getCantidadcreditosexistentes(), emp.getEmpleo(), emp.getTrabajadorextranjero(), emp.getTipocliente()
+            });
+        }
+        return records;
     }
 }
