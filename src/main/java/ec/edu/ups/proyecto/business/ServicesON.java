@@ -24,7 +24,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import com.opencsv.CSVWriter;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -162,14 +166,14 @@ public class ServicesON {
 
     public void agregarCSV(List<SolicitudSRV> lista) throws IOException {
         String archCSV = "C:\\Users\\Vinicio\\Documents\\proyectoanalisisdatos\\apiAnalisis\\Datasets\\DatasetBanco\\mio.csv";
-        CSVWriter writer = new CSVWriter(new FileWriter(archCSV));
+        CSVWriter writer = new CSVWriter(new FileWriter(archCSV), ';');
         writer.writeAll(convertir(lista));
         writer.close();
     }
 
     private static List<String[]> convertir(List<SolicitudSRV> emps) {
         List<String[]> records = new ArrayList<String[]>();
-        records.add(new String[]{"DNI", "PLAZOMESESCREDITO", "HISTORIALCREDITO", "PROPOSITOCREDITO",
+        records.add(new String[]{"DNI", "PLAZOMESESCREDITO".replace("\"", ""), "HISTORIALCREDITO", "PROPOSITOCREDITO",
             "MONTOCREDITO", "SALDOCUENTAAHORROS", "TIEMPOEMPLEO", "TASAPAGO",
             "ESTADOCIVILYSEXO", "GARANTE", "AVALUOVIVIENDA", "ACTIVOS",
             "EDAD", "VIVIENDA", "CANTIDADCREDITOSEXISTENTES", "EMPLEO",
@@ -186,5 +190,29 @@ public class ServicesON {
             });
         }
         return records;
+    }
+    
+    public String ServicosPython(String cedula) {
+        try {
+            URL url = new URL("http://127.0.0.1:8000/apiAnalisis/predecirTipoCliente/?Dni=" + cedula);//your url i.e fetch data from .
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "application/json");
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP Error code : "
+                        + conn.getResponseCode());
+            }
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+            String output;
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+                return output;
+            }
+            conn.disconnect();
+        } catch (Exception e) {
+            System.out.println("Exception in NetClientGet:- " + e);
+        }
+        return null;
     }
 }

@@ -89,8 +89,12 @@ public class SolicitudON {
     }
 
     public List<SolicitudSRV> enviarDataSet() {
+        //MI lista de base
         List<Solicitud> listaSolicitudes = this.listarSalicitudes();
+        //Creo la lista para retornar o gener el csv
         List<SolicitudSRV> lista = new ArrayList<>();
+        
+        //for(int i = o, 
         for (Solicitud solicitud : listaSolicitudes) {
             SolicitudSRV soliSrv = new SolicitudSRV();
             soliSrv.setDni(this.srvDNI(solicitud));
@@ -112,7 +116,6 @@ public class SolicitudON {
             soliSrv.setTrabajadorextranjero(this.srvTrabajadorextranjero(solicitud));
             soliSrv.setTipocliente("0");
             lista.add(soliSrv);
-
         }
         return lista;
     }
