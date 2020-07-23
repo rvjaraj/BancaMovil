@@ -148,12 +148,6 @@ public class ServicesON {
     }
     
     public List<SolicitudSRV> enviarDataSet(){
-        List<Solicitud> listaSolicitudes = solicitudON.listarSalicitudes();
-        List<SolicitudSRV> lista = null;
-        for (Object solicitud : listaSolicitudes) {
-            Solicitud s = new Solicitud();
-            
-        }
-        return lista;
+        return solicitudON.enviarDataSet();
     }
 }

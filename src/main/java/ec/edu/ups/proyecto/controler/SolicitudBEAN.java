@@ -58,11 +58,11 @@ public class SolicitudBEAN {
     @PostConstruct
     public void init() {
         listaProposito = Arrays.asList("Inmuebles | casa, finca, etc |", "Muebles | Equipamiento",
-                "Automovil", "Electrodomésticos", "Tecnología", "Reparaciones", "Educación", "Capacitación", "Negocios", "Otros");
+                "Automovil", "Electrodomesticos", "Tecnologia", "Reparaciones", "Educacion", "Capacitacion", "Negocios", "Otros");
         listaTiempoEmpleo = Arrays.asList("Desempleado", "Trabajando: Menos de un año", "Trabajando | 1 - 4 años", "Trabajando | 4- 7 años", "Trabajando | Mas de 7 años");
-        listaActivos = Arrays.asList("Bienes inmuebles", "Seguro de vida", "Automovil", "Plan de construcción", "Sin propiedad");
+        listaActivos = Arrays.asList("Bienes inmuebles", "Seguro de vida", "Automovil", "Plan de construccion", "Sin propiedad");
         listaVivienda = Arrays.asList("Gratis", "Alquiler", "Propio");
-        listaEmpleo = Arrays.asList("Desempleado", "Jubilado", "Empleado", "Autónomo");
+        listaEmpleo = Arrays.asList("Desempleado", "Jubilado", "Empleado", "Autonomo");
         listaExtrangero = Arrays.asList("SI", "NO");
         cedula = "";
         action();

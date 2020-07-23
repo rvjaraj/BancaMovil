@@ -172,6 +172,13 @@ public class SolicitudSRV {
     public void setTipocliente(String tipocliente) {
         this.tipocliente = tipocliente;
     }
+
+    @Override
+    public String toString() {
+        return "SolicitudSRV{" + "dni=" + dni + ", plazomesescredito=" + plazomesescredito + ", historialcredito=" + historialcredito + ", propositocredito=" + propositocredito + ", montocredito=" + montocredito + ", saldocuentaahorros=" + saldocuentaahorros + ", tiempoempleo=" + tiempoempleo + ", tasapago=" + tasapago + ", estadocivilysexo=" + estadocivilysexo + ", garante=" + garante + ", avaluovivienda=" + avaluovivienda + ", activos=" + activos + ", edad=" + edad + ", vivienda=" + vivienda + ", cantidadcreditosexistentes=" + cantidadcreditosexistentes + ", empleo=" + empleo + ", trabajadorextranjero=" + trabajadorextranjero + ", tipocliente=" + tipocliente + '}';
+    }
+
+   
     
     
     
