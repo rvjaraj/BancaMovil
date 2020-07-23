@@ -9,7 +9,9 @@ import ec.edu.ups.proyecto.business.ServicesON;
 import ec.edu.ups.proyecto.emtitis.DepositoSRV;
 import ec.edu.ups.proyecto.emtitis.Mensajes;
 import ec.edu.ups.proyecto.emtitis.RetiroSRV;
+import ec.edu.ups.proyecto.emtitis.SolicitudSRV;
 import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
+import java.util.List;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.ws.rs.Consumes;
@@ -53,6 +55,14 @@ public class BancaMovilServicesREST {
     public Mensajes Transferencias(TransferenciaSRV transferenciaSRV) {
         transferenciaSRV.toString();
         return servicesON.TransferenciasInternaSRV(transferenciaSRV);
+    }
+    
+    @Path("/listaClientes")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<SolicitudSRV> listaClientes(){
+        return servicesON.enviarDataSet();
     }
 
 }

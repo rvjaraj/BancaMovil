@@ -96,6 +96,7 @@ public class SolicitudON {
             soliSrv.setDni(this.srvDNI(solicitud));
             soliSrv.setPlazomesescredito(this.srvPlazomesescredito(solicitud));
             soliSrv.setHistorialcredito(this.srvHistorialcredito(solicitud));
+            soliSrv.setPropositocredito(this.srvPropositocredito(solicitud));
             soliSrv.setMontocredito(this.srvMontocredito(solicitud));
             soliSrv.setSaldocuentaahorros(this.srvSaldocuentaahorros(solicitud));
             soliSrv.setTiempoempleo(this.srvTiempoempleo(solicitud));
@@ -103,14 +104,13 @@ public class SolicitudON {
             soliSrv.setEstadocivilysexo(this.srvEstadocivilysexo(solicitud));
             soliSrv.setGarante(this.srvGarante(solicitud));
             soliSrv.setAvaluovivienda(this.srvAvaluovivienda(solicitud));
-            soliSrv.setAvaluovivienda(this.srvActivos(solicitud));
+            soliSrv.setActivos(this.srvActivos(solicitud));
             soliSrv.setEdad(this.srvEdad(solicitud));
             soliSrv.setVivienda(this.srvVivienda(solicitud));
             soliSrv.setCantidadcreditosexistentes(this.srvCantidadcreditosexistentes(solicitud));
             soliSrv.setEmpleo(this.srvEmpleo(solicitud));
             soliSrv.setTrabajadorextranjero(this.srvTrabajadorextranjero(solicitud));
             soliSrv.setTipocliente("0");
-            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             lista.add(soliSrv);
 
         }
@@ -174,7 +174,6 @@ public class SolicitudON {
                 return "A124";
             case "Plan de construccion":
                 return "A125";
-
         }
         return "A35";
     }
