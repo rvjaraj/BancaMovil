@@ -206,7 +206,7 @@ public class ServicesON {
             BufferedReader br = new BufferedReader(in);
             String output;
             while ((output = br.readLine()) != null) {
-                System.out.println(output);
+                System.out.println(output +" >>>>");
                 return output;
             }
             conn.disconnect();
