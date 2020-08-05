@@ -15,8 +15,10 @@ import javax.ws.rs.core.MediaType;
 
 import ec.edu.ups.proyecto.business.CreditosON;
 import ec.edu.ups.proyecto.business.LoginON;
+import ec.edu.ups.proyecto.business.TransaccionesON;
 import ec.edu.ups.proyecto.emtitis.ClienteTemp;
 import ec.edu.ups.proyecto.emtitis.Credito;
+import ec.edu.ups.proyecto.emtitis.Transaciones;
 
 @Path("/movil")
 public class ServicesMovil {
@@ -27,6 +29,8 @@ public class ServicesMovil {
 	@Inject
 	CreditosON creditoon;
 	
+	@Inject
+	TransaccionesON transaccioneson;
 	
 	@Path("/usuario")
 	@POST
@@ -48,6 +52,15 @@ public class ServicesMovil {
 		
 		return creditoon.listarCreditosCliente(cedula);
 	}
+	
+	@GET
+	@Path("/listatransaccion")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Transaciones> getTransacciones(@QueryParam("cedula") String cedula){
+		
+		return transaccioneson.listaTransacionesCedula(cedula);
+	}
+	
 	
 	
 }
