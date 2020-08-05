@@ -10,9 +10,14 @@ import ec.edu.ups.proyecto.dao.SolicitudDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Solicitud;
 import ec.edu.ups.proyecto.emtitis.SolicitudSRV;
+import java.awt.Desktop;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,7 +81,7 @@ public class SolicitudON {
             } catch (IOException ex) {
                 System.out.println("<<<<<<<<<<<<<");
                 solicitud.setDocumento(null);
-                System.out.println("Error al agregar archivo pdf "+ex.getMessage());
+                System.out.println("Error al agregar archivo pdf " + ex.getMessage());
             }
 
             solicitudDAO.insert(solicitud);
@@ -87,6 +92,26 @@ public class SolicitudON {
             System.out.println("Error: " + e.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    public void generarPdf(Solicitud solicitud) {
+        InputStream input = null;
+        FileOutputStream output = null;
+        try {
+
+            File file = new File("reporte_db.pdf");
+            output = new FileOutputStream(file);
+            input = new ByteArrayInputStream(solicitud.getDocumento());
+            System.out.println("Leyendo archivo desde la base de datos...");
+            byte[] buffer = new byte[1024];
+            while (input.read(buffer) > 0) {
+                output.write(buffer);
+            }
+            System.out.println("> Archivo guardado en : " + file.getAbsolutePath());
+        } catch (IOException ex) {
+            Logger.getLogger(SolicitudON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public void generarCredito(Solicitud solicitud) {

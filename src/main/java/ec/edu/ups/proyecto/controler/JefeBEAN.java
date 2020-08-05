@@ -10,6 +10,12 @@ import ec.edu.ups.proyecto.business.ServicesON;
 import ec.edu.ups.proyecto.business.SolicitudON;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Solicitud;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -22,7 +28,20 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -43,7 +62,6 @@ public class JefeBEAN {
     private String resTipo;
     private List<String> opciones;
     private String estado = "";
-    
 
     public JefeBEAN() {
     }
@@ -71,18 +89,20 @@ public class JefeBEAN {
         if (estado.equals("NEGAR")) {
             solicitud.setEstado("NEGADO");
             solicitudON.actualizarSolicuitud(solicitud);
-        }else if(estado.equals("APROBAR")){
-            
+        } else if (estado.equals("APROBAR")) {
+
         }
         init();
         return "";
     }
-    
-    public String openPdf(int id){
-        System.out.println(id);
+
+    public String openPdf(Solicitud s) {
+        solicitudON.generarPdf(s);
         return "";
     }
+
     
+
     public String predecir(String cedula) {
         formaRes(servicesON.ServicosPython(cedula));
         return "";
@@ -107,7 +127,7 @@ public class JefeBEAN {
         return "";
     }
 
-    // -------------------> 
+// -------------------> 
     public String getEstado() {
         return estado;
     }

@@ -75,10 +75,11 @@
                                     <f:facet name="header">Garante</f:facet>
                                     <label class="col-md-12">#{solicitud.garante}</label>
                                 </h:column>
-                                 <h:column>
+                                <h:column>
                                     <f:facet name="header">Documentos</f:facet>
-                                    <h:commandButton class="btn btn-link" value="OPEN" action="#{jefeBEAN.openPdf(id)}" >
-                                    </h:commandButton>
+                                    <h:form target="_blank" > 
+                                        <h:commandButton value="Descargar PDF" action="#{jefeBEAN.openPdf(solicitud)}"  /> 
+                                    </h:form>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Prediccion</f:facet>
