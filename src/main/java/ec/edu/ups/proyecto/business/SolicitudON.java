@@ -31,6 +31,9 @@ public class SolicitudON {
 
     @Inject
     SolicitudDAO solicitudDAO;
+    
+    @Inject
+    ServicesON servicesON;
 
     public SolicitudON() {
     }
@@ -62,9 +65,38 @@ public class SolicitudON {
     public void guardarSolicuitud(Solicitud solicitud) {
         try {
             solicitudDAO.insert(solicitud);
+            int res = formaRes(servicesON.ServicosPython(solicitud.getCliente().getCedula()));
+            solicitud.setTipocliente(res +"");
+            solicitudDAO.update(solicitud);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    public void actualizarSolicuitud(Solicitud solicitud) {
+        try {
+            solicitudDAO.update(solicitud);
+        } catch (Exception e) {
+            System.out.println("Error upd: " + e.getMessage());
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    public int formaRes(String r) {
+        r = r.replace("{", "");
+        r = r.replace(":", "");
+        r = r.replace(",", "");
+
+        String res[] = r.split("\"");
+        for (String re : res) {
+            System.out.println(re);
+        }
+        
+        if(res[5].toString().equals("1")){
+            return 1;
+        }else{
+            return 2;
         }
     }
 

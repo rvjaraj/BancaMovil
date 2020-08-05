@@ -48,6 +48,10 @@
                                     <label class="col-md-12">#{solicitud.plazo}</label>
                                 </h:column>
                                 <h:column>
+                                    <f:facet name="header">Propocito</f:facet>
+                                    <label class="col-md-12">#{solicitud.proposito}</label>
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">Activos</f:facet>
                                     <label class="col-md-12">#{solicitud.activos}</label>
                                 </h:column>
@@ -57,7 +61,7 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Numero Cuenta</f:facet>
-                                    <label class="col-md-12">#{solicitud.numerocreditos}</label>
+                                    <label class="col-md-12">#{solicitud.cliente.cuentaList.get(0).numero}</label>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Saldo</f:facet>
@@ -68,10 +72,26 @@
                                     <label class="col-md-12">#{solicitud.tasadepagos}</label>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">Predecir</f:facet>  
-                                    <h:commandButton class="btn btn-info" value="Predecir" action="#{jefeBEAN.predecir(solicitud.cliente.cedula)}" a:data-toggle="modal" a:data-target=".modal">
-                                        <f:ajax render="predi"/>
-                                    </h:commandButton>
+                                    <f:facet name="header">Garante</f:facet>
+                                    <label class="col-md-12">#{solicitud.garante}</label>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Prediccion</f:facet>
+                                    <h:outputLabel value="Cliente Bueno" style="color: green" rendered="#{solicitud.tipocliente eq '1'}"/>
+                                    <h:outputLabel value="Cliente Malo" style="color: red" rendered="#{solicitud.tipocliente eq '2'}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">ESTADO</f:facet>
+                                    <h:outputLabel value="APROBADO" style="color: green" rendered="#{solicitud.estado eq 'APROBADO'}"/>
+                                    <h:outputLabel value="NEGADO" style="color: red" rendered="#{solicitud.estado eq 'NEGADO'}"/>
+                                    <h:panelGroup rendered="#{solicitud.estado eq 'revision'}">
+                                        <h:form >
+                                            <h:selectOneMenu a:type="text" value="#{jefeBEAN.estado}" class="form-control" >
+                                                <f:selectItems value="#{jefeBEAN.opciones}" />
+                                                <f:ajax execute="@form" render="@all" listener="#{jefeBEAN.cambiarEstado(solicitud)}" />
+                                            </h:selectOneMenu> 
+                                        </h:form>
+                                    </h:panelGroup>
                                 </h:column>
 
                             </h:dataTable>
