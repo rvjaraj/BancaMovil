@@ -7,7 +7,6 @@ package ec.edu.ups.proyecto.emtitis;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -350,9 +349,7 @@ public class Solicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "Solicitud{" + "id=" + id + ", plazo=" + plazo + ", historial=" + historial + ", proposito=" + proposito + ", cantidad=" + cantidad + ", saldocuenta=" + saldocuenta + ", tiempoempleo=" + tiempoempleo + ", tasadepagos=" + tasadepagos + ", estadocivil=" + estadocivil + ", garante=" + garante + ", avaluovivienda=" + avaluovivienda + ", activos=" + activos + ", edad=" + edad + ", tipovivienda=" + tipovivienda + ", numerocreditos=" + numerocreditos + ", empleo=" + empleo + ", trebajadorextrangero=" + trebajadorextrangero + ", tipocliente=" + tipocliente + ", estado=" + estado + ", documento=" + documento + ", elimado=" + elimado + ", cliente=" + cliente + '}';
+        return "ec.edu.ups.proyecto.emtitis.Solicitud[ id=" + id + " ]";
     }
-
-    
     
 }

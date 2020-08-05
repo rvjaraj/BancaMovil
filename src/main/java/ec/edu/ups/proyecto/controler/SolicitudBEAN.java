@@ -51,7 +51,7 @@ public class SolicitudBEAN {
     private List<String> listaExtrangero;
     
     
-    private String folder = "C:\\Users\\Vinicio\\Documents\\NetBeansProjects\\BancaMovil\\";
+    private String folder = "C:\\Users\\Vinicio\\Documents\\wildfly-18.0.1.Final\\bin\\";
 
     private Part uploadedFile;
 
@@ -89,7 +89,7 @@ public class SolicitudBEAN {
 
     public String guardarSolicitud() {
         System.out.println(solicitud.toString());
-        solicitudON.guardarSolicuitud(solicitud, saveFile());
+        solicitudON.guardarSolicuitud(solicitud, saveFile(solicitud));
         return null;
     }
     
@@ -101,7 +101,7 @@ public class SolicitudBEAN {
         this.uploadedFile = uploadedFile;
     }
 
-    public String saveFile() {
+    public String saveFile(Solicitud solicitud) {
 
         System.out.println("saveFile method invoked..");
         System.out.println("content-type:{0}" + uploadedFile.getContentType());
@@ -112,8 +112,8 @@ public class SolicitudBEAN {
 
         try {
             fileName = getFilename(uploadedFile);
-            System.out.println("fileName  " + fileName);
-            uploadedFile.write(folder + fileName);
+            System.out.println("fileName  " + solicitud.getCliente().getCedula()+".pdf");
+            uploadedFile.write(folder  + solicitud.getCliente().getCedula()+".pdf");
             
         } catch (IOException ex) {
             System.out.println("aca");

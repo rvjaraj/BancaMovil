@@ -29,17 +29,14 @@ public class MyBean {
 
     private static final int DEFAULT_BUFFER_SIZE = 10240; // 10KB.
 
-    @Inject
-    SolicitudON solicitudON;
-
     public void downloadPDF(Solicitud solicitud) throws IOException {
-        solicitudON.generarPdf(solicitud);
+        //solicitudON.generarPdf(solicitud);
             // Prepare.
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletResponse response = (HttpServletResponse) externalContext.getResponse();
         
-        File file = new File("new.pdf");
+        File file = new File("C:\\Users\\Vinicio\\Documents\\wildfly-18.0.1.Final\\bin\\"+solicitud.getCliente().getCedula()+".pdf");
         //new.pdf
         //C:\\Users\\Vinicio\\Documents\\NetBeansProjects\\BancaMovil\\pdf.pdf
         BufferedInputStream input = null;
