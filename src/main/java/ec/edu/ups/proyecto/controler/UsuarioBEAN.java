@@ -6,10 +6,13 @@
 package ec.edu.ups.proyecto.controler;
 
 import ec.edu.ups.proyecto.business.ClienteON;
+import ec.edu.ups.proyecto.business.CreditosON;
 import ec.edu.ups.proyecto.business.LoginON;
 import ec.edu.ups.proyecto.business.TransaccionesON;
 import ec.edu.ups.proyecto.emtitis.Alogin;
+import ec.edu.ups.proyecto.emtitis.Amortizacion;
 import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.emtitis.Credito;
 import ec.edu.ups.proyecto.emtitis.Trabajador;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
 import java.util.Date;
@@ -25,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  *
- * @author fanny
+ * @author Ricardo Jara
  */
 @ManagedBean
 @ViewScoped
@@ -35,9 +38,11 @@ public class UsuarioBEAN {
     private Cliente cliente;
     private List<Alogin> historial;
     private List<Transaciones> listaTransacioneses;
+    private List<Credito> listaCreditos;
     private String iniio;
     private String fin;
-
+    private List<Amortizacion> listaAmortizacions = null;
+    
     @Inject
     private ClienteON clienteON;
 
@@ -46,6 +51,9 @@ public class UsuarioBEAN {
 
     @Inject
     private TransaccionesON transaccionesON;
+    
+    @Inject
+    private CreditosON creditosON;
 
     public UsuarioBEAN() {
     }
@@ -69,9 +77,18 @@ public class UsuarioBEAN {
             cliente = clienteON.buscarClienteCedula(cedula);
             historial = loginON.listaLogin(cedula);
             listaTransacioneses = transaccionesON.listaTransacionesCedula(cedula);
+            listaCreditos = creditosON.listarCreditosCliente(cedula);
         }
 
     }
+    
+    public String cargarTabla(Credito credito){
+        System.out.println("aca");
+        System.out.println(credito);
+        listaAmortizacions = credito.getAmortizacionList();
+        return "";
+    }
+    
     public String cambiarContrasenia(){
     	System.out.println("Llega hasta cambiar contra");
     	try {
@@ -141,5 +158,47 @@ public class UsuarioBEAN {
     public void setFin(String fin) {
         this.fin = fin;
     }
+
+    public List<Credito> getListaCreditos() {
+        return listaCreditos;
+    }
+
+    public void setListaCreditos(List<Credito> listaCreditos) {
+        this.listaCreditos = listaCreditos;
+    }
+
+    public ClienteON getClienteON() {
+        return clienteON;
+    }
+
+    public void setClienteON(ClienteON clienteON) {
+        this.clienteON = clienteON;
+    }
+
+    public LoginON getLoginON() {
+        return loginON;
+    }
+
+    public void setLoginON(LoginON loginON) {
+        this.loginON = loginON;
+    }
+
+    public TransaccionesON getTransaccionesON() {
+        return transaccionesON;
+    }
+
+    public void setTransaccionesON(TransaccionesON transaccionesON) {
+        this.transaccionesON = transaccionesON;
+    }
+
+    public CreditosON getCreditosON() {
+        return creditosON;
+    }
+
+    public void setCreditosON(CreditosON creditosON) {
+        this.creditosON = creditosON;
+    }
+    
+    
 
 }

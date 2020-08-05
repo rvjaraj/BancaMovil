@@ -7,6 +7,7 @@ package ec.edu.ups.proyecto.business;
 
 import ec.edu.ups.proyecto.dao.CreditoDAO;
 import ec.edu.ups.proyecto.emtitis.Amortizacion;
+import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Credito;
 import ec.edu.ups.proyecto.emtitis.Solicitud;
 import java.util.ArrayList;
@@ -30,7 +31,18 @@ public class CreditosON {
 
     @Inject
     CorreoON correoON;
-
+    
+    public List<Credito> listarCreditosCliente(String cedula){
+        try {
+            return creditoDAO.findByCliente(cedula);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            Logger.getLogger(CreditosON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
     public void generarCredito(Solicitud solicitud) {
         try {
             Credito c = new Credito();

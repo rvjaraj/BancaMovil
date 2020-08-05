@@ -87,7 +87,7 @@ public class CreditoDAO {
      public List<Credito>  findByCliente(String cedula ) throws Exception {
         try {
             Query q = em.createNamedQuery("Credito.findByCliente");
-            q.setParameter("cedula", cedula);
+            q.setParameter("cliente", cedula);
             return  q.getResultList();
         } catch (Exception e) {
             throw new Exception("Erro buscar por  cedula clieente " +e.getMessage());
