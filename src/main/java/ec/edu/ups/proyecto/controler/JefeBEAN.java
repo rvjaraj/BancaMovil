@@ -43,6 +43,7 @@ public class JefeBEAN {
     private String resTipo;
     private List<String> opciones;
     private String estado = "";
+    
 
     public JefeBEAN() {
     }
@@ -70,11 +71,18 @@ public class JefeBEAN {
         if (estado.equals("NEGAR")) {
             solicitud.setEstado("NEGADO");
             solicitudON.actualizarSolicuitud(solicitud);
+        }else if(estado.equals("APROBAR")){
+            
         }
         init();
         return "";
     }
-
+    
+    public String openPdf(int id){
+        System.out.println(id);
+        return "";
+    }
+    
     public String predecir(String cedula) {
         formaRes(servicesON.ServicosPython(cedula));
         return "";

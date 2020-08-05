@@ -205,7 +205,7 @@
                 <div class="card-header">
                     <h4 class="card-title text-center">Solicitud de Credito</h4>
                 </div>
-                <h:form id="solicitud">
+                <h:form id="solicitud" enctype="multipart/form-data" >
                     <div class="card-body">
                         <div class="container">
                             <div class="row">
@@ -276,7 +276,7 @@
                                             <f:selectItems value="#{solicitudBEAN.listaTiempoEmpleo}" />
                                         </h:selectOneMenu>
                                     </div>
-                                    
+
 
                                 </div>
                                 <div class="col">
@@ -332,7 +332,12 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user">Documentacion</i></span>
                                         </div>
-                                        <h:inputText a:type="file" value="#{solicitudBEAN.solicitud.documento}"  class="form-control" />
+                                        <h:inputFile  id="file-id"  
+                                                      value="#{solicitudBEAN.uploadedFile}" 
+                                                      required="true"   
+                                                      requiredMessage="Please upload a file" 
+                                                      >
+                                        </h:inputFile>  
                                     </div>
                                 </div>
                             </div>

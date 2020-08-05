@@ -35,7 +35,6 @@ ec\edu\ups\proyecto\dao\AloginDAO.class
 ec\edu\ups\proyecto\emtitis\Cliente.class
 ec\edu\ups\proyecto\dao\ClienteDAO.class
 pdf\DAO.class
-ec\edu\ups\proyecto\business\SolicitudON.class
 ec\edu\ups\proyecto\dao\CuentaDAO.class
 ec\edu\ups\proyecto\controler\TrabajadorBEAN.class
 ec\edu\ups\proyecto\controler\CajeroBEAN.class

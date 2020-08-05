@@ -10,7 +10,9 @@ import ec.edu.ups.proyecto.dao.SolicitudDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Solicitud;
 import ec.edu.ups.proyecto.emtitis.SolicitudSRV;
-import ec.edu.ups.proyecto.emtitis.Transaciones;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +33,7 @@ public class SolicitudON {
 
     @Inject
     SolicitudDAO solicitudDAO;
-    
+
     @Inject
     ServicesON servicesON;
 
@@ -62,18 +64,35 @@ public class SolicitudON {
         return solicitud;
     }
 
-    public void guardarSolicuitud(Solicitud solicitud) {
+    public void guardarSolicuitud(Solicitud solicitud, String file) {
         try {
+            try {
+                file = "C:\\Users\\Vinicio\\Documents\\NetBeansProjects\\BancaMovil\\" + file;
+                byte[] pdf = new byte[(int) file.length()];
+                InputStream input = new FileInputStream(file);
+                input.read(pdf);
+                solicitud.setDocumento(pdf);
+                System.out.println(">>>>>>>>>>>>>>>>>>");
+            } catch (IOException ex) {
+                System.out.println("<<<<<<<<<<<<<");
+                solicitud.setDocumento(null);
+                System.out.println("Error al agregar archivo pdf "+ex.getMessage());
+            }
+
             solicitudDAO.insert(solicitud);
             int res = formaRes(servicesON.ServicosPython(solicitud.getCliente().getCedula()));
-            solicitud.setTipocliente(res +"");
+            solicitud.setTipocliente(res + "");
             solicitudDAO.update(solicitud);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+
+    public void generarCredito(Solicitud solicitud) {
+
+    }
+
     public void actualizarSolicuitud(Solicitud solicitud) {
         try {
             solicitudDAO.update(solicitud);
@@ -82,7 +101,7 @@ public class SolicitudON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+
     public int formaRes(String r) {
         r = r.replace("{", "");
         r = r.replace(":", "");
@@ -92,10 +111,10 @@ public class SolicitudON {
         for (String re : res) {
             System.out.println(re);
         }
-        
-        if(res[5].toString().equals("1")){
+
+        if (res[5].toString().equals("1")) {
             return 1;
-        }else{
+        } else {
             return 2;
         }
     }
@@ -125,7 +144,7 @@ public class SolicitudON {
         List<Solicitud> listaSolicitudes = this.listarSalicitudes();
         //Creo la lista para retornar o gener el csv
         List<SolicitudSRV> lista = new ArrayList<>();
-        
+
         //for(int i = o, 
         for (Solicitud solicitud : listaSolicitudes) {
             SolicitudSRV soliSrv = new SolicitudSRV();

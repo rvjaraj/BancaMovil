@@ -75,18 +75,23 @@
                                     <f:facet name="header">Garante</f:facet>
                                     <label class="col-md-12">#{solicitud.garante}</label>
                                 </h:column>
+                                 <h:column>
+                                    <f:facet name="header">Documentos</f:facet>
+                                    <h:commandButton class="btn btn-link" value="OPEN" action="#{jefeBEAN.openPdf(id)}" >
+                                    </h:commandButton>
+                                </h:column>
                                 <h:column>
                                     <f:facet name="header">Prediccion</f:facet>
-                                    <h:outputLabel value="Cliente Bueno" style="color: green" rendered="#{solicitud.tipocliente eq '1'}"/>
-                                    <h:outputLabel value="Cliente Malo" style="color: red" rendered="#{solicitud.tipocliente eq '2'}"/>
+                                    <h:outputLabel value="Cliente Bueno" class="btn btn-success" rendered="#{solicitud.tipocliente eq '1'}"/>
+                                    <h:outputLabel value="Cliente Malo" class="btn btn-light" rendered="#{solicitud.tipocliente eq '2'}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">ESTADO</f:facet>
-                                    <h:outputLabel value="APROBADO" style="color: green" rendered="#{solicitud.estado eq 'APROBADO'}"/>
-                                    <h:outputLabel value="NEGADO" style="color: red" rendered="#{solicitud.estado eq 'NEGADO'}"/>
+                                    <h:outputLabel class="btn btn-success" value="APROBADO" rendered="#{solicitud.estado eq 'APROBADO'}"/>
+                                    <h:outputLabel class="btn btn-danger" value="NEGADO" rendered="#{solicitud.estado eq 'NEGADO'}"/>
                                     <h:panelGroup rendered="#{solicitud.estado eq 'revision'}">
                                         <h:form >
-                                            <h:selectOneMenu a:type="text" value="#{jefeBEAN.estado}" class="form-control" >
+                                            <h:selectOneMenu a:type="text"  value="#{jefeBEAN.estado}" class="form-control btn btn-info" >
                                                 <f:selectItems value="#{jefeBEAN.opciones}" />
                                                 <f:ajax execute="@form" render="@all" listener="#{jefeBEAN.cambiarEstado(solicitud)}" />
                                             </h:selectOneMenu> 

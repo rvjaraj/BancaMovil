@@ -5,6 +5,14 @@
  */
 package ec.edu.ups.proyecto.controler;
 
+import java.io.IOException;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.Part;
+
 import ec.edu.ups.proyecto.business.ClienteON;
 import ec.edu.ups.proyecto.business.SolicitudON;
 import ec.edu.ups.proyecto.emtitis.Cliente;
@@ -18,6 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+
 /**
  *
  * @author fanny
@@ -25,7 +34,12 @@ import javax.servlet.http.HttpServletRequest;
 @ManagedBean
 @ViewScoped
 public class SolicitudBEAN {
+    @Inject
+    private ClienteON clienteON;
 
+    @Inject
+    private SolicitudON solicitudON;
+    
     private String cedula = "";
     private Cliente cliente;
     private Solicitud solicitud;
@@ -35,11 +49,15 @@ public class SolicitudBEAN {
     private List<String> listaVivienda;
     private List<String> listaEmpleo;
     private List<String> listaExtrangero;
-    @Inject
-    private ClienteON clienteON;
+    
+    
+    private String folder = "C:\\Users\\Vinicio\\Documents\\NetBeansProjects\\BancaMovil\\";
 
-    @Inject
-    private SolicitudON solicitudON;
+    private Part uploadedFile;
+
+   
+    
+    
 
     public SolicitudBEAN() {
     }
@@ -71,10 +89,57 @@ public class SolicitudBEAN {
 
     public String guardarSolicitud() {
         System.out.println(solicitud.toString());
-        solicitudON.guardarSolicuitud(solicitud);
+        solicitudON.guardarSolicuitud(solicitud, saveFile());
         return null;
     }
+    
+     public Part getUploadedFile() {
+        return uploadedFile;
+    }
 
+    public void setUploadedFile(Part uploadedFile) {
+        this.uploadedFile = uploadedFile;
+    }
+
+    public String saveFile() {
+
+        System.out.println("saveFile method invoked..");
+        System.out.println("content-type:{0}" + uploadedFile.getContentType());
+        System.out.println("filename:{0}" + uploadedFile.getName());
+        System.out.println("submitted filename:{0}" + uploadedFile.getSubmittedFileName());
+        System.out.println("size:{0}" + uploadedFile.getSize());
+        String fileName = "";
+
+        try {
+            fileName = getFilename(uploadedFile);
+            System.out.println("fileName  " + fileName);
+            uploadedFile.write(folder + fileName);
+            
+        } catch (IOException ex) {
+            System.out.println("aca");
+            System.out.println(ex);
+
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("File " + fileName + " Uploaded!"));
+        return fileName;
+    }
+
+    private static String getFilename(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                String filename = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+                return filename.substring(filename.lastIndexOf('/') + 1).substring(filename.lastIndexOf('\\') + 1); // MSIE fix.
+            }
+        }
+        return null;
+    }
+    
+    
+    
+    //>>>>>>>>>>>>>>>>>
+    
+    
     public String getCedula() {
         return cedula;
     }
