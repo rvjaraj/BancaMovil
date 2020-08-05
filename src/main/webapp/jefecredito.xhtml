@@ -88,7 +88,7 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">ESTADO</f:facet>
-                                    <h:outputLabel class="btn btn-success" value="APROBADO" rendered="#{solicitud.estado eq 'APROBADO'}"/>
+                                    <h:outputLabel class="btn btn-success" value="APROBADO" rendered="#{solicitud.estado eq 'APROBADA'}"/>
                                     <h:outputLabel class="btn btn-danger" value="NEGADO" rendered="#{solicitud.estado eq 'NEGADO'}"/>
                                     <h:panelGroup rendered="#{solicitud.estado eq 'revision'}">
                                         <h:form >

@@ -59,7 +59,7 @@ public class Credito implements Serializable {
     @Column(name = "estado")
     private String estado;
     @Column(name = "elimado")
-    private Short elimado;
+    private boolean elimado;
     @JoinColumn(name = "cuenta", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Cuenta cuenta;
@@ -120,11 +120,11 @@ public class Credito implements Serializable {
         this.estado = estado;
     }
 
-    public Short getElimado() {
+    public boolean getElimado() {
         return elimado;
     }
 
-    public void setElimado(Short elimado) {
+    public void setElimado(boolean elimado) {
         this.elimado = elimado;
     }
 

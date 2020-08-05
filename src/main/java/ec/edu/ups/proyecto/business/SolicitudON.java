@@ -45,6 +45,9 @@ public class SolicitudON {
 
     @Inject
     CorreoON correoON;
+    
+    @Inject
+    CreditosON creditosON;
 
     public SolicitudON() {
     }
@@ -118,15 +121,22 @@ public class SolicitudON {
 
     }
 
-    public void generarCredito(Solicitud solicitud) {
-
-    }
-
-    public void actualizarSolicuitudNegada(Solicitud solicitud) {
+     public void actualizarSolicuitudNegada(Solicitud solicitud) {
         try {
             solicitudDAO.update(solicitud);
             //Enviar Correo
             enviarCorreoIngreso(solicitud.getCliente().getCorreo());
+        } catch (Exception e) {
+            System.out.println("Error upd: " + e.getMessage());
+            Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+     public void actualizarSolicuitudAceptada(Solicitud solicitud) {
+        try {
+            solicitudDAO.update(solicitud);
+            creditosON.generarCredito(solicitud);
+            System.out.println("Listo");
         } catch (Exception e) {
             System.out.println("Error upd: " + e.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);

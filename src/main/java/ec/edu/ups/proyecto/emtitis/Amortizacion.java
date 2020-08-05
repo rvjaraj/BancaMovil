@@ -65,7 +65,7 @@ public class Amortizacion implements Serializable {
     private double deuda;
     @Basic(optional = false)
     @Column(name = "estado")
-    private short estado;
+    private boolean estado;
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
@@ -81,7 +81,7 @@ public class Amortizacion implements Serializable {
         this.id = id;
     }
 
-    public Amortizacion(Integer id, int periodo, double couta, double interes, double total, double deuda, short estado, Date fecha) {
+    public Amortizacion(Integer id, int periodo, double couta, double interes, double total, double deuda, boolean estado, Date fecha) {
         this.id = id;
         this.periodo = periodo;
         this.couta = couta;
@@ -140,11 +140,11 @@ public class Amortizacion implements Serializable {
         this.deuda = deuda;
     }
 
-    public short getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(short estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 

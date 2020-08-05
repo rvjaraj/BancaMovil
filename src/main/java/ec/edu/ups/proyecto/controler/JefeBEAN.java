@@ -6,6 +6,7 @@
 package ec.edu.ups.proyecto.controler;
 
 import ec.edu.ups.proyecto.business.ClienteON;
+import ec.edu.ups.proyecto.business.CorreoON;
 import ec.edu.ups.proyecto.business.ServicesON;
 import ec.edu.ups.proyecto.business.SolicitudON;
 import ec.edu.ups.proyecto.emtitis.Cliente;
@@ -74,6 +75,8 @@ public class JefeBEAN {
 
     @Inject
     private ServicesON servicesON;
+    
+    
 
     @PostConstruct
     public void init() {
@@ -90,7 +93,8 @@ public class JefeBEAN {
             solicitud.setEstado("NEGADO");
             solicitudON.actualizarSolicuitudNegada(solicitud);
         } else if (estado.equals("APROBAR")) {
-
+            solicitud.setEstado("APROBADA");
+            solicitudON.actualizarSolicuitudAceptada(solicitud);
         }
         init();
         return "";
