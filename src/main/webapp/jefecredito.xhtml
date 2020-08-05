@@ -84,7 +84,8 @@
                                 <h:column>
                                     <f:facet name="header">Prediccion</f:facet>
                                     <h:outputLabel value="Cliente Bueno" class="btn btn-success" rendered="#{solicitud.tipocliente eq '1'}"/>
-                                    <h:outputLabel value="Cliente Malo" class="btn btn-light" rendered="#{solicitud.tipocliente eq '2'}"/>
+                                    <h:outputLabel value="Cliente Malo" class="btn btn-info" rendered="#{solicitud.tipocliente eq '2'}"/>
+                                     <h:outputLabel value="POR DEFINIR" class="btn btn-light" rendered="#{solicitud.tipocliente eq 'por definir'}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">ESTADO</f:facet>

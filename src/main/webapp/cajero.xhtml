@@ -204,15 +204,112 @@
 
         </ui:define>
 
-
-
-
-
-
-
-        //Retiros
         <ui:define name="TRANSFERENCIAS">
-            <h1>Esto es el TRANSFERENCIAS </h1>
+            <div class="card card-body mx-auto" >
+                <div class="active-pink-3 active-pink-4 mb-4 ">
+                    <table>
+                        <thead>
+                            <tr>
+                                <h:form id="formBuscarCredito">
+                                    <th style="width: 100%"><h:inputText id='buscar' value="#{cajeroBEAN.textoBuscar}" class="form-control" a:placeholder="Buscar, Ingresar Cedula, Nombre o Apellido" a:aria-label="">
+                                            <f:ajax event="keyup" listener="#{cajeroBEAN.buscaClientees()}" render="tablatrabajadores" execute="formBuscar"></f:ajax>
+                                        </h:inputText></th>
+                                    <th><button type="button" class="btn btn-outline-danger" onclick="window.location.href = 'cajero.xhtml'">X</button></th>
+                                </h:form>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <h:panelGroup id="creditos"  style="max-width: 100%">
+                    <div class="form-group mx-auto">
+                        <h:dataTable class="table table-striped table-dark table-sm" id="creditoT" value="#{cajeroBEAN.listaCreditos}"   var="creditos">
+                            <h:column> 
+                                <f:facet name="header">ID</f:facet>
+                                <label class="col-md-12">#{creditos.id}</label>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Plazo</f:facet>
+                                <label class="col-md-12">#{creditos.plazo}</label>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Proposito</f:facet>
+                                <label class="col-md-12">#{creditos.proposito}</label>
+                            </h:column>
+
+                            <h:column >
+                                <f:facet name="header">Estado</f:facet>
+                                <label class="col-md-12">#{creditos.estado}</label>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Cantidad</f:facet>
+                                <label class="col-md-12">#{creditos.cantidad}</label>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Cueta</f:facet>
+                                <label class="col-md-12">#{creditos.cuenta.numero}</label>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Amortizacion</f:facet>
+                                <h:commandButton class="btn btn-warning" value="VER VALORES A PAGAR" action="#{cajeroBEAN.cargarTabla(creditos)}" a:data-toggle="modal"  a:data-target=".modal-asd">
+                                    <f:ajax render="tablaAmo"/>
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:panelGroup>
+            </div>
+
+            <div>
+                <div class="modal fade modal-asd" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg ">
+                        <div class="modal-content" style="background: #4CA1AF;">
+                            <br></br>
+                            <div class="card w-78  mx-auto bg-secondary" >
+                                <h5 class="card-header">TABLA AMORTIZACION</h5>
+                                <div class="card-body bg-dark">
+                                    <h:panelGroup id="tablaAmo">
+                                        <h:dataTable class="table table-striped table-dark table-sm" style="width: 100%" value="#{cajeroBEAN.listaAmortizacions}"  var="amortizaciones">
+                                            <h:column> 
+                                                <f:facet name="header">Numero Couta</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.periodo}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Fecha</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.fecha}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Couta</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.couta}</label>
+                                            </h:column>
+
+                                            <h:column >
+                                                <f:facet name="header">Interes</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.interes}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.total}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Estado</f:facet>
+                                                <h:outputLabel value="PENDIENTE" rendered="#{not amortizaciones.estado}"/>
+                                                <h:outputLabel value="PAGADO"  rendered="#{ amortizaciones.estado}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">PAGOS</f:facet>  
+                                                <h:commandButton class="btn btn-success" value="PAGAR" action="#{cajeroBEAN.pagarAmortizacion(amortizaciones)}">
+                                                    <f:ajax render="tablaAmo creditoT"/>
+                                                </h:commandButton>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:panelGroup>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </ui:define>
 
     </ui:composition>
