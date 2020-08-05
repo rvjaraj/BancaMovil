@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -41,6 +42,9 @@ public class SolicitudON {
 
     @Inject
     ServicesON servicesON;
+
+    @Inject
+    CorreoON correoON;
 
     public SolicitudON() {
     }
@@ -118,9 +122,11 @@ public class SolicitudON {
 
     }
 
-    public void actualizarSolicuitud(Solicitud solicitud) {
+    public void actualizarSolicuitudNegada(Solicitud solicitud) {
         try {
             solicitudDAO.update(solicitud);
+            //Enviar Correo
+            enviarCorreoIngreso(solicitud.getCliente().getCorreo());
         } catch (Exception e) {
             System.out.println("Error upd: " + e.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
@@ -386,6 +392,15 @@ public class SolicitudON {
             }
         } catch (Exception ex) {
             return "A101";
+        }
+    }
+
+    public void enviarCorreoIngreso(String correo) {
+        try {
+            correoON.sendAsHtml(correo, "Actualización de Solicitud de Crédito", "<h1>Pedimos disculpas, Pero su solicitud de crédito ha sido negada</h1>");
+       
+        } catch (MessagingException ex) {
+            Logger.getLogger(SolicitudON.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -88,7 +88,7 @@ public class JefeBEAN {
     public String cambiarEstado(Solicitud solicitud) {
         if (estado.equals("NEGAR")) {
             solicitud.setEstado("NEGADO");
-            solicitudON.actualizarSolicuitud(solicitud);
+            solicitudON.actualizarSolicuitudNegada(solicitud);
         } else if (estado.equals("APROBAR")) {
 
         }
