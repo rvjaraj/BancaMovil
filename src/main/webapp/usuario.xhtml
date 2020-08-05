@@ -66,7 +66,7 @@
                     <div class="modal-dialog modal-lg ">
                         <div class="modal-content" style="background: #4CA1AF;">
                             <br></br>
-                            <div class="card w-75  mx-auto bg-secondary">
+                            <div class="card w-78  mx-auto bg-secondary" >
                                 <h5 class="card-header">TABLA AMORTIZACION</h5>
                                 <div class="card-body bg-dark">
                                     <h:panelGroup id="infDep">
@@ -94,7 +94,8 @@
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">Estado</f:facet>
-                                                <label class="col-md-12">#{amortizaciones.estado}</label>
+                                                <h:outputLabel value="PENDIENTE" rendered="#{not amortizaciones.estado}"/>
+                                                <h:outputLabel value="PAGADO"  rendered="#{ amortizaciones.estado}"/>
                                             </h:column>
                                         </h:dataTable>
                                     </h:panelGroup>
