@@ -20,7 +20,7 @@
                                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
                                     <div class="span3" style="height: 600px !important;
                                          overflow: scroll;">
-                                        <h:dataTable class="table table-striped table-dark table-sm"  value="#{usuarioBEAN.listaCreditos}"  var="creditos">
+                                        <h:dataTable class="table table-striped table-dark table-sm"   value="#{usuarioBEAN.listaCreditos}"  var="creditos">
                                             <h:column> 
                                                 <f:facet name="header">ID</f:facet>
                                                 <label class="col-md-12">#{creditos.id}</label>
@@ -47,8 +47,8 @@
                                                 <label class="col-md-12">#{creditos.cuenta.numero}</label>
                                             </h:column>
                                             <h:column>
-                                                <f:facet name="header">Ver Tabla</f:facet>
-                                                <h:commandButton class="btn btn-warning" value="DEPOSITO" action="#{usuarioBEAN.cargarTabla(creditos)}" a:data-toggle="modal"  a:data-target=".modal-deposito">
+                                                <f:facet name="header">Amortizacion</f:facet>
+                                                <h:commandButton class="btn btn-warning" value="VER TABLA" action="#{usuarioBEAN.cargarTabla(creditos)}" a:data-toggle="modal"  a:data-target=".modal-deposito">
                                                     <f:ajax render="infDep"/>
                                                 </h:commandButton>
                                             </h:column>
@@ -58,6 +58,50 @@
                                 </div>
                             </div>
                         </h:panelGroup>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="modal fade modal-deposito" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg ">
+                        <div class="modal-content" style="background: #4CA1AF;">
+                            <br></br>
+                            <div class="card w-75  mx-auto bg-secondary">
+                                <h5 class="card-header">TABLA AMORTIZACION</h5>
+                                <div class="card-body bg-dark">
+                                    <h:panelGroup id="infDep">
+                                        <h:dataTable class="table table-striped table-dark table-sm" style="width: 100%" value="#{usuarioBEAN.listaAmortizacions}"  var="amortizaciones">
+                                            <h:column> 
+                                                <f:facet name="header">Numero Couta</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.periodo}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Fecha</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.fecha}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Couta</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.couta}</label>
+                                            </h:column>
+
+                                            <h:column >
+                                                <f:facet name="header">Interes</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.interes}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Total</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.total}</label>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">Estado</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.estado}</label>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:panelGroup>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -409,22 +453,5 @@
 
     </ui:composition>
 
-    <div>
-        <div class="modal fade modal-deposito" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg ">
-                <div class="modal-content" style="background: #4CA1AF;">
-                    <br></br>
-                    <div class="card w-75 p-3 mx-auto bg-secondary">
-                        <h5 class="card-header">TABLA AMORTIZACION</h5>
-                        <div class="card-body bg-dark">
-                            <h:panelGroup id="infDep">
-                                <h1>Mostra la tablita</h1>
-                            </h:panelGroup>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </html>

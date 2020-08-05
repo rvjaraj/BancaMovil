@@ -15,6 +15,7 @@ import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.Credito;
 import ec.edu.ups.proyecto.emtitis.Trabajador;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -41,7 +42,7 @@ public class UsuarioBEAN {
     private List<Credito> listaCreditos;
     private String iniio;
     private String fin;
-    private List<Amortizacion> listaAmortizacions = null;
+    private List<Amortizacion> listaAmortizacions;
     
     @Inject
     private ClienteON clienteON;
@@ -78,6 +79,7 @@ public class UsuarioBEAN {
             historial = loginON.listaLogin(cedula);
             listaTransacioneses = transaccionesON.listaTransacionesCedula(cedula);
             listaCreditos = creditosON.listarCreditosCliente(cedula);
+            listaAmortizacions = new ArrayList<>();
         }
 
     }
@@ -197,6 +199,14 @@ public class UsuarioBEAN {
 
     public void setCreditosON(CreditosON creditosON) {
         this.creditosON = creditosON;
+    }
+
+    public List<Amortizacion> getListaAmortizacions() {
+        return listaAmortizacions;
+    }
+
+    public void setListaAmortizacions(List<Amortizacion> listaAmortizacions) {
+        this.listaAmortizacions = listaAmortizacions;
     }
     
     
