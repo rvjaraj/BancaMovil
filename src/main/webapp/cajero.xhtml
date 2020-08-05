@@ -261,10 +261,10 @@
 
             <div>
                 <div class="modal fade modal-asd" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg ">
+                    <div class="modal-dialog modal-lg " style="max-width: 1000px">
                         <div class="modal-content" style="background: #4CA1AF;">
                             <br></br>
-                            <div class="card w-78  mx-auto bg-secondary" >
+                            <div class="card  mx-auto bg-secondary" >
                                 <h5 class="card-header">TABLA AMORTIZACION</h5>
                                 <div class="card-body bg-dark">
                                     <h:panelGroup id="tablaAmo">
@@ -278,10 +278,13 @@
                                                 <label class="col-md-12">#{amortizaciones.fecha}</label>
                                             </h:column>
                                             <h:column>
+                                                <f:facet name="header">Deuda</f:facet>
+                                                <label class="col-md-12">#{amortizaciones.deuda}</label>
+                                            </h:column>
+                                            <h:column>
                                                 <f:facet name="header">Couta</f:facet>
                                                 <label class="col-md-12">#{amortizaciones.couta}</label>
                                             </h:column>
-
                                             <h:column >
                                                 <f:facet name="header">Interes</f:facet>
                                                 <label class="col-md-12">#{amortizaciones.interes}</label>
@@ -297,9 +300,23 @@
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">PAGOS</f:facet>  
-                                                <h:commandButton class="btn btn-success" value="PAGAR" action="#{cajeroBEAN.pagarAmortizacion(amortizaciones)}">
+                                                <h:commandButton class="btn btn-success" value="PAGAR TOTAL" action="#{cajeroBEAN.pagarAmortizacion(amortizaciones)}">
                                                     <f:ajax render="tablaAmo creditoT"/>
                                                 </h:commandButton>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">PAGOS CUOTA</f:facet>  
+                                                <h:form>
+                                                    <div class="input-group form-group">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-key">Valor</i></span>
+                                                        </div>
+                                                        <h:inputText a:type="text" value="#{cajeroBEAN.valorapagar}"  class="form-control" />
+                                                        <h:commandButton class="btn btn-info" value="PAGAR" action="#{cajeroBEAN.pagarAmortizacionCuota(amortizaciones)}">
+                                                            <f:ajax render="tablaAmo creditoT" execute="@form"/>
+                                                        </h:commandButton>
+                                                    </div>
+                                                </h:form>
                                             </h:column>
                                         </h:dataTable>
                                     </h:panelGroup>
