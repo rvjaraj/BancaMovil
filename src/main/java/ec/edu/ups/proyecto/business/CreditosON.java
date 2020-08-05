@@ -32,9 +32,39 @@ public class CreditosON {
     @Inject
     CorreoON correoON;
     
+    public void actualizarCrediito(Credito credito){
+        boolean creditospagado = true;
+        try {
+            for (Amortizacion amortizacion : credito.getAmortizacionList()) {
+                if(!amortizacion.getEstado()){
+                    creditospagado = false;
+                    credito.setEstado("PAGANDO");
+                    break;
+                }
+            }
+            if(creditospagado){
+                credito.setEstado("PAGADO");
+            }
+            creditoDAO.update(credito);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            Logger.getLogger(CreditosON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public List<Credito> listarCreditosCliente(String cedula){
         try {
             return creditoDAO.findByCliente(cedula);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            Logger.getLogger(CreditosON.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    public List<Credito> listarCreditos(){
+        try {
+            return creditoDAO.findAll();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
             Logger.getLogger(CreditosON.class.getName()).log(Level.SEVERE, null, ex);

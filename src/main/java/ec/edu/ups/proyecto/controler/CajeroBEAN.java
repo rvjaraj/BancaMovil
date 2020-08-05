@@ -6,10 +6,13 @@
 package ec.edu.ups.proyecto.controler;
 
 import ec.edu.ups.proyecto.business.ClienteON;
+import ec.edu.ups.proyecto.business.CreditosON;
+import ec.edu.ups.proyecto.emtitis.Amortizacion;
 import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.emtitis.Credito;
+import ec.edu.ups.proyecto.emtitis.Solicitud;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -36,12 +39,18 @@ public class CajeroBEAN {
     private ArrayList<String> listaOpc;
     private String textoBuscar;
     private double saldo;
-
+    
+    private List<Credito> listaCreditos;
+    private List<Amortizacion> listaAmortizacions;
+    
     public CajeroBEAN() {
     }
 
     @Inject
-    private ClienteON clienteON;
+    ClienteON clienteON;
+    
+    @Inject 
+    CreditosON creditosON;
 
     @PostConstruct
     public void init() {
@@ -50,12 +59,31 @@ public class CajeroBEAN {
         textoBuscar = "";
         auxCliente = new Cliente();
         saldo = 0;
+        listaCreditos= creditosON.listarCreditos();
+        listaAmortizacions = new ArrayList<>();
     }
     /**
      * Busca los clientes , consume la logica de negocio del cliente
      * Esta metodo se utiliza en la vista
      * @return
      */
+    
+    public String pagarAmortizacion(Amortizacion amortizacion){
+        amortizacion.setEstado(true);
+        creditosON.actualizarCrediito(amortizacion.getCredito());
+        //Acutalizamos datos
+        cargarTabla(amortizacion.getCredito());
+        listaCreditos= creditosON.listarCreditos();
+        return "";
+    }
+    
+    public String cargarTabla(Credito credito){
+        System.out.println(">>>>>>>");
+        System.out.println(credito);
+        listaAmortizacions = credito.getAmortizacionList();
+        return "";
+    }
+    
     public String buscaClientees() {
         System.out.println(textoBuscar);
         try {
@@ -167,5 +195,32 @@ public class CajeroBEAN {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
+
+    public List<Credito> getListaCreditos() {
+        return listaCreditos;
+    }
+
+    public void setListaCreditos(List<Credito> listaCreditos) {
+        this.listaCreditos = listaCreditos;
+    }
+
+    public CreditosON getCreditosON() {
+        return creditosON;
+    }
+
+    public void setCreditosON(CreditosON creditosON) {
+        this.creditosON = creditosON;
+    }
+
+    public List<Amortizacion> getListaAmortizacions() {
+        return listaAmortizacions;
+    }
+
+    public void setListaAmortizacions(List<Amortizacion> listaAmortizacions) {
+        this.listaAmortizacions = listaAmortizacions;
+    }
+    
+    
+    
 
 }
