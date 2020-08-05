@@ -39,6 +39,7 @@ public class CajeroBEAN {
     private ArrayList<String> listaOpc;
     private String textoBuscar;
     private double saldo;
+    private double valorapagar;
     
     private List<Credito> listaCreditos;
     private List<Amortizacion> listaAmortizacions;
@@ -61,6 +62,7 @@ public class CajeroBEAN {
         saldo = 0;
         listaCreditos= creditosON.listarCreditos();
         listaAmortizacions = new ArrayList<>();
+        valorapagar = 0;
     }
     /**
      * Busca los clientes , consume la logica de negocio del cliente
@@ -68,8 +70,25 @@ public class CajeroBEAN {
      * @return
      */
     
+    public String pagarAmortizacionCuota(Amortizacion amortizacion){
+         if(amortizacion.getTotal() <= valorapagar){
+             System.out.println(valorapagar +" >>>>>>>>>");
+             amortizacion.setEstado(true);
+             amortizacion.setTotal(0);
+         }else{
+             amortizacion.setTotal(amortizacion.getTotal() - valorapagar);
+         }
+        creditosON.actualizarCrediito(amortizacion.getCredito());
+        //Acutalizamos datos
+        cargarTabla(amortizacion.getCredito());
+        listaCreditos= creditosON.listarCreditos();
+        valorapagar = 0;
+        return "";
+    }
+    
     public String pagarAmortizacion(Amortizacion amortizacion){
         amortizacion.setEstado(true);
+        amortizacion.setTotal(0);
         creditosON.actualizarCrediito(amortizacion.getCredito());
         //Acutalizamos datos
         cargarTabla(amortizacion.getCredito());
@@ -218,6 +237,14 @@ public class CajeroBEAN {
 
     public void setListaAmortizacions(List<Amortizacion> listaAmortizacions) {
         this.listaAmortizacions = listaAmortizacions;
+    }
+
+    public double getValorapagar() {
+        return valorapagar;
+    }
+
+    public void setValorapagar(double valorapagar) {
+        this.valorapagar = valorapagar;
     }
     
     
