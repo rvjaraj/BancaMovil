@@ -91,8 +91,8 @@ public class Cliente implements Serializable {
     @OneToMany( mappedBy = "cliente")
     private List<Alogin> aloginList;
     
-    @OneToMany( mappedBy = "cliente")
-    private List<Preguntas> pregutnasList;
+//    @OneToMany( mappedBy = "cliente")
+//    private List<Preguntas> pregutnasList;
     
     @OneToMany(mappedBy = "cliente")
     private List<Solicitud> solicitudList;
@@ -242,13 +242,13 @@ public class Cliente implements Serializable {
         this.cuentaList = cuentaList;
     }
 
-    public List<Preguntas> getPregutnasList() {
-        return pregutnasList;
-    }
-
-    public void setPregutnasList(List<Preguntas> pregutnasList) {
-        this.pregutnasList = pregutnasList;
-    }
+//    public List<Preguntas> getPregutnasList() {
+//        return pregutnasList;
+//    }
+//
+//    public void setPregutnasList(List<Preguntas> pregutnasList) {
+//        this.pregutnasList = pregutnasList;
+//    }
 
     
 

@@ -34,10 +34,10 @@ public class ServicesMovil {
 	
 	@Path("/usuario")
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
 	public String login(ClienteTemp clientetemp) {
-		if (loginon.loginClie(clientetemp.getCedula(), clientetemp.getContrasenia())!=null) {
+		if (loginon.loginClie(clientetemp.getCedula(),clientetemp.getContrasenia())!=null) {
 			return "ok";
 		}else {
 			return "error";
@@ -57,8 +57,11 @@ public class ServicesMovil {
 	@Path("/listatransaccion")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Transaciones> getTransacciones(@QueryParam("cedula") String cedula){
-		
-		return transaccioneson.listaTransacionesCedula(cedula);
+		if (cedula != null) {
+			return transaccioneson.listaTransacionesCedula(cedula);
+		}
+		else  
+		return null;
 	}
 	
 	
