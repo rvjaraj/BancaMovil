@@ -31,7 +31,13 @@ public class PythonON {
 
     @Inject
     SolicitudON solicitudON;
-
+/**
+ * 
+ * @param cedula
+ * creamos el servicio predecir cliente 
+ * @cedula
+ * @return 
+ */
     public String predecirClienteCedula(String cedula) {
         try {
             URL url = new URL("http://127.0.0.1:5000/predecir?Dni=" + cedula);//your url i.e fetch data from .
@@ -55,6 +61,10 @@ public class PythonON {
         return null;
     }
     
+    /**
+     * utilizamos el metodo get para que nos devuelva una imagen
+     * @return 
+     */
     public String getImagen() {
         try {
             URL url = new URL("http://127.0.0.1:5000/getImage");
