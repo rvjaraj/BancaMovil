@@ -29,7 +29,7 @@ import javax.mail.MessagingException;
 
 /**
  *
- * @author vinic
+ * @author fanny
  */
 @Stateless
 public class SolicitudON {
@@ -54,7 +54,12 @@ public class SolicitudON {
 
     public SolicitudON() {
     }
-
+/**
+ * este metodo se llena
+ * los dato
+ * @param cliente
+ * @return 
+ */
     public Solicitud datosIniciales(Cliente cliente) {
         Solicitud solicitud = new Solicitud();
         solicitud.setEstado("revision");
@@ -78,7 +83,13 @@ public class SolicitudON {
         }
         return solicitud;
     }
-
+/**
+ * este metodo permite 
+ * que se envie y guarde 
+ * la solicitud
+ * @param solicitud
+ * @param file 
+ */
     public void guardarSolicuitud(Solicitud solicitud, String file) {
         try {
             try {
@@ -102,9 +113,15 @@ public class SolicitudON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+/**
+ * este metodo nos permite
+ * crear un pdf
+ * @param solicitud 
+ */
 
-    public void generarPdf(Solicitud solicitud) {
-        InputStream input = null;
+    
+    public void generarPdf(Solicitud solicitud){
+       InputStream input = null;
         FileOutputStream output = null;
         try {
 
@@ -119,10 +136,14 @@ public class SolicitudON {
             System.out.println("> Archivo guardado en : " + file.getAbsolutePath());
         } catch (IOException ex) {
             Logger.getLogger(SolicitudON.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        }  
     }
-
+/**
+ * Este metodo
+ * nos permite actualizar 
+ * la solicitud
+ * @param solicitud 
+ */
      public void actualizarSolicuitudNegada(Solicitud solicitud) {
         try {
             solicitudDAO.update(solicitud);
@@ -133,7 +154,12 @@ public class SolicitudON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+    /**
+     * este metodo permite 
+     * que la solicitud aceptada
+     * sea actualizada
+     * @param solicitud 
+     */
      public void actualizarSolicuitudAceptada(Solicitud solicitud) {
         try {
             solicitudDAO.update(solicitud);
@@ -144,7 +170,12 @@ public class SolicitudON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+/**
+ * este metodo podemos ver la 
+ * lista de solicitudes 
+ * que tenemos 
+ * @return 
+ */
     public List<Solicitud> listarSalicitudes() {
         try {
             return solicitudDAO.findAll();
@@ -154,7 +185,13 @@ public class SolicitudON {
             return null;
         }
     }
-
+/**
+ * podemos verificar las 
+ * solicitudes que 
+ * realizan los clientes
+ * @param cedula
+ * @return 
+ */
     public List<Solicitud> listarSalicitudesCliente(String cedula) {
         try {
             return solicitudDAO.findByCliente(cedula);
@@ -196,7 +233,11 @@ public class SolicitudON {
         }
         return lista;
     }
-    
+    /**
+     * Solicitud SVR 
+     * @param solicitud
+     * @return 
+     */
     public SolicitudSRV convetoJSON(Solicitud solicitud){
         SolicitudSRV soliSrv = new SolicitudSRV();
             soliSrv.setDni(this.srvDNI(solicitud));
@@ -230,7 +271,13 @@ public class SolicitudON {
         }
         return "A203";
     }
-
+/**
+ * Tenemos el 
+ * documento de 
+ * certificado de trabajo
+ * @param s
+ * @return 
+ */
     public String srvEmpleo(Solicitud s) {
         switch (s.getEmpleo()) {
             case "Desempleado":
@@ -244,7 +291,13 @@ public class SolicitudON {
         }
         return "A175";
     }
-
+/**
+ * metodo que opermite ver
+ * el numer de creditod 
+ * que a realizado
+ * @param s
+ * @return 
+ */
     public String srvCantidadcreditosexistentes(Solicitud s) {
         return (int) s.getNumerocreditos() + "";
     }

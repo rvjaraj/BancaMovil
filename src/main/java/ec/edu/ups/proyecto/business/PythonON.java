@@ -89,7 +89,12 @@ public class PythonON {
         }
         return null;
     }
-
+/**
+ * El cliente envia una solicitud para
+ * un credito
+ * @param solicitud
+ * @return 
+ */
     public int predecirCliente(Solicitud solicitud) {
         try {
             URL url = new URL("http://127.0.0.1:5000/predecirCliente");//your url i.e fetch data from .
@@ -129,6 +134,11 @@ public class PythonON {
         }
         return 3;
     }
+    /**
+     * Generar la grafica de 
+     * la calificacion del cliente
+     * @return 
+     */
     public String generarPastel() {
         try {
             URL url = new URL("http://127.0.0.1:5000/getImage");
