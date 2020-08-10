@@ -26,6 +26,7 @@ import ec.edu.ups.proyecto.business.TransaccionesON;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.ClienteTemp;
 import ec.edu.ups.proyecto.emtitis.Credito;
+import ec.edu.ups.proyecto.emtitis.Mensajes;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
 import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
 
@@ -116,7 +117,17 @@ public class ServicesMovil {
 	public Response transferencia(TransferenciaSRV transferenciaSrv) {
 		Response.ResponseBuilder builder = null;
 		Map<String, String> data = new HashMap<>();
-		servicioson.TransferenciasInternaSRV(transferenciaSrv);
+		Mensajes aux =servicioson.TransferenciasInternaSRV(transferenciaSrv);
+		if (aux.getCodigo()== 6) {
+			data.put("code","1");
+			data.put("message","SI");
+			builder = Response.status(Response.Status.OK).entity(data);
+		}else {
+			data.put("code","2");
+			data.put("message","NO");
+			builder = Response.status(Response.Status.OK).entity(data);
+		}
+		
 		
 		return builder.build();
 	}
