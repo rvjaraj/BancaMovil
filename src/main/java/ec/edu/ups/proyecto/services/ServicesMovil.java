@@ -21,11 +21,13 @@ import javax.ws.rs.core.Response;
 import ec.edu.ups.proyecto.business.ClienteON;
 import ec.edu.ups.proyecto.business.CreditosON;
 import ec.edu.ups.proyecto.business.LoginON;
+import ec.edu.ups.proyecto.business.ServicesON;
 import ec.edu.ups.proyecto.business.TransaccionesON;
 import ec.edu.ups.proyecto.emtitis.Cliente;
 import ec.edu.ups.proyecto.emtitis.ClienteTemp;
 import ec.edu.ups.proyecto.emtitis.Credito;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
+import ec.edu.ups.proyecto.emtitis.TransferenciaSRV;
 
 @Path("/movil")
 public class ServicesMovil {
@@ -41,6 +43,9 @@ public class ServicesMovil {
 	
 	@Inject
 	TransaccionesON transaccioneson;
+	
+	@Inject
+	ServicesON servicioson;
 	
 	@Path("/usuario")
 	@POST
@@ -104,4 +109,15 @@ public class ServicesMovil {
 		return builder.build();
 	}
 	
+	@Path("/transferenciamovil")
+	@POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+	public Response transferencia(TransferenciaSRV transferenciaSrv) {
+		Response.ResponseBuilder builder = null;
+		Map<String, String> data = new HashMap<>();
+		servicioson.TransferenciasInternaSRV(transferenciaSrv);
+		
+		return builder.build();
+	}
 }
