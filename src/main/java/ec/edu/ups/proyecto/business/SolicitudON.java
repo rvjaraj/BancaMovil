@@ -233,7 +233,11 @@ public class SolicitudON {
         }
         return lista;
     }
-    
+    /**
+     * Solicitud SVR 
+     * @param solicitud
+     * @return 
+     */
     public SolicitudSRV convetoJSON(Solicitud solicitud){
         SolicitudSRV soliSrv = new SolicitudSRV();
             soliSrv.setDni(this.srvDNI(solicitud));
