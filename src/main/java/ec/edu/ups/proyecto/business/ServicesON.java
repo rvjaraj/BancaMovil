@@ -81,7 +81,11 @@ public class ServicesON {
             return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
     }
-
+/**
+ * RetiroSVR
+ * @param retiro
+ * @return 
+ */
     public Mensajes RetiroSRV(RetiroSRV retiro) {
         try {
             Cuenta cuentAux = cuentaDAO.findByNuemor(retiro.getNumeroCuenta());
