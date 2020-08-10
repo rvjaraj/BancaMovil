@@ -138,7 +138,12 @@ public class SolicitudON {
             Logger.getLogger(SolicitudON.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
-
+/**
+ * Este metodo
+ * nos permite actualizar 
+ * la solicitud
+ * @param solicitud 
+ */
      public void actualizarSolicuitudNegada(Solicitud solicitud) {
         try {
             solicitudDAO.update(solicitud);
