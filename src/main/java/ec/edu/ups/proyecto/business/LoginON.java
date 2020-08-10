@@ -52,12 +52,12 @@ public class LoginON {
             if (trabajador != null) {
 
                 if (trabajador.getContracenia().equals(contrasenia)) {
-                    enviarCorreoIngreso(trabajador.getCorreo(), true, obtenerIp());
+                    //enviarCorreoIngreso(trabajador.getCorreo(), true, obtenerIp());
                     //Aditoria de login de trabajdor >> true
                     return trabajador;
                 } else {
                     //Aditoria de login de trabajdor >> false
-                    enviarCorreoIngreso(trabajador.getCorreo(), true, obtenerIp());
+                    //enviarCorreoIngreso(trabajador.getCorreo(), true, obtenerIp());
                 }
             }
         } catch (Exception ex) {
@@ -81,11 +81,12 @@ public class LoginON {
 
                 if (cliente.getContracenia().equals(contrasenia)) {
                     guardarLogin(cliente, true);
-                    enviarCorreoIngreso(cliente.getCorreo(), true, obtenerIp());
+                    //enviarCorreoIngreso(cliente.getCorreo(), true, obtenerIp());
                     return cliente;
                 } else {
                     guardarLogin(cliente, false);
-                    enviarCorreoIngreso(cliente.getCorreo(), false, obtenerIp());
+                    //enviarCorreoIngreso(cliente.getCorreo(), false, obtenerIp());
+                    return null;
                 }
             }
         } catch (Exception ex) {

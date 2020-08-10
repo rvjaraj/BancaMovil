@@ -8,6 +8,7 @@ package ec.edu.ups.proyecto.business;
 import ec.edu.ups.proyecto.dao.ClienteDAO;
 import ec.edu.ups.proyecto.dao.ResumenCuentaDAO;
 import ec.edu.ups.proyecto.emtitis.Cliente;
+import ec.edu.ups.proyecto.emtitis.ClienteTemp;
 import ec.edu.ups.proyecto.emtitis.Cuenta;
 import ec.edu.ups.proyecto.emtitis.Transaciones;
 import java.text.SimpleDateFormat;
@@ -171,6 +172,28 @@ public class ClienteON {
         return null;
     }
     
+    //>>>>>>>>>>>>>>>>>>
+    
+    public boolean findByEmail(ClienteTemp clientetemp) throws Exception {
+    	//String cedula, String codigoemail
+    	//try {
+    		Cliente clienteCed = clienteDAO.findByCedula(clientetemp.getCedula());
+    		Cliente clientEmail = clienteDAO.findByEmail(clientetemp.getEmail());
+    		System.out.println(" >>>>> EMAil recuperado "+clientEmail.getCorreo() + "  Cedula re "+ clienteCed.getCedula());
+    		if(clienteCed != null && clientEmail != null) {
+    			actContraCliente(clienteCed);
+      			 return true; 
+    		}else return false;
+           
+       // } catch (Exception ex) {
+        //	return false;
+           // Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, ex);
+       // }
+		
+    }
+    
+    
+    
     /**
      * Metodo que permite actualizar la contrasena, cuando se esta ya en la cuenta
      * permite cambiar cuando se esta en la interfaz del usuario
@@ -203,10 +226,10 @@ public class ClienteON {
      *
      * @param cliente
      * @param cuenta
-     * @return
+     * @return 
      * @throws Exception
      */
-    public void actContraCliente(Cliente cliente) throws Exception {
+    public void  actContraCliente(Cliente cliente) throws Exception {
         cliente.setContracenia(correoON.contrasenaAleatoria());
         try {
             cliente.setContracenia(correoON.contrasenaAleatoria());
@@ -216,8 +239,9 @@ public class ClienteON {
             String correo = cliente.getCorreo();
             String nuevacontr = cliente.getContracenia();
             correoON.sendAsHtml(correo, "Actualizacion Contrasena", "<h1> Su contrasena es: </h1>" + nuevacontr);
+            
         } catch (Exception e) {
-            throw new Exception("No se puede actualizar");
+        	throw new Exception("No se puede actualizar");
         }
 
     }
