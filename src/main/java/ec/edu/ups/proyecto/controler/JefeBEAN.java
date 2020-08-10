@@ -120,13 +120,6 @@ public class JefeBEAN {
         return "";
     }
 
-    
-
-    public String predecir(String cedula) {
-        formaRes(servicesON.ServicosPython(cedula));
-        return "";
-    }
-
     public String formaRes(String r) {
         r = r.replace("{", "");
         r = r.replace(":", "");
