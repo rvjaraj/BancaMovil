@@ -170,7 +170,12 @@ public class SolicitudON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+/**
+ * este metodo podemos ver la 
+ * lista de solicitudes 
+ * que tenemos 
+ * @return 
+ */
     public List<Solicitud> listarSalicitudes() {
         try {
             return solicitudDAO.findAll();
