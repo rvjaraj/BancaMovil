@@ -271,7 +271,13 @@ public class SolicitudON {
         }
         return "A203";
     }
-
+/**
+ * Tenemos el 
+ * documento de 
+ * certificado de trabajo
+ * @param s
+ * @return 
+ */
     public String srvEmpleo(Solicitud s) {
         switch (s.getEmpleo()) {
             case "Desempleado":
@@ -285,7 +291,13 @@ public class SolicitudON {
         }
         return "A175";
     }
-
+/**
+ * metodo que opermite ver
+ * el numer de creditod 
+ * que a realizado
+ * @param s
+ * @return 
+ */
     public String srvCantidadcreditosexistentes(Solicitud s) {
         return (int) s.getNumerocreditos() + "";
     }
