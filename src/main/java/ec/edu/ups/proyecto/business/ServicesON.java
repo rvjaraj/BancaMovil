@@ -166,7 +166,10 @@ public class ServicesON {
             return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
     }
-
+/**
+ * envio de solicitud
+ * @return 
+ */
     public List<SolicitudSRV> enviarDataSet() {
         List<SolicitudSRV> lista = solicitudON.enviarDataSet();
         try {
@@ -176,13 +179,23 @@ public class ServicesON {
         }
         return lista;
     }
-
+/**
+ * Gregar documentos 
+ * para la solicitud
+ * @param lista
+ * @throws IOException 
+ */
     public void agregarCSV(List<SolicitudSRV> lista) throws IOException {
         String archCSV = "C:\\Users\\Vinicio\\Documents\\proyectoanalisisdatos\\apiAnalisis\\Datasets\\DatasetBanco\\mio.csv";
         CSVWriter writer = new CSVWriter(new FileWriter(archCSV), ';');
         writer.writeAll(convertir(lista));
         writer.close();
     }
+    /**
+     * convertir
+     * @param emps
+     * @return 
+     */
 
     private static List<String[]> convertir(List<SolicitudSRV> emps) {
         List<String[]> records = new ArrayList<String[]>();
@@ -204,9 +217,15 @@ public class ServicesON {
         }
         return records;
     }
+    /**
+     * servicios python
+     * @param cedula
+     * @return 
+     */
+
     
-    public String ServicosPython(String cedula) {
-        try {
+    public  String ServiciosPython(String cedula){
+         try {
             URL url = new URL("http://127.0.0.1:8000/apiAnalisis/predecirTipoCliente/?Dni=" + cedula);//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
