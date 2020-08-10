@@ -22,7 +22,12 @@ public class SolicitudDAO {
     public SolicitudDAO() {
     }
      
-    
+   /**
+    * Este metodo permite guadar la solicutud mediante el parametro solicitud
+    * @param solicitud
+    * @return
+    * @throws Exception 
+    */ 
     public boolean insert(Solicitud solicitud) throws Exception {
         boolean bandera = true;
     	try {
