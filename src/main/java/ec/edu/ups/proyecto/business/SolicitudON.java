@@ -211,6 +211,29 @@ public class SolicitudON {
         }
         return lista;
     }
+    
+    public SolicitudSRV convetoJSON(Solicitud solicitud){
+        SolicitudSRV soliSrv = new SolicitudSRV();
+            soliSrv.setDni(this.srvDNI(solicitud));
+            soliSrv.setPlazomesescredito(this.srvPlazomesescredito(solicitud));
+            soliSrv.setHistorialcredito(this.srvHistorialcredito(solicitud));
+            soliSrv.setPropositocredito(this.srvPropositocredito(solicitud));
+            soliSrv.setMontocredito(this.srvMontocredito(solicitud));
+            soliSrv.setSaldocuentaahorros(this.srvSaldocuentaahorros(solicitud));
+            soliSrv.setTiempoempleo(this.srvTiempoempleo(solicitud));
+            soliSrv.setTasapago(this.srvTasapago(solicitud));
+            soliSrv.setEstadocivilysexo(this.srvEstadocivilysexo(solicitud));
+            soliSrv.setGarante(this.srvGarante(solicitud));
+            soliSrv.setAvaluovivienda(this.srvAvaluovivienda(solicitud));
+            soliSrv.setActivos(this.srvActivos(solicitud));
+            soliSrv.setEdad(this.srvEdad(solicitud));
+            soliSrv.setVivienda(this.srvVivienda(solicitud));
+            soliSrv.setCantidadcreditosexistentes(this.srvCantidadcreditosexistentes(solicitud));
+            soliSrv.setEmpleo(this.srvEmpleo(solicitud));
+            soliSrv.setTrabajadorextranjero(this.srvTrabajadorextranjero(solicitud));
+            soliSrv.setTipocliente("3");
+            return  soliSrv;
+    }
 
     //Todo los calculos para pasara a dataset*
     public String srvTrabajadorextranjero(Solicitud s) {

@@ -10,6 +10,7 @@ package ec.edu.ups.proyecto.emtitis;
  * @author Vinicio
  */
 public class SolicitudSRV {
+
     private String dni;
     private String plazomesescredito;
     private String historialcredito;
@@ -175,12 +176,25 @@ public class SolicitudSRV {
 
     @Override
     public String toString() {
-        return "SolicitudSRV{" + "dni=" + dni + ", plazomesescredito=" + plazomesescredito + ", historialcredito=" + historialcredito + ", propositocredito=" + propositocredito + ", montocredito=" + montocredito + ", saldocuentaahorros=" + saldocuentaahorros + ", tiempoempleo=" + tiempoempleo + ", tasapago=" + tasapago + ", estadocivilysexo=" + estadocivilysexo + ", garante=" + garante + ", avaluovivienda=" + avaluovivienda + ", activos=" + activos + ", edad=" + edad + ", vivienda=" + vivienda + ", cantidadcreditosexistentes=" + cantidadcreditosexistentes + ", empleo=" + empleo + ", trabajadorextranjero=" + trabajadorextranjero + ", tipocliente=" + tipocliente + '}';
-    }
+        return " 'DNI':'" + this.getDni() + "',"
+                + " 'PLAZOMESESCREDITO':'" + this.getPlazomesescredito() + "',"
+                + " 'HISTORIALCREDITO':'" + this.getHistorialcredito() + "',"
+                + " 'PROPOSITOCREDITO':'" + this.getPropositocredito() + "',"
+                + " 'MONTOCREDITO':'" + this.getMontocredito() + "',"
+                + " 'SALDOCUENTAAHORROS':'" + this.getSaldocuentaahorros() + "',"
+                + " 'TIEMPOEMPLEO':'" + this.getTiempoempleo() + "',"
+                + " 'TASAPAGO':'" + this.getTasapago() + "',"
+                + " 'ESTADOCIVILYSEXO':'" + this.getEstadocivilysexo() + "',"
+                + " 'GARANTE':'" + this.getGarante() + "',"
+                + " 'AVALUOVIVIENDA':'" + this.getAvaluovivienda() + "',"
+                + " 'ACTIVOS':'" + this.getActivos() + "',"
+                + " 'EDAD':'" + this.getEdad() + "',"
+                + " 'VIVIENDA':'" + this.getVivienda() + "',"
+                + " 'CANTIDADCREDITOSEXISTENTES':'" + this.getCantidadcreditosexistentes() + "',"
+                + " 'EMPLEO':'" + this.getEmpleo() + "',"
+                + " 'TRABAJADOREXTRANJERO':'" + this.getTrabajadorextranjero() + "',"
+                + " 'TIPOCLIENTE':'" + this.getTipocliente() + "',";
 
-   
-    
-    
-    
+    }
 
 }

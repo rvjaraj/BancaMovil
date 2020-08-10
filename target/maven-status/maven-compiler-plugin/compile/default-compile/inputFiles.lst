@@ -1,4 +1,5 @@
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Trabajador.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\services\ServicesMovil.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Cuenta.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\TransferenciaSRV.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\TrabajadorDAO.java
@@ -7,6 +8,7 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\view\Vista.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transaciones.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\TrabajadorON.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\services\CORSFilter.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\SolicitudBEAN.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\LoginBEAN.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\ClienteON.java
@@ -30,6 +32,7 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Solicitud.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\controler\CajeroBEAN.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\services\BancaMovilServicesSOAP.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\COfilter.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\Transferencias.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\SolicitudSRV.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\pdf\DAO.java
@@ -49,6 +52,7 @@ C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\CreditoDAO.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\pdf\Modelo.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\ResumenCuentaDAO.java
+C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\ClienteTemp.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\business\SolicitudON.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\emtitis\RetiroSRV.java
 C:\Users\Vinicio\Documents\NetBeansProjects\BancaMovil\src\main\java\ec\edu\ups\proyecto\dao\CuentaDAO.java
