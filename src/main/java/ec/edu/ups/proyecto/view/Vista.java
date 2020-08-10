@@ -56,10 +56,10 @@ public class Vista extends HttpServlet {
 //            response.getWriter().println("<h1>Trans: " + eee.getNombre() +"</h1>");
 //            response.getWriter().println(pythonON.predecirClienteCedula("0104600996"));
 //            response.getWriter().println("<>>>>>>>");
-//            response.getWriter().println(pythonON.predecirClienteCedula("0104600973"));
+            response.getWriter().println(pythonON.predecirClienteCedula("0105452171"));
 //            Solicitud s = solicitudON.listarSalicitudes().get(0);
 //            response.getWriter().println(pythonON.predecirCliente(s));
-              pythonON.getImagen();
+              pythonON.getPastel();
 
         } catch (Exception e) {
             response.getWriter().println(e.getMessage() + e.getLocalizedMessage() + " >>>");
