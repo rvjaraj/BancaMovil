@@ -5,7 +5,6 @@
  */
 package ec.edu.ups.proyecto.business;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import ec.edu.ups.proyecto.emtitis.Solicitud;
 import ec.edu.ups.proyecto.emtitis.SolicitudSRV;
 import java.io.BufferedInputStream;
@@ -17,8 +16,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -34,7 +31,7 @@ public class PythonON {
 
     public String predecirClienteCedula(String cedula) {
         try {
-            URL url = new URL("http://127.0.0.1:5000/predecir?Dni=" + cedula);//your url i.e fetch data from .
+            URL url = new URL("http://104.154.101.179:8080/predecir?DNI=" + cedula);//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Accept", "application/json");
@@ -55,9 +52,43 @@ public class PythonON {
         return null;
     }
     
+    public String getPastel() {
+       try {
+           int buenos = 0, malos = 0, definir = 0;
+           for (Solicitud s : solicitudON.listarSalicitudes()) {
+               if(s.getTipocliente().equals("1")){
+                   buenos++;
+               }else if(s.getTipocliente().equals("2")){
+                   malos++;
+               }else{
+                   definir++;
+               }
+           }
+           System.out.println(buenos +" <> " + malos + " <> " + definir);
+            URL url = new URL("http://127.0.0.1:5000/getPaste?buenos=" + buenos+"&malos="+malos+"&definir="+definir);
+            InputStream in = new BufferedInputStream(url.openStream());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int n = 0;
+            while (-1 != (n = in.read(buf))) {
+                out.write(buf, 0, n);
+            }
+            out.close();
+            in.close();
+            byte[] response = out.toByteArray();
+            FileOutputStream fos = new FileOutputStream("C:\\Users\\Vinicio\\Documents\\NetBeansProjects\\BancaMovil\\src\\main\\webapp\\templete\\img\\pastel.jpg");
+            fos.write(response);
+            fos.close();
+            return  fos.getFD().toString();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "templete/img/pastel.jpg";
+    }
+    
     public String getImagen() {
         try {
-            URL url = new URL("http://127.0.0.1:5000/getImage");
+            URL url = new URL("http://104.154.101.179:8080/getImage");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Content-Type", "image/gif");
@@ -82,7 +113,7 @@ public class PythonON {
 
     public int predecirCliente(Solicitud solicitud) {
         try {
-            URL url = new URL("http://127.0.0.1:5000/predecirCliente");//your url i.e fetch data from .
+            URL url = new URL("http://104.154.101.179:8080/predecirCliente");//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
