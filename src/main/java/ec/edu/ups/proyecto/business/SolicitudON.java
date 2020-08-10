@@ -185,7 +185,13 @@ public class SolicitudON {
             return null;
         }
     }
-
+/**
+ * podemos verificar las 
+ * solicitudes que 
+ * realizan los clientes
+ * @param cedula
+ * @return 
+ */
     public List<Solicitud> listarSalicitudesCliente(String cedula) {
         try {
             return solicitudDAO.findByCliente(cedula);
