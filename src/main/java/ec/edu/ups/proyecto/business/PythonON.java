@@ -21,11 +21,11 @@ import javax.inject.Inject;
  */
 @Stateless
 public class PythonON {
-    
+
     @Inject
     SolicitudON solicitudON;
-    
-    public  String predecirClienteCedula(String cedula) {
+
+    public String predecirClienteCedula(String cedula) {
         try {
             URL url = new URL("http://127.0.0.1:5000/predecir?Dni=" + cedula);//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -47,18 +47,16 @@ public class PythonON {
         }
         return null;
     }
-    
-    
-    public String predecirCliente(Solicitud solicitud) {
-        System.out.println(solicitud);
+
+    public int predecirCliente(Solicitud solicitud) {
         try {
             URL url = new URL("http://127.0.0.1:5000/predecirCliente");//your url i.e fetch data from .
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
-            
-            String jsonInputString = "{\"name\": \"Upendra\", \"job\": \"Programmer\"}";
+
+            String jsonInputString = toJson(solicitud);
 
             try (OutputStream os = conn.getOutputStream()) {
                 byte[] input = jsonInputString.getBytes("utf-8");
@@ -73,19 +71,27 @@ public class PythonON {
             BufferedReader br = new BufferedReader(in);
             String output;
             while ((output = br.readLine()) != null) {
-                return output;
+                System.out.println("|" + output + "|");
+                if (output.equals("1")) {
+                    conn.disconnect();
+                    return 1;
+                }
+                if (output.equals("2")) {
+                    conn.disconnect();
+                    return 2;
+                }
             }
             conn.disconnect();
         } catch (Exception e) {
             System.out.println("Exception in NetClientGet:- " + e);
         }
-        return null;
+        return 3;
     }
-    
-    public String toJson(Solicitud solicitud){
+
+    public String toJson(Solicitud solicitud) {
         SolicitudSRV solSVR = solicitudON.convetoJSON(solicitud);
         System.out.println(solSVR.toString());
         return solSVR.toString();
     }
-    
+
 }

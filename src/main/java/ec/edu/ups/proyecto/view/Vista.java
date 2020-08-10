@@ -54,9 +54,11 @@ public class Vista extends HttpServlet {
 //            
 //            Mensajes eee = servicesON.TransferenciasInternaSRV(new TransferenciaSRV("CUHA06S3", "CUHA16S10", 100.10, "Transferenacis internas"));
 //            response.getWriter().println("<h1>Trans: " + eee.getNombre() +"</h1>");
-            response.getWriter().println(pythonON.predecirClienteCedula("0104600996"));
-            response.getWriter().println("<>>>>>>>");
-            response.getWriter().println(pythonON.predecirClienteCedula("0104600973"));
+//            response.getWriter().println(pythonON.predecirClienteCedula("0104600996"));
+//            response.getWriter().println("<>>>>>>>");
+//            response.getWriter().println(pythonON.predecirClienteCedula("0104600973"));
+            Solicitud s = solicitudON.listarSalicitudes().get(0);
+            response.getWriter().println(pythonON.predecirCliente(s));
 
         } catch (Exception e) {
             response.getWriter().println(e.getMessage() + e.getLocalizedMessage() + " >>>");

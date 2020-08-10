@@ -176,24 +176,24 @@ public class SolicitudSRV {
 
     @Override
     public String toString() {
-        return " 'DNI':'" + this.getDni() + "',"
-                + " 'PLAZOMESESCREDITO':'" + this.getPlazomesescredito() + "',"
-                + " 'HISTORIALCREDITO':'" + this.getHistorialcredito() + "',"
-                + " 'PROPOSITOCREDITO':'" + this.getPropositocredito() + "',"
-                + " 'MONTOCREDITO':'" + this.getMontocredito() + "',"
-                + " 'SALDOCUENTAAHORROS':'" + this.getSaldocuentaahorros() + "',"
-                + " 'TIEMPOEMPLEO':'" + this.getTiempoempleo() + "',"
-                + " 'TASAPAGO':'" + this.getTasapago() + "',"
-                + " 'ESTADOCIVILYSEXO':'" + this.getEstadocivilysexo() + "',"
-                + " 'GARANTE':'" + this.getGarante() + "',"
-                + " 'AVALUOVIVIENDA':'" + this.getAvaluovivienda() + "',"
-                + " 'ACTIVOS':'" + this.getActivos() + "',"
-                + " 'EDAD':'" + this.getEdad() + "',"
-                + " 'VIVIENDA':'" + this.getVivienda() + "',"
-                + " 'CANTIDADCREDITOSEXISTENTES':'" + this.getCantidadcreditosexistentes() + "',"
-                + " 'EMPLEO':'" + this.getEmpleo() + "',"
-                + " 'TRABAJADOREXTRANJERO':'" + this.getTrabajadorextranjero() + "',"
-                + " 'TIPOCLIENTE':'" + this.getTipocliente() + "',";
+        return "{ \"DNI\":\"" + this.getDni() + "\","
+                + " \"PLAZOMESESCREDITO\":\"" + this.getPlazomesescredito() + "\","
+                + " \"HISTORIALCREDITO\":\"" + this.getHistorialcredito() + "\","
+                + " \"PROPOSITOCREDITO\":\"" + this.getPropositocredito() + "\","
+                + " \"MONTOCREDITO\":\"" + this.getMontocredito() + "\","
+                + " \"SALDOCUENTAAHORROS\":\"" + this.getSaldocuentaahorros() + "\","
+                + " \"TIEMPOEMPLEO\":\"" + this.getTiempoempleo() + "\","
+                + " \"TASAPAGO\":\"" + this.getTasapago() + "\","
+                + " \"ESTADOCIVILYSEXO\":\"" + this.getEstadocivilysexo() + "\","
+                + " \"GARANTE\":\"" + this.getGarante() + "\","
+                + " \"AVALUOVIVIENDA\":\"" + this.getAvaluovivienda() + "\","
+                + " \"ACTIVOS\":\"" + this.getActivos() + "\","
+                + " \"EDAD\":\"" + this.getEdad() + "\","
+                + " \"VIVIENDA\":\"" + this.getVivienda() + "\","
+                + " \"CANTIDADCREDITOSEXISTENTES\":\"" + this.getCantidadcreditosexistentes() + "\","
+                + " \"EMPLEO\":\"" + this.getEmpleo() + "\","
+                + " \"TRABAJADOREXTRANJERO\":\"" + this.getTrabajadorextranjero() + "\","
+                + " \"TIPOCLIENTE\":\"" + this.getTipocliente() + "\"}";
 
     }
 

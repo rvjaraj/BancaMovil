@@ -48,6 +48,9 @@ public class SolicitudON {
     
     @Inject
     CreditosON creditosON;
+    
+    @Inject
+    PythonON pythonON;
 
     public SolicitudON() {
     }
@@ -90,9 +93,8 @@ public class SolicitudON {
                 solicitud.setDocumento(null);
                 System.out.println("Error al agregar archivo pdf " + ex.getMessage());
             }
-
             solicitudDAO.insert(solicitud);
-            int res = formaRes(servicesON.ServicosPython(solicitud.getCliente().getCedula()));
+            int res = pythonON.predecirCliente(solicitud);
             solicitud.setTipocliente(res + "");
             solicitudDAO.update(solicitud);
         } catch (Exception e) {
@@ -140,23 +142,6 @@ public class SolicitudON {
         } catch (Exception e) {
             System.out.println("Error upd: " + e.getMessage());
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    public int formaRes(String r) {
-        r = r.replace("{", "");
-        r = r.replace(":", "");
-        r = r.replace(",", "");
-
-        String res[] = r.split("\"");
-        for (String re : res) {
-            System.out.println(re);
-        }
-
-        if (res[5].toString().equals("1")) {
-            return 1;
-        } else {
-            return 2;
         }
     }
 
