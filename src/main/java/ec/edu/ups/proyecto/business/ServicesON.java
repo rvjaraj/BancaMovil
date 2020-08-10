@@ -110,7 +110,12 @@ public class ServicesON {
             return new Mensajes(0, "BM_E000", "Vaya a saber quien| Diga a los desarroladores que arreglen");
         }
     }
-
+/**
+ * En este metodo se realiza
+ * trasnferencias internas
+ * @param transferenciaSrv
+ * @return 
+ */
     public Mensajes TransferenciasInternaSRV(TransferenciaSRV transferenciaSrv) {
         try {
             Cuenta cuentOri = cuentaDAO.findByNuemor(transferenciaSrv.getNumeroCuentaOrigen());
