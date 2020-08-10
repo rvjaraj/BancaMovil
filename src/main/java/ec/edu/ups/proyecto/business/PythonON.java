@@ -28,7 +28,13 @@ public class PythonON {
 
     @Inject
     SolicitudON solicitudON;
-
+/**
+ * 
+ * @param cedula
+ * creamos el servicio predecir cliente 
+ * @cedula
+ * @return 
+ */
     public String predecirClienteCedula(String cedula) {
         try {
             URL url = new URL("http://104.154.101.179:8080/predecir?DNI=" + cedula);//your url i.e fetch data from .
@@ -52,40 +58,10 @@ public class PythonON {
         return null;
     }
     
-    public String getPastel() {
-       try {
-           int buenos = 0, malos = 0, definir = 0;
-           for (Solicitud s : solicitudON.listarSalicitudes()) {
-               if(s.getTipocliente().equals("1")){
-                   buenos++;
-               }else if(s.getTipocliente().equals("2")){
-                   malos++;
-               }else{
-                   definir++;
-               }
-           }
-           System.out.println(buenos +" <> " + malos + " <> " + definir);
-            URL url = new URL("http://127.0.0.1:5000/getPaste?buenos=" + buenos+"&malos="+malos+"&definir="+definir);
-            InputStream in = new BufferedInputStream(url.openStream());
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            int n = 0;
-            while (-1 != (n = in.read(buf))) {
-                out.write(buf, 0, n);
-            }
-            out.close();
-            in.close();
-            byte[] response = out.toByteArray();
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\Vinicio\\Documents\\NetBeansProjects\\BancaMovil\\src\\main\\webapp\\templete\\img\\pastel.jpg");
-            fos.write(response);
-            fos.close();
-            return  fos.getFD().toString();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return "templete/img/pastel.jpg";
-    }
-    
+    /**
+     * utilizamos el metodo get para que nos devuelva una imagen
+     * @return 
+     */
     public String getImagen() {
         try {
             URL url = new URL("http://104.154.101.179:8080/getImage");
@@ -110,7 +86,12 @@ public class PythonON {
         }
         return null;
     }
-
+/**
+ * El cliente envia una solicitud para
+ * un credito
+ * @param solicitud
+ * @return 
+ */
     public int predecirCliente(Solicitud solicitud) {
         try {
             URL url = new URL("http://104.154.101.179:8080/predecirCliente");//your url i.e fetch data from .
@@ -150,6 +131,11 @@ public class PythonON {
         }
         return 3;
     }
+    /**
+     * Generar la grafica de 
+     * la calificacion del cliente
+     * @return 
+     */
     public String generarPastel() {
         try {
             URL url = new URL("http://127.0.0.1:5000/getImage");
