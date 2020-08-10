@@ -61,6 +61,10 @@ public class PythonON {
         return null;
     }
     
+    /**
+     * utilizamos el metodo get para que nos devuelva una imagen
+     * @return 
+     */
     public String getImagen() {
         try {
             URL url = new URL("http://127.0.0.1:5000/getImage");
