@@ -52,7 +52,11 @@ public class ServicesON {
 
     @Inject
     SolicitudON solicitudON;
-
+/**
+ * Servici de deposito
+ * @param deposito
+ * @return 
+ */
     public Mensajes DepositoSRV(DepositoSRV deposito) {
         try {
             Cuenta cuentAux = cuentaDAO.findByNuemor(deposito.getNumeroCuenta());
