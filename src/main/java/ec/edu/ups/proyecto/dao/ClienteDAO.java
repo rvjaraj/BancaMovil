@@ -131,7 +131,24 @@ public class ClienteDAO {
         }
 
     }
-               /**
+    
+    
+    public Cliente findByEmail(String codigo) throws Exception {
+        try {
+            Query q = em.createNamedQuery("Cliente.findByCorreo");
+            q.setParameter("correo", codigo);
+            return (Cliente) q.getSingleResult();
+        } catch (Exception e) {
+            throw new Exception("Error listar Cliente " +e.getMessage());
+        }
+
+    }
+    
+   
+
+    
+    
+      /**
      * El metodo busca todos los clientes mediante sus id
      * @param id
      * @createNamedQuery crea un querry para poder encontrar 

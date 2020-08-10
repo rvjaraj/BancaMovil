@@ -1,6 +1,8 @@
 package ec.edu.ups.proyecto.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.jws.WebMethod;
@@ -12,6 +14,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+
 
 import ec.edu.ups.proyecto.business.ClienteON;
 import ec.edu.ups.proyecto.business.CreditosON;
@@ -41,13 +46,23 @@ public class ServicesMovil {
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-	public String login(ClienteTemp clientetemp) {
+	public Response login(ClienteTemp clientetemp) {
+		Response.ResponseBuilder builder = null;
+		Map<String, String> data = new HashMap<>();
+		
 		if (loginon.loginClie(clientetemp.getCedula(),clientetemp.getContrasenia())!=null) {
-			return "ok";
+			data.put("code","1");
+			data.put("message","si");
+			builder = Response.status(Response.Status.OK).entity(data);
+			
 		}else {
-			return "error";
-		}
-	
+			data.put("code","2");
+			data.put("message","NO");
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(data);//Response.Status.BAD_REQUEST
+			
+		}//System.out.println("--"+builder.build());
+		return  builder.build();
+		
 	}
 	
 	@GET
@@ -73,9 +88,20 @@ public class ServicesMovil {
 	@POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-	public String actualizarContra(Cliente cliente) throws Exception {
-		clienteon.actContraCliente(cliente);
-		return "ok";
+	public Response actualizarContrasenia(ClienteTemp clientetemp) throws Exception {
+		Response.ResponseBuilder builder = null;
+		Map<String, String> data = new HashMap<>();
+		if(clienteon.findByEmail(clientetemp)== true) {
+			data.put("code","1");
+			data.put("message","SI");
+			builder = Response.status(Response.Status.OK).entity(data);
+		}
+		else {
+			data.put("code","2");
+			data.put("message","NO");
+			builder = Response.status(Response.Status.OK).entity(data);
+		}
+		return builder.build();
 	}
 	
 }
