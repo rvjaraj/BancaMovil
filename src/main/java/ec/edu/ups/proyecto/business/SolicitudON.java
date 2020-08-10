@@ -29,7 +29,7 @@ import javax.mail.MessagingException;
 
 /**
  *
- * @author vinic
+ * @author fanny
  */
 @Stateless
 public class SolicitudON {
@@ -54,7 +54,12 @@ public class SolicitudON {
 
     public SolicitudON() {
     }
-
+/**
+ * este metodo se llena
+ * los dato
+ * @param cliente
+ * @return 
+ */
     public Solicitud datosIniciales(Cliente cliente) {
         Solicitud solicitud = new Solicitud();
         solicitud.setEstado("revision");
@@ -78,7 +83,13 @@ public class SolicitudON {
         }
         return solicitud;
     }
-
+/**
+ * este metodo permite 
+ * que se envie y guarde 
+ * la solicitud
+ * @param solicitud
+ * @param file 
+ */
     public void guardarSolicuitud(Solicitud solicitud, String file) {
         try {
             try {
