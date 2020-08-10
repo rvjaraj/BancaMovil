@@ -5,13 +5,20 @@
  */
 package ec.edu.ups.proyecto.business;
 
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import ec.edu.ups.proyecto.emtitis.Solicitud;
 import ec.edu.ups.proyecto.emtitis.SolicitudSRV;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -59,7 +66,7 @@ public class PythonON {
                 throw new RuntimeException("Failed : HTTP Error code : "
                         + conn.getResponseCode());
             }
-            System.out.println("Estamo aca con la img >>>>>");
+            
             InputStreamReader in = new InputStreamReader(conn.getInputStream());
             BufferedReader br = new BufferedReader(in);
             String output;
@@ -112,7 +119,28 @@ public class PythonON {
         }
         return 3;
     }
-
+    public String generarPastel() {
+        try {
+            URL url = new URL("http://127.0.0.1:5000/getImage");
+            InputStream in = new BufferedInputStream(url.openStream());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            int n = 0;
+            while (-1 != (n = in.read(buf))) {
+                out.write(buf, 0, n);
+            }
+            out.close();
+            in.close();
+            byte[] response = out.toByteArray();
+            FileOutputStream fos = new FileOutputStream("C:\\Users\\Vinicio\\Documents\\NetBeansProjects\\BancaMovil\\src\\main\\webapp\\templete\\img\\pastel.jpg");
+            fos.write(response);
+            fos.close();
+            return  fos.getFD().toString();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "templete/img/pastel.jpg";
+    }
     public String toJson(Solicitud solicitud) {
         SolicitudSRV solSVR = solicitudON.convetoJSON(solicitud);
         System.out.println(solSVR.toString());

@@ -85,7 +85,7 @@
                                     <f:facet name="header">Prediccion</f:facet>
                                     <h:outputLabel value="Cliente Bueno" class="btn btn-success" rendered="#{solicitud.tipocliente eq '1'}"/>
                                     <h:outputLabel value="Cliente Malo" class="btn btn-info" rendered="#{solicitud.tipocliente eq '2'}"/>
-                                     <h:outputLabel value="POR DEFINIR" class="btn btn-light" rendered="#{solicitud.tipocliente eq 'por definir'}"/>
+                                    <h:outputLabel value="POR DEFINIR" class="btn btn-light" rendered="#{solicitud.tipocliente eq 'por definir'}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">ESTADO</f:facet>
@@ -129,6 +129,29 @@
                                     </div>
 
                                 </h:panelGroup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+        <ui:define name="pastel">
+            <div class="col-sm-5 col-md-7 mx-auto" >
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Resultado Cliente Buenos y Malos</h5>
+                        <h:panelGroup  id="refrecarImagen">
+                            <h:graphicImage  class="mx-auto" style="border: 3px solid; 
+                                 color: black; 
+                                 display: block;
+                                 margin-left: auto;
+                                 margin-right: auto;" value="templete/img/pastel.jpg" rendered="#{not empty facesContext.application.resourceHandler.createResource('templete/img/pastel.jpg')}"/>
+                        </h:panelGroup>
+                        <div class="card-footer text-muted bg-light">
+                            <div class="input-group form-group col-md-4 mx-auto">
+                                <h:commandButton  class="btn btn-outline-dark " action="#{jefeBEAN.pastel()}" value="ACTUALIZAR GRAFICO">
+                                    <f:ajax render="refrecarImagen"></f:ajax>
+                                </h:commandButton>
                             </div>
                         </div>
                     </div>
