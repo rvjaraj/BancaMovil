@@ -154,7 +154,12 @@ public class SolicitudON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+    /**
+     * este metodo permite 
+     * que la solicitud aceptada
+     * sea actualizada
+     * @param solicitud 
+     */
      public void actualizarSolicuitudAceptada(Solicitud solicitud) {
         try {
             solicitudDAO.update(solicitud);
