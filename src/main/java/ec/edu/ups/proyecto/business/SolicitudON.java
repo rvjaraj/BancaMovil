@@ -113,9 +113,15 @@ public class SolicitudON {
             Logger.getLogger(ClienteON.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+/**
+ * este metodo nos permite
+ * crear un pdf
+ * @param solicitud 
+ */
 
-    public void generarPdf(Solicitud solicitud) {
-        InputStream input = null;
+    
+    public void generarPdf(Solicitud solicitud){
+       InputStream input = null;
         FileOutputStream output = null;
         try {
 
@@ -130,8 +136,7 @@ public class SolicitudON {
             System.out.println("> Archivo guardado en : " + file.getAbsolutePath());
         } catch (IOException ex) {
             Logger.getLogger(SolicitudON.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        }  
     }
 
      public void actualizarSolicuitudNegada(Solicitud solicitud) {
