@@ -96,6 +96,12 @@ public class JefeBEAN {
         System.out.println(res);
         return "";
     }
+    
+    public String pastel2(){
+        String res = pythonON.getPastel();
+        System.out.println(res);
+        return "";
+    }
 
     public String cambiarEstado(Solicitud solicitud) {
         if (estado.equals("NEGAR")) {
@@ -111,13 +117,6 @@ public class JefeBEAN {
 
     public String openPdf(Solicitud s) {
         solicitudON.generarPdf(s);
-        return "";
-    }
-
-    
-
-    public String predecir(String cedula) {
-        formaRes(servicesON.ServicosPython(cedula));
         return "";
     }
 
