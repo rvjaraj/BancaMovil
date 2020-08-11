@@ -118,6 +118,8 @@ public class ServicesON {
  */
     public Mensajes TransferenciasInternaSRV(TransferenciaSRV transferenciaSrv) {
         try {
+        	System.out.println("Cta Origen lega:v "+transferenciaSrv.getNumeroCuentaOrigen());
+        	System.out.println("Cta Destino lega:v "+transferenciaSrv.getNumeroCuentaDestino());
             Cuenta cuentOri = cuentaDAO.findByNuemor(transferenciaSrv.getNumeroCuentaOrigen());
             if (cuentOri != null) {
                 Cuenta cuentDes = cuentaDAO.findByNuemor(transferenciaSrv.getNumeroCuentaDestino());

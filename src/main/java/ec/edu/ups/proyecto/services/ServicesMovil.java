@@ -117,6 +117,8 @@ public class ServicesMovil {
 	public Response transferencia(TransferenciaSRV transferenciaSrv) {
 		Response.ResponseBuilder builder = null;
 		Map<String, String> data = new HashMap<>();
+		System.out.println("Cta Origen lega:v1 "+transferenciaSrv.getNumeroCuentaOrigen());
+    	System.out.println("Cta Destino lega:v1 "+transferenciaSrv.getNumeroCuentaDestino());
 		Mensajes aux =servicioson.TransferenciasInternaSRV(transferenciaSrv);
 		if (aux.getCodigo()== 6) {
 			data.put("code","1");
@@ -125,7 +127,7 @@ public class ServicesMovil {
 		}else {
 			data.put("code","2");
 			data.put("message","NO");
-			builder = Response.status(Response.Status.OK).entity(data);
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(data);
 		}
 		
 		
